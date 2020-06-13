@@ -1,0 +1,40 @@
+.infoBox_Wrapper {
+  font: {
+    size: var(--font-size-small);
+  }
+  background-color: var(--color-blue-light);
+  position: relative;
+  margin-bottom: 2.5rem;
+  padding: var(--size-16) var(--size-48) var(--size-16) var(--size-16);
+  border-radius: var(--radius-2);
+  border: solid 1px var(--color-blue);
+  .infoBox_Svg {
+    color: var(--color-blue);
+    position: absolute;
+    right: var(--size-8);
+    top: var(--size-8);
+    width: var(--size-32);
+    height: var(--size-32);
+  }
+  .infoBox_Text {
+    margin-bottom: 0;
+    + .infoBox_Link {
+      margin-top: var(--size-16);
+      display: inline-block;
+    }
+  }
+  .infoBox_Link {
+    color: var(--color-blue);
+    border-bottom: solid 1px var(--color-blue-light);
+    &:hover {
+      border-bottom: solid 1px var(--color-blue);
+    }
+    text-decoration: none;
+    &:focus {
+      color: var(--color-blue);
+    }
+    &:active {
+      color: var(--color-blue);
+    }
+  }
+}

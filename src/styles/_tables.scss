@@ -1,0 +1,13 @@
+table {
+  font: {
+    size: var(--font-size-small);
+  }
+  thead {
+    color: var(--color-grey-700);
+    letter-spacing: var(--tracked-loose);
+    text-transform: uppercase;
+    th {
+      font-weight: var(--font-weight-default);
+    }
+  }
+}

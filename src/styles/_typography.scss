@@ -1,0 +1,60 @@
+* {
+  :focus {
+    outline-color: var(--color-purple);
+    outline-offset: var(--size-4);
+  }
+  ::selection {
+    background: var(--color-selection);
+  }
+}
+blockquote {
+  font: {
+    family: "EB Garamond", serif;
+    size: var(--font-size-blockquote);
+  }
+  color: var(--color-grey-700);
+}
+code {
+  padding: var(--size-4);
+  background-color: var(--color-grey-300);
+  border-radius: var(--radius-1);
+  white-space: nowrap;
+  font: {
+    family: "Roboto Mono", monospace;
+    size: var(--font-size-small);
+  }
+  color: var(--color-grey-900);
+}
+a {
+  color: var(--color-purple);
+  border-bottom: solid 1px var(--color-purple-light);
+  &:hover {
+    border-bottom: solid 1px var(--color-purple);
+  }
+  text-decoration: none;
+  &:focus {
+    color: var(--color-purple);
+  }
+  &:active {
+    color: var(--color-purple);
+  }
+}
+hr {
+  background: var(--color-grey-300);
+}
+ul.contains-task-list {
+  list-style-type: none;
+  margin-left: var(--size-24);
+  li {
+    text-indent: -24px;
+  }
+  [type="checkbox"] {
+    width: 20px;
+    margin-right: 0;
+  }
+}
+@media (min-width: 768px) {
+  :root {
+    font-size: 17px; // override baseFontSize in utils/typography.js
+  }
+}

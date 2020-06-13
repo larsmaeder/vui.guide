@@ -1,0 +1,39 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  a {
+    border-bottom: none;
+    color: inherit;
+    svg {
+      visibility: hidden;
+    }
+    &.anchor {
+      text-decoration: none;
+      &.before {
+        color: var(--color-purple);
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translateX(-100%);
+        padding-right: 4px;
+      }
+    }
+    &:focus {
+      svg {
+        visibility: inherit;
+      }
+    }
+  }
+  &:hover {
+    a {
+      border-bottom: none;
+      color: inherit;
+      svg {
+        visibility: inherit;
+      }
+    }
+  }
+}

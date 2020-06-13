@@ -1,0 +1,117 @@
+:root {
+  // Components
+  --content-width: 100%;
+  --content-width-small: 100%;
+  --nav-width: var(--size-256);
+  // Typography
+  --font-size-small: 0.875rem;
+  --font-size-blockquote: 2rem;
+  // Sizes
+  --size-ratio: 0.85;
+  --size-4: calc(4px * var(--size-ratio));
+  --size-8: calc(8px * var(--size-ratio));
+  --size-16: calc(16px * var(--size-ratio));
+  --size-24: calc(24px * var(--size-ratio));
+  --size-32: calc(32px * var(--size-ratio));
+  --size-40: calc(40px * var(--size-ratio));
+  --size-48: calc(48px * var(--size-ratio));
+  --size-56: calc(56px * var(--size-ratio));
+  --size-64: calc(64px * var(--size-ratio));
+  --size-72: calc(72px * var(--size-ratio));
+  --size-80: calc(80px * var(--size-ratio));
+  --size-128: calc(128px * var(--size-ratio));
+  --size-160: calc(160px * var(--size-ratio));
+  --size-224: calc(224px * var(--size-ratio));
+  --size-256: calc(256px * var(--size-ratio));
+  // Elevation
+  --elevation-1: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  --elevation-2: 0 3px 4px 0 rgba(0, 0, 0, 0.14),
+    0 3px 3px -2px rgba(0, 0, 0, 0.2), 0 1px 8px 0 rgba(0, 0, 0, 0.12);
+  --elevation-3: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+    0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  --elevation-4: 0 6px 10px 0 rgba(0, 0, 0, 0.14),
+    0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
+  --elevation-5: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+  --elevation-6: 0 16px 24px 2px rgba(0, 0, 0, 0.14),
+    0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+  // Easing (Animation)
+  --easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
+  --easing-accelerate: cubic-bezier(0.4, 0, 1, 1);
+  // Delays (Animation)
+  --delay-0: 125ms;
+  --delay-1: 250ms;
+  --delay-2: 500ms;
+  --delay-3: 750ms;
+  --delay-4: 1000ms;
+  --delay-5: 1250ms;
+  --delay-6: 1500ms;
+  --delay-7: 1750ms;
+  --delay-8: 2000ms;
+  // Duration (Animation)
+  --duration-0: 125ms;
+  --duration-1: 250ms;
+  --duration-2: 500ms;
+  --duration-3: 750ms;
+  --duration-4: 1000ms;
+  --duration-5: 1250ms;
+  --duration-6: 1500ms;
+  --duration-7: 1750ms;
+  --duration-8: 2000ms;
+  // Layer
+  --layer-0: 0;
+  --layer-1: 10;
+  --layer-2: 20;
+  --layer-3: 30;
+  --layer-4: 40;
+  --layer-5: 50;
+  --layer-top: 2147483647;
+  // Radius
+  --radius-0: 0;
+  --radius-1: 0.125rem;
+  --radius-2: 0.25rem;
+  --radius-3: 0.5rem;
+  --radius-4: 1rem;
+  --radius-5: 1.2rem;
+  --radius-50: 50%;
+  --radius-100: 100%;
+  // Font
+  --tracked-tight: -0.0125rem;
+  --tracked: -0.015rem;
+  --tracked-loose: 0.0625rem;
+  --font-weight-default: 400;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
+  // Colors
+  --color-primary: var(--color-black);
+  --color-text: var(--color-black);
+  --color-text-light: var(--color-grey-900);
+  --color-black: #0b2750;
+  --color-bg: #ffffff;
+  --color-beige: #fafafa;
+  --color-grey-100: #f6f7f7;
+  --color-grey-300: #e9eaeb;
+  --color-grey-500: #cdcfd3;
+  --color-grey-700: #717171;
+  --color-grey-900: #434343;
+  --color-orange: #e6a029;
+  --color-green: #90bd3f;
+  --color-vino: #c50844;
+  --color-purple: #8800ca;
+  --color-selection: #f4e6fc;
+  --color-purple-light: #f9eeff;
+  --color-blue: #1e5af5;
+  --color-blue-light: #eff4ff;
+  @media (min-width: 768px) {
+    --size-ratio: 1;
+  }
+  @media (min-width: 855px) {
+    --content-width: 535px;
+    --content-width-small: 535px;
+  }
+  @media (min-width: 1140px) {
+    --content-width: 820px;
+  }
+}

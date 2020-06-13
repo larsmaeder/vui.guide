@@ -1,0 +1,56 @@
+---
+title: Audio card
+navDocTitle: Audio card
+path: /docs/design-patterns/audio-card/
+category: designPatterns
+sort: 7
+toc: true
+---
+
+An audio card allows the user to play audio content such as music, podcasts or news.
+
+Use external links to platforms or third-party apps to offer users other types of media, such as video.
+
+## Why using a audio card?
+
+The audio card seamlessly complets the communication between the voice interface and the user. The non-touch interaction or control allows the user to play, pause or stop audio by voice commands without loosing visual feedback. This maintains the ability to control the audio by touch and voice at the same time.
+
+## Guidance
+
+The audio card is used to make an audio track visible. The card is limited to a single piece of audio. It is important to distinguish what type of audio it is, since the visuality and the numbers of components of a card depends on it. For a song or podcast, it is a great way to use an optional image and description  inside a audio card to display a song name and artist name or a longer podcast description.
+
+### Interactivity
+
+#### Tap and voice
+
+- Play/Pause
+- Restart
+- Forward a few seconds
+- Back a few seconds
+- Start over
+
+### Status
+
+Show the user visual feedback as known in web audio players.
+
+- Elapsed time in a format `hh:mm:ss`
+- Total time in a format `hh:mm:ss`
+- Progress bar
+
+### Structure of an audio card
+
+A audio card should contain a play, a pause and a restart button. Allow the user to jump forward or backward for a few seconds by providing a forward and backward button. The user should always know what audio is playing and how long it has been playing already, so a progress bar with the elapsed time and the total time must be visually recognizable. An audio card can also contain a title and, if applicable, a detailed description and image, e.g. when a podcast or song is played to identify the artist.
+
+![Structure of an audio card.](/images/designPatterns/audioCardStructure.png)
+
+| Components                     |
+| ------------------------------ |
+| **1** Image _(optional)_       |
+| **2** Title                    |
+| **3** Description _(optional)_ |
+| **5** Audio controls           |
+| **6** Status feedback          |
+
+#### Examples
+
+![Examples of use cases of an audio card.](/images/designPatterns/audioCardExamples.png)

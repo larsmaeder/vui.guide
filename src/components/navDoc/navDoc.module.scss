@@ -1,0 +1,102 @@
+.navToggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: var(--size-80);
+  width: var(--size-80);
+  background-color: var(--color-purple);
+  position: fixed;
+  bottom: var(--size-32);
+  right: var(--size-32);
+  z-index: var(--layer-top);
+  border-radius: var(--radius-100);
+  border: none;
+  color: var(--color-bg);
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: var(--elevation-2);
+  @media (min-width: 768px) {
+    display: none;
+  }
+  .svg {
+    height: var(--size-40);
+    width: var(--size-40);
+  }
+}
+.navWrapper {
+  overflow: scroll;
+  transition: left var(--duration-2) var(--easing-standard);
+  position: fixed;
+  z-index: var(--layer-5);
+  left: calc(var(--nav-width) * -1);
+  top: var(--size-64);
+  background-color: var(--color-bg);
+  font: {
+    size: var(--font-size-small);
+  }
+  height: calc(100vh - var(--size-64));
+  width: var(--nav-width);
+  border: {
+    right: solid 1px var(--color-grey-300);
+  }
+  @media (min-width: 768px) {
+    left: 0;
+  }
+  &.mobileNav {
+    left: 0;
+  }
+  .navInner {
+    padding: {
+      left: var(--size-32);
+      top: var(--size-64);
+      bottom: var(--size-64);
+    }
+    .navTitle {
+      color: var(--color-grey-900);
+      letter-spacing: var(--tracked-loose);
+      font-weight: var(--font-weight-default);
+      text-transform: uppercase;
+      margin-bottom: var(--size-24);
+      font: {
+        size: var(--font-size-small);
+      }
+    }
+    .navLink {
+      color: inherit;
+      display: block;
+      margin: {
+        bottom: var(--size-16);
+      }
+      border: {
+        bottom: none;
+      }
+      &::before {
+        transition: transform var(--duration-0) var(--easing-accelerate);
+        margin-top: 8px;
+        position: absolute;
+        left: var(--size-8);
+        content: "";
+        height: 6px;
+        width: 6px;
+        transform: scale(0);
+        border-radius: var(--radius-100);
+        background-color: var(--color-purple);
+      }
+      &:hover {
+        color: var(--color-purple);
+        &::before {
+          transform: scale(1);
+        }
+      }
+      &[aria-current="page"] {
+        font: {
+          weight: var(--font-weight-bold);
+        }
+        color: var(--color-purple);
+        &::before {
+          transform: scale(1);
+        }
+      }
+    }
+  }
+}
