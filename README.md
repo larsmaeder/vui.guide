@@ -59,7 +59,7 @@ Following frontmatter queries are defined inside a `.mdx` file:
 ---
 title: Behaviour of speak
 navDocTitle: Behaviour of speak
-path: /docs/behaviour/behaviour-of-speak/
+slug: /docs/behaviour/behaviour-of-speak/
 category: behaviour
 sort: 2
 toc: true

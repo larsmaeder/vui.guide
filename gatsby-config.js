@@ -4,7 +4,7 @@
 module.exports = {
   siteMetadata: {
     title: `vui.guide`,
-    siteUrl: `https://www.yourdomain.tld`
+    siteUrl: `https://www.vui.guide`
   },
   plugins: ["gatsby-plugin-sass", {
     resolve: 'gatsby-plugin-google-analytics',
@@ -30,5 +30,12 @@ module.exports = {
       "path": "./src/pages/"
     },
     __key: "pages"
+  }, {
+    resolve: 'gatsby-source-filesystem',
+    options: {
+      "name": "docs",
+      "path": "./docs/docs/"
+    },
+    __key: "docs"
   }]
 };
