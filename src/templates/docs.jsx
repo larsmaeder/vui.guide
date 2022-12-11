@@ -1,16 +1,25 @@
 import * as React from "react";
 import { graphql, Link } from "gatsby";
 import { MDXProvider } from "@mdx-js/react";
+import { ChakraProvider, Heading, Stat, StatLabel, StatNumber } from '@chakra-ui/react'
+import theme from "../theme"
+import Logo from "../components/logo/logo";
+import CopyURL from "../components/copyURL/copyURL";
 
 const shortcodes = { Link };
 
 const DocsTemplate = ({ data: { mdx }, children }) => {
   return (
-    <main>
-      <h1>{mdx.frontmatter.title}</h1>
-      <p>{mdx.fields.timeToRead.text}</p>
+    <ChakraProvider theme={theme} >
+      <Logo />
+      <CopyURL />
+      <Heading as="h1" size="3xl">{mdx.frontmatter.title}</Heading>
+      <Stat fontFamily="Readex Pro, sans-serif">
+        <StatLabel>Time to read</StatLabel>
+        <StatNumber>{mdx.fields.timeToRead.text}</StatNumber>
+      </Stat>
       <MDXProvider components={shortcodes}>{children}</MDXProvider>
-    </main>
+    </ChakraProvider>
   );
 };
 

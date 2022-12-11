@@ -23,7 +23,16 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
+    "@chakra-ui/gatsby-plugin": "^3.0.7",
+    "@chakra-ui/icons": "^2.0.13",
+    "@chakra-ui/react": "^2.4.3",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@fontsource/kaisei-decol": "^4.5.12",
+    "@fontsource/readex-pro": "^4.5.11",
+    "@fontsource/roboto-mono": "^4.5.8",
     "@mdx-js/react": "^2.1.5",
+    "framer-motion": "^7.6.19",
     "gatsby": "^5.2.0",
     "gatsby-plugin-google-analytics": "^5.2.0",
     "gatsby-plugin-image": "^3.2.0",
