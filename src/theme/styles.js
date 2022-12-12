@@ -1,15 +1,11 @@
 export const GlobalStyles = {
-    global: {
-        'html, body': {
-            color: 'gray.600',
-            lineHeight: 'tall',
-        },
-        h1: {
-            fontSize: ['48px', '72px'],
-            fontFamily: 'Readex Pro',
-            fontWeight: 'bold',
-            lineHeight: '110%',
-            letterSpacing: '-2%',
-        },
+  global: {
+    "html, body": {
+      backgroundColor: "white",
+      color: "font.100",
     },
-}
+    // "h1, h2, h3, h4, h5, h6": {
+    //   color: "purple.600",
+    // },
+  },
+};
