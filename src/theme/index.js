@@ -4,6 +4,7 @@ import { GlobalStyles as styles } from "./styles";
 import { ColorStyles as colors } from "./foundations/colors";
 import { FontStyles as fonts } from "./foundations/fonts";
 import { ButtonStyles as Button } from "./components/button";
+import { ToolTipStyles as Tooltip } from "./components/tooltip";
 
 const theme = extendTheme(
   {
@@ -12,6 +13,7 @@ const theme = extendTheme(
     fonts,
     components: {
       Button,
+      Tooltip,
     },
   },
   withProse()
