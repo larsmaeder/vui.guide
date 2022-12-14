@@ -10,22 +10,23 @@ import {
 } from "@chakra-ui/react";
 import { Prose } from "@nikolovlazar/chakra-ui-prose";
 import theme from "../theme";
-import Logo from "../components/logo/logo";
-import CopyURL from "../components/copyURL/copyURL";
+import Logo from "../components/Logo";
+import CopyURL from "../components/CopyURL";
 
 const shortcodes = { Link };
 
-const DocsTemplate = ({ data: { mdx }, children }) => {
+const DocsTemplate = ({ data, children, location }) => {
+  const currentUrl = data.site.siteMetadata.siteUrl + location.pathname;
   return (
     <ChakraProvider theme={theme}>
       <Logo />
-      <CopyURL />
+      <CopyURL currentUrl={currentUrl} />
       <Heading as="h1" size="3xl">
-        {mdx.frontmatter.title}
+        {data.mdx.frontmatter.title}
       </Heading>
       <Stat>
         <StatLabel>Time to read</StatLabel>
-        <StatNumber>{mdx.fields.timeToRead.text}</StatNumber>
+        <StatNumber>{data.mdx.fields.timeToRead.text}</StatNumber>
       </Stat>
       <Prose>
         <MDXProvider components={shortcodes}>{children}</MDXProvider>
@@ -34,8 +35,13 @@ const DocsTemplate = ({ data: { mdx }, children }) => {
   );
 };
 
-export const mdxQuery = graphql`
-  query fetchMdx($id: String) {
+export const pageQuery = graphql`
+  query pageQuery($id: String) {
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
     mdx(id: { eq: $id }) {
       id
       fields {

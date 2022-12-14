@@ -5,12 +5,7 @@ const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(alertAnatomy.keys);
 
 const baseStyle = definePartsStyle({
-  title: {
-    fontFamily: "Readex Pro, sans-serif",
-  },
-  description: {
-    fontFamily: "Readex Pro, sans-serif",
-  }
+  // Styles for the base style
 });
 
 const sizes = defineMultiStyleConfig({
