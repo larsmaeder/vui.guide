@@ -1,5 +1,5 @@
 import * as React from "react";
-import { IconButton, Tooltip, useToast, Text } from "@chakra-ui/react";
+import { IconButton, Tooltip, useToast } from "@chakra-ui/react";
 import { CopyIcon } from "@chakra-ui/icons";
 import Toast from "../Toast";
 
