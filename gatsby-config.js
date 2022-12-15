@@ -4,44 +4,57 @@
 module.exports = {
   siteMetadata: {
     title: `vui.guide`,
-    siteUrl: `https://www.vui.guide`
+    siteUrl: `https://www.vui.guide`,
   },
-  plugins: [{
-      resolve: '@chakra-ui/gatsby-plugin',
+  plugins: [
+    {
+      resolve: "@chakra-ui/gatsby-plugin",
       options: {
         resetCSS: true,
         isUsingColorMode: true,
       },
-    }, "gatsby-plugin-sass", {
-      resolve: 'gatsby-plugin-google-analytics',
+    },
+    "gatsby-plugin-sass",
+    {
+      resolve: "gatsby-plugin-google-analytics",
       options: {
-        "trackingId": "INSERT-TRACKING-CODE-HERE"
-      }
-    }, "gatsby-plugin-image", "gatsby-plugin-sitemap", {
-      resolve: 'gatsby-plugin-manifest',
-      options: {
-        "icon": "src/images/icon.png"
-      }
-    }, "gatsby-plugin-mdx", "gatsby-plugin-sharp", "gatsby-transformer-sharp", {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        "name": "images",
-        "path": "./src/images/"
+        trackingId: "INSERT-TRACKING-CODE-HERE",
       },
-      __key: "images"
-    }, {
-      resolve: 'gatsby-source-filesystem',
+    },
+    "gatsby-plugin-image",
+    "gatsby-plugin-sitemap",
+    {
+      resolve: "gatsby-plugin-manifest",
       options: {
-        "name": "pages",
-        "path": "./src/pages/"
+        icon: "src/images/icon.png",
       },
-      __key: "pages"
-    }, {
-      resolve: 'gatsby-source-filesystem',
+    },
+    "gatsby-plugin-mdx",
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
+    {
+      resolve: "gatsby-source-filesystem",
       options: {
-        "name": "docs",
-        "path": "./docs/docs/"
+        name: "images",
+        path: "./src/images/",
       },
-      __key: "docs"
-    }]
+      __key: "images",
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "pages",
+        path: "./src/pages/",
+      },
+      __key: "pages",
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "docs",
+        path: "./docs/docs/",
+      },
+      __key: "docs",
+    },
+  ],
 };
