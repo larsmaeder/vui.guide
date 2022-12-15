@@ -5,16 +5,24 @@ import Toast from "../Toast";
 
 const CopyURL = ({ currentUrl }) => {
   const toast = useToast();
-  function CopyLink() {
+  const toastIdRef = React.useRef();
+  function closeToast() {
+    if (toastIdRef.current) {
+      toast.close(toastIdRef.current);
+    }
+  }
+  function copyLink() {
     // using the Clipboard API to copy the current page's link to the clipboard
     navigator.clipboard.writeText(currentUrl);
-    // toast feedback
-    toast({
+    // generate Toast with IdRef
+    toastIdRef.current = toast({
       position: "top-right",
+      duration: 4000,
       render: () => (
         <Toast
           title="Ready to share!"
           description="We’ve copied the page link to your clipboard."
+          closeFunc={closeToast}
         />
       ),
     });
@@ -26,13 +34,13 @@ const CopyURL = ({ currentUrl }) => {
       placement="bottom-start"
     >
       <IconButton
-        aria-label="Search database"
+        aria-label="Copy page link"
         icon={<CopyIcon />}
         color="sundial.500"
         background="sundial.100"
         _hover={{ background: "sundial.200 " }}
         size="lg"
-        onClick={CopyLink}
+        onClick={copyLink}
       />
     </Tooltip>
   );
