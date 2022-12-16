@@ -1,6 +1,8 @@
 import * as React from "react";
 import { graphql, Link } from "gatsby";
 import { MDXProvider } from "@mdx-js/react";
+import theme from "../theme";
+import { Prose } from "@nikolovlazar/chakra-ui-prose";
 import {
   ChakraProvider,
   Heading,
@@ -8,19 +10,27 @@ import {
   StatLabel,
   StatNumber,
 } from "@chakra-ui/react";
-import { Prose } from "@nikolovlazar/chakra-ui-prose";
-import theme from "../theme";
 import Logo from "../components/Logo";
 import CopyURL from "../components/CopyURL";
+import CustomBreadcrumb from "../components/CustomBreadcrumb";
 
 const shortcodes = { Link };
 
-const DocsTemplate = ({ data, children, location }) => {
+const DocsTemplate = ({ data, children, location, pageContext }) => {
   const currentUrl = data.site.siteMetadata.siteUrl + location.pathname;
+  const {
+    breadcrumb: { crumbs },
+  } = pageContext;
   return (
     <ChakraProvider theme={theme}>
       <Logo />
       <CopyURL currentUrl={currentUrl} />
+      <CustomBreadcrumb
+        crumbs={crumbs}
+        crumbSeparator="/"
+        crumbLabel={data.mdx.frontmatter.title}
+        crumbLocationRef={location.pathname}
+      />
       <Heading as="h1" size="3xl">
         {data.mdx.frontmatter.title}
       </Heading>

@@ -3,10 +3,59 @@
  */
 module.exports = {
   siteMetadata: {
-    title: `vui.guide`,
-    siteUrl: `https://www.vui.guide`,
+    title: "vui.guide",
+    siteUrl: "http://localhost:8000",
   },
   plugins: [
+    {
+      resolve: "gatsby-plugin-breadcrumb",
+      options: {
+        // useAutoGen: required 'true' to use autogen
+        useAutoGen: true,
+        // autoGenHomeLabel: optional 'Home' is default
+        autoGenHomeLabel: "Home",
+        // exclude: optional, include this array to exclude paths you don't want to generate breadcrumbs for (see below for details).
+        exclude: [
+          "**/dev-404-page/**",
+          "**/404/**",
+          "**/404.html",
+          "**/offline-plugin-app-shell-fallback/**",
+        ],
+        // crumbLabelUpdates: optional, update specific crumbLabels in the path
+        crumbLabelUpdates: [
+          {
+            pathname: "/docs",
+            crumbLabel: "Docs",
+          },
+          {
+            pathname: "/contribute",
+            crumbLabel: "Contribute",
+          },
+          {
+            pathname: "/docs/fundamentals",
+            crumbLabel: "Fundamentals",
+          },
+          {
+            pathname: "/docs/behaviour",
+            crumbLabel: "Behaviour",
+          },
+          {
+            pathname: "/docs/design-patterns",
+            crumbLabel: "Design patterns",
+          },
+          {
+            pathname: "/docs/resources",
+            crumbLabel: "Resources",
+          },
+          {
+            pathname: "/docs/resources/checklist",
+            crumbLabel: "Checklist",
+          },
+        ],
+        // trailingSlashes: optional, will add trailing slashes to the end of crumb pathnames. default is false
+        trailingSlashes: true,
+      },
+    },
     {
       resolve: "@chakra-ui/gatsby-plugin",
       options: {
