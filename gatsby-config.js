@@ -25,7 +25,7 @@ module.exports = {
         crumbLabelUpdates: [
           {
             pathname: "/docs",
-            crumbLabel: "Docs",
+            crumbLabel: "Guidelines",
           },
           {
             pathname: "/contribute",
