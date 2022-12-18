@@ -1,29 +1,23 @@
 import * as React from "react";
 import { Link } from "gatsby";
 import { v4 as uuidv4 } from "uuid";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  // BreadcrumbSeparator,
-} from "@chakra-ui/react";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react";
 
 const CustomBreadcrumb = ({
   crumbs: autoGenCrumbs,
   crumbLabel: crumbLabelOverride,
-  crumbSeparator,
   crumbLocationRef,
-  // disableLinks,
+  disableLinks,
   hiddenCrumbs,
-  // ...rest
+  ...rest
 }) => {
   return (
-    <Breadcrumb separator={crumbSeparator} fontFamily="heading">
+    <Breadcrumb separator="/">
       {autoGenCrumbs.map((c, i) => {
-        if (hiddenCrumbs.includes(c.pathname)) {
+        const isCurrentPage = crumbLocationRef === c.pathname;
+        if (hiddenCrumbs.includes(c.pathname) || isCurrentPage) {
           return null;
         }
-        const isCurrentPage = crumbLocationRef === c.pathname;
         return (
           <BreadcrumbItem key={i + uuidv4} isCurrentPage={isCurrentPage}>
             <BreadcrumbLink as={Link} to={c.pathname}>
@@ -31,36 +25,7 @@ const CustomBreadcrumb = ({
                 ? crumbLabelOverride
                 : c.crumbLabel}
             </BreadcrumbLink>
-            {/* {isCurrentPage ? <BreadcrumbSeparator /> : null} */}
           </BreadcrumbItem>
-
-          // <React.Fragment key={i + uuidv4}>
-          //   {!disableLinks.includes(c.pathname) && (
-          //     <BreadcrumbItem>
-          //       <BreadcrumbLink as={Link} to={c.pathname} isCurrentPage>
-          //         {crumbLabelOverride && i === autoGenCrumbs.length - 1
-          //           ? crumbLabelOverride
-          //           : c.crumbLabel}
-          //       </BreadcrumbLink>
-          //     </BreadcrumbItem>
-          //   )}
-          //   {/* returns disabled breadcrumbs if they are defined in the passed props */}
-          //   {disableLinks.includes(c.pathname) && (
-          //     <BreadcrumbItem color="gray.400">
-          //       <BreadcrumbLink
-          //         sx={{
-          //           textDecoration: "none !important",
-          //           cursor: "initial",
-          //         }}
-          //       >
-          //         {crumbLabelOverride && i === autoGenCrumbs.length - 1
-          //           ? crumbLabelOverride
-          //           : c.crumbLabel}
-          //       </BreadcrumbLink>
-          //     </BreadcrumbItem>
-          //   )}
-          //   {i === autoGenCrumbs.length - 1 ? null : <BreadcrumbSeparator />}
-          // </React.Fragment>
         );
       })}
     </Breadcrumb>
@@ -68,9 +33,8 @@ const CustomBreadcrumb = ({
 };
 
 CustomBreadcrumb.defaultProps = {
-  crumbSeparator: " / ",
   crumbLabel: null,
-  // disableLinks: [],
+  disableLinks: [],
   hiddenCrumbs: [],
 };
 
