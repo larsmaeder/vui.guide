@@ -6,6 +6,7 @@ import { FontStyles as fonts } from "./foundations/fonts";
 import { ButtonStyles as Button } from "./components/button";
 import { ToolTipStyles as Tooltip } from "./components/tooltip";
 import { AlertStyles as Alert } from "./components/alert";
+import { BreadcrumbStyles as Breadcrumb } from "./components/breadcrumb";
 
 const theme = extendTheme(
   {
@@ -16,6 +17,7 @@ const theme = extendTheme(
       Button,
       Tooltip,
       Alert,
+      Breadcrumb,
     },
   },
   withProse()
