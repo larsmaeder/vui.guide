@@ -1,6 +1,5 @@
 import * as React from "react";
-import { Box, Stack, Text, IconButton } from "@chakra-ui/react";
-import { CloseIcon } from "@chakra-ui/icons";
+import { Box, Stack, Text, CloseButton } from "@chakra-ui/react";
 
 const Toast = ({ title, description, closeFunc }) => {
   return (
@@ -19,13 +18,7 @@ const Toast = ({ title, description, closeFunc }) => {
           </Text>
           <Text fontSize="xs">{description}</Text>
         </Box>
-        <IconButton
-          onClick={closeFunc}
-          aria-label="Close"
-          icon={<CloseIcon />}
-          size="xs"
-          variant="unstyled"
-        />
+        <CloseButton onClick={closeFunc} aria-label="Close" size="sm" />
       </Stack>
     </Box>
   );

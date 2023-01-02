@@ -1,11 +1,11 @@
 import * as React from "react";
 import { Link } from "gatsby";
+import { Box } from "@chakra-ui/react";
 
 const Image = () => {
   return (
     <svg
-      width={162}
-      height={48}
+      height="100%"
       viewBox="0 0 162 48"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -43,9 +43,11 @@ const Image = () => {
 
 const Logo = () => {
   return (
-    <Link to="/" title="VUI Guide">
-      <Image />
-    </Link>
+    <Box display="inline-block" h={{ base: 12 }} w="auto">
+      <Link to="/" title="VUI Guide">
+        <Image />
+      </Link>
+    </Box>
   );
 };
 

@@ -12,7 +12,12 @@ const CustomBreadcrumb = ({
   ...rest
 }) => {
   return (
-    <Breadcrumb separator="/">
+    <Breadcrumb
+      separator="/"
+      borderTopLeftRadius="0"
+      borderBottomLeftRadius="0"
+      size="xs"
+    >
       {autoGenCrumbs.map((c, i) => {
         const isCurrentPage = crumbLocationRef === c.pathname;
         if (hiddenCrumbs.includes(c.pathname) || isCurrentPage) {
@@ -20,7 +25,16 @@ const CustomBreadcrumb = ({
         }
         return (
           <BreadcrumbItem key={i + uuidv4} isCurrentPage={isCurrentPage}>
-            <BreadcrumbLink as={Link} to={c.pathname}>
+            <BreadcrumbLink
+              as={Link}
+              to={c.pathname}
+              title={
+                "Go to " +
+                (crumbLabelOverride && i === autoGenCrumbs.length - 1
+                  ? crumbLabelOverride
+                  : c.crumbLabel)
+              }
+            >
               {crumbLabelOverride && i === autoGenCrumbs.length - 1
                 ? crumbLabelOverride
                 : c.crumbLabel}

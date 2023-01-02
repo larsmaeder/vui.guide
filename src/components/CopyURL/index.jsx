@@ -1,10 +1,10 @@
 import * as React from "react";
 import { v4 as uuidv4 } from "uuid";
 import { IconButton, Tooltip, useToast } from "@chakra-ui/react";
-import { CopyIcon } from "@chakra-ui/icons";
+import { MdOutlineLink } from "react-icons/md";
 import Toast from "../Toast";
 
-const CopyURL = ({ currentUrl }) => {
+const CopyURL = ({ url, standalone }) => {
   // hooks
   const toast = useToast();
   // generate unique Id
@@ -17,7 +17,7 @@ const CopyURL = ({ currentUrl }) => {
   }
   function copyLink() {
     // using the Clipboard API to copy the current page's link to the clipboard
-    navigator.clipboard.writeText(currentUrl);
+    navigator.clipboard.writeText(url);
     // generate Toast with unique IdRef
     if (!toast.isActive(id)) {
       toast({
@@ -34,20 +34,25 @@ const CopyURL = ({ currentUrl }) => {
       });
     }
   }
+  const standaloneBoolean = () => {
+    if (!standalone) {
+      return 0;
+    }
+  };
   return (
     <Tooltip
       aria-label="Click to copy page link"
       label="Copy page link"
-      placement="bottom-start"
+      placement="top-start"
     >
       <IconButton
         aria-label="Copy page link"
-        icon={<CopyIcon />}
-        color="sundial.500"
-        background="sundial.100"
-        _hover={{ background: "sundial.200 " }}
-        size="lg"
+        icon={<MdOutlineLink />}
+        size="md"
         onClick={copyLink}
+        variant="outline"
+        borderTopRightRadius={standaloneBoolean}
+        borderBottomRightRadius={standaloneBoolean}
       />
     </Tooltip>
   );
