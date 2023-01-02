@@ -78,7 +78,22 @@ module.exports = {
         icon: "src/images/icon.png",
       },
     },
-    "gatsby-plugin-mdx",
+    {
+      resolve: "gatsby-plugin-mdx",
+      options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: "gatsby-remark-images",
+            options: {
+              maxWidth: 1440,
+              linkImagesToOriginal: false,
+              withWebp: true,
+              showCaptions: ["alt"],
+            },
+          },
+        ],
+      },
+    },
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     {
@@ -88,6 +103,14 @@ module.exports = {
         path: "./src/images/",
       },
       __key: "images",
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `imagesDocs`,
+        path: `./docs/docs/images/`,
+      },
+      __key: "imagesDocs",
     },
     {
       resolve: "gatsby-source-filesystem",
