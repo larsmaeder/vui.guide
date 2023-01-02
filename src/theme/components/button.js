@@ -8,7 +8,11 @@ export const ButtonStyles = defineStyleConfig({
   // Styles for the size variations
   sizes: {},
   // Styles for the visual style variations
-  variants: {},
+  variants: {
+    outline: {
+      color: "gray.500"
+    }
+  },
   // The default `size` or `variant` values
   defaultProps: {},
 });
