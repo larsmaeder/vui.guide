@@ -6,7 +6,10 @@ const { definePartsStyle, defineMultiStyleConfig } =
 
 const baseStyle = definePartsStyle({
   // Styles for the base style
-  root: {},
+  root: {
+    fontFamily: "heading",
+    color: "gray.500",
+  },
   container: {
     border: "none",
   },
@@ -14,7 +17,8 @@ const baseStyle = definePartsStyle({
     borderRadius: 12,
     w: "auto",
     py: 2,
-    px: 4,
+    px: 3,
+    my: 2,
     _hover: {
       bg: "gray.100",
     },
