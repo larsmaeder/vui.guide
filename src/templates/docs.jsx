@@ -64,17 +64,18 @@ const DocsTemplate = ({ data, children, location, pageContext }) => {
       <Flex justify="center" paddingX={layoutBorder}>
         <Box w={layoutWidth}>
           <Grid templateColumns="repeat(3, 1fr)" gap={12}>
-            <GridItem
-              colSpan={1}
-              // borderRight="1px"
-              // borderColor="gray.100"
-              display={{ base: "none", lg: "block" }}
-            >
-              <Box pos="sticky" top={0} pt={12}>
+            <GridItem colSpan={3}>
+              <Box pt={12}>
                 <Logo />
-                <Box as="nav" pt={32}>
-                  <SideNavigation data={data.allMdx.edges} />
-                </Box>
+              </Box>
+            </GridItem>
+            <GridItem colSpan={1} display={{ base: "none", lg: "block" }}>
+              <Box as="nav" pt={32}>
+                <SideNavigation
+                  data={data.allMdx.edges}
+                  crumbs={crumbs}
+                  crumbLocationRef={location.pathname}
+                />
               </Box>
             </GridItem>
             <GridItem colSpan={2}>
