@@ -16,53 +16,31 @@ import {
   MdKeyboardArrowRight,
   MdLibraryBooks,
 } from "react-icons/md";
-import { Link as GatsbyLink, useStaticQuery, graphql } from "gatsby";
+import { Link as GatsbyLink } from "gatsby";
 import { v4 as uuidv4 } from "uuid";
 
-const SideNavigation = ({
-  data: node,
-  crumbs: autoGenCrumbs,
-  crumbLocationRef,
-}) => {
-  const data = useStaticQuery(graphql`
-    query MyQuery {
-      mdx {
-        frontmatter {
-          category
-        }
-      }
-    }
-  `);
-  console.log(data.mdx.frontmatter.category);
-
-  // let isCurrentPage;
-  const categories = [
-    ...new Map(node.map((c) => [c.node.frontmatter.category, c])).values(),
+const SideNavigation = ({ data: node, category }) => {
+  // filter duplicates and remove null and undefined items
+  const cleanUpData = [
+    ...new Map(
+      node
+        .filter((e) => e.node.frontmatter.category)
+        .map((c) => [c.node.frontmatter.category, c])
+    ).values(),
   ];
-  // autoGenCrumbs.map((c) => {
-  //   console.log(autoGenCrumbs)
-  //   isCurrentPage = crumbLocationRef === c.pathname;
-  //   return console.log(isCurrentPage ? c.crumbLabel : null);
-  // });
-  // const test = () => {
-  //   let finalnumber;
-
-  //   categories.findIndex((x) => x.node.frontmatter.category === "Fundamentals");
-  //   return finalnumber;
-  // };
-  const currentItem = Array.of(
-    categories.findIndex((x) => x.node.frontmatter.category === "Fundamentals")
+  // write new array with the current position as an integer, if component passed down prop pageContext.frontmatter.category is equal to node.frontmatter.category
+  const currentCategoryPos = Array.of(
+    cleanUpData.findIndex((x) => x.node.frontmatter.category === category)
   );
-  console.log(currentItem);
-
   return (
     <>
       <HStack spacing={2} paddingLeft={3}>
         <Icon as={MdLibraryBooks} />
         <Text fontFamily="heading">Guidelines</Text>
       </HStack>
-      <Accordion defaultIndex={currentItem} allowMultiple>
-        {categories.map((c, i) => {
+      {/* pass array to expand current category */}
+      <Accordion defaultIndex={currentCategoryPos} allowMultiple>
+        {cleanUpData.map((c, i) => {
           const category = c.node.frontmatter.category;
           if (category === null) {
             return null;
