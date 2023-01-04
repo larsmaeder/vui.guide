@@ -73,8 +73,7 @@ const DocsTemplate = ({ data, children, location, pageContext }) => {
               <Box as="nav" pt={32}>
                 <SideNavigation
                   data={data.allMdx.edges}
-                  crumbs={crumbs}
-                  crumbLocationRef={location.pathname}
+                  category={pageContext.frontmatter.category}
                 />
               </Box>
             </GridItem>
