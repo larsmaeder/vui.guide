@@ -9,16 +9,20 @@ const baseStyle = definePartsStyle({
   root: {
     fontFamily: "heading",
     color: "gray.500",
+    display: "flex",
+    flexDirection: "column",
   },
   container: {
     border: "none",
+    my: 1,
+    display: "inline-block",
   },
   button: {
+    display: "inline-flex",
     borderRadius: 12,
     w: "auto",
     py: 2,
     px: 3,
-    my: 2,
     _hover: {
       bg: "gray.100",
     },
@@ -27,13 +31,10 @@ const baseStyle = definePartsStyle({
     },
   },
   panel: {
-    borderLeft: 1,
-    borderColor: "gray.200",
-    borderStyle: "solid",
-    marginLeft: 4,
-    my: 4,
-    px: 4,
-    py: 4,
+    paddingTop: 2,
+    paddingRight: 0,
+    paddingBottom: 0,
+    paddingLeft: 4,
   },
   icon: {},
 });
