@@ -23,6 +23,7 @@ const baseStyle = definePartsStyle({
     w: "auto",
     py: 2,
     px: 3,
+    bg: "gray.100",
     _hover: {
       bg: "gray.100",
     },
