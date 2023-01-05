@@ -35,22 +35,22 @@ const SideNavigation = ({ data: node, category }) => {
         <Text fontFamily="heading">Guidelines</Text>
       </HStack>
       <Accordion defaultIndex={currentCatPos} allowMultiple>
-        <AccordionItem key={uuidv4}>
-          <AccordionButton>
-            <Link
-              as={GatsbyLink}
-              to="/docs"
-              key={uuidv4}
-              textDecoration="none !important"
-            >
-              Overview
-            </Link>
-          </AccordionButton>
-        </AccordionItem>
         {cleanArray.map((c, i) => {
           const category = c.node.frontmatter.category;
-          if (category === null) {
-            return null;
+          if (c.node.frontmatter.child === false) {
+            return (
+              <AccordionItem key={uuidv4}>
+                <AccordionButton>
+                  <Link
+                    as={GatsbyLink}
+                    to={c.node.frontmatter.slug}
+                    textDecoration="none !important"
+                  >
+                    {c.node.frontmatter.navDocTitle}
+                  </Link>
+                </AccordionButton>
+              </AccordionItem>
+            );
           } else
             return (
               <AccordionItem key={i + uuidv4}>
@@ -73,10 +73,11 @@ const SideNavigation = ({ data: node, category }) => {
                                 as={GatsbyLink}
                                 to={c.node.frontmatter.slug}
                                 key={i + uuidv4}
-                                borderLeft="1px solid red"
-                                px={6}
-                                py={3}
-                                _hover={{ borderLeft: "1px solid blue" }}
+                                borderLeft="1px solid"
+                                borderLeftColor="gray.200"
+                                px={3}
+                                py={2}
+                                _hover={{ borderLeftColor: "purple.500" }}
                               >
                                 {c.node.frontmatter.navDocTitle}
                               </Link>
