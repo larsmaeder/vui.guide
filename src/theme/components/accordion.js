@@ -11,6 +11,7 @@ const baseStyle = definePartsStyle({
     color: "gray.500",
     display: "flex",
     flexDirection: "column",
+    fontSize: "sm",
   },
   container: {
     border: "none",
@@ -18,6 +19,7 @@ const baseStyle = definePartsStyle({
     display: "inline-block",
   },
   button: {
+    fontSize: "sm",
     display: "inline-flex",
     borderRadius: 12,
     w: "auto",
