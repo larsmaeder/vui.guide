@@ -20,27 +20,34 @@ import { Link as GatsbyLink } from "gatsby";
 import { v4 as uuidv4 } from "uuid";
 
 const SideNavigation = ({ data: node, category }) => {
-  // filter duplicates and remove null and undefined items
-  const cleanUpData = [
-    ...new Map(
-      node
-        .filter((e) => e.node.frontmatter.category)
-        .map((c) => [c.node.frontmatter.category, c])
-    ).values(),
+  // remove all category duplicates and create new array
+  const cleanArray = [
+    ...new Map(node.map((c) => [c.node.frontmatter.category, c])).values(),
   ];
   // write new array with the current position as an integer, if component passed down prop pageContext.frontmatter.category is equal to node.frontmatter.category
-  const currentCategoryPos = Array.of(
-    cleanUpData.findIndex((x) => x.node.frontmatter.category === category)
+  const currentCatPos = Array.of(
+    cleanArray.findIndex((x) => x.node.frontmatter.category === category)
   );
   return (
     <>
-      <HStack spacing={2} paddingLeft={3}>
+      <HStack spacing={2}>
         <Icon as={MdLibraryBooks} />
         <Text fontFamily="heading">Guidelines</Text>
       </HStack>
-      {/* pass array to expand current category */}
-      <Accordion defaultIndex={currentCategoryPos} allowMultiple>
-        {cleanUpData.map((c, i) => {
+      <Accordion defaultIndex={currentCatPos} allowMultiple>
+        <AccordionItem key={uuidv4}>
+          <AccordionButton>
+            <Link
+              as={GatsbyLink}
+              to="/docs"
+              key={uuidv4}
+              textDecoration="none !important"
+            >
+              Overview
+            </Link>
+          </AccordionButton>
+        </AccordionItem>
+        {cleanArray.map((c, i) => {
           const category = c.node.frontmatter.category;
           if (category === null) {
             return null;
