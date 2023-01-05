@@ -37,7 +37,7 @@ const DocsTemplate = ({ data, children, location, pageContext }) => {
           <CopyURL url={currentUrl} />
           <CustomBreadcrumb
             crumbs={crumbs}
-            crumbLabel={data.mdx.frontmatter.title}
+            crumbLabel={pageContext.frontmatter.title}
             crumbLocationRef={location.pathname}
             hiddenCrumbs={["/"]}
           />
@@ -102,10 +102,10 @@ const DocsTemplate = ({ data, children, location, pageContext }) => {
                 <SkipNavContent />
                 <Box maxW="40ch" pt={16}>
                   <Heading as="h1" color="purple.600" fontSize="5xl">
-                    {data.mdx.frontmatter.title}
+                    {pageContext.frontmatter.title}
                   </Heading>
                   <Text fontFamily="heading" pt={6} fontSize="sm">
-                    {data.mdx.frontmatter.prelude}
+                    {pageContext.frontmatter.prelude}
                   </Text>
                 </Box>
                 <Box>
@@ -155,15 +155,11 @@ export const pageQuery = graphql`
           words
         }
       }
-      frontmatter {
-        category
-        title
-        navDocTitle
-        toc
-        prelude
-      }
     }
-    allMdx {
+    allMdx(
+      sort: { frontmatter: { sort: ASC } }
+      filter: { frontmatter: { category: { ne: null } } }
+    ) {
       edges {
         node {
           frontmatter {
