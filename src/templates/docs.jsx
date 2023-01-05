@@ -168,6 +168,8 @@ export const pageQuery = graphql`
             title
             navDocTitle
             sort
+            child
+            toc
           }
         }
       }
