@@ -9,7 +9,6 @@ const TimeToRead = ({ time }) => {
       fontFamily="heading"
       alignItems="center"
       color="gray.500"
-      pt={9} 
       display="inline-block"
     >
       <StatLabel mr={2} display="inline-block">
