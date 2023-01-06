@@ -63,14 +63,43 @@ const DocsTemplate = ({ data, children, location, pageContext }) => {
       <SkipNavLink>Skip to content</SkipNavLink>
       <Flex justify="center" paddingX={layoutBorder}>
         <Box w={layoutWidth}>
+          <Box pt={12} pb={16} w="full">
+            <Logo />
+          </Box>
+          <Box w="full">
+            <Stack spacing={3} direction="row" align="center">
+              <Tooltip aria-label="Home" label="Home" placement="top-start">
+                <IconButton
+                  aria-label="Click to go home"
+                  icon={<MdHome />}
+                  color="sundial.500"
+                  background="sundial.100"
+                  _hover={{ background: "sundial.200 " }}
+                  _active={{ background: "sundial.300 " }}
+                  size="md"
+                  as={Link}
+                  to="/"
+                />
+              </Tooltip>
+              <CustomBreadcrumbHidden />
+            </Stack>
+          </Box>
+          <Box w="full" py={16}>
+            <Box>
+              <Heading as="h1" color="purple.600" fontSize="6xl">
+                {pageContext.frontmatter.title}
+              </Heading>
+              <Text fontFamily="heading" pt={6} fontSize="lg" maxW="60ch">
+                {pageContext.frontmatter.prelude}
+              </Text>
+            </Box>
+            <Box pt={9}>
+              <TimeToRead time={data.mdx.fields.timeToRead.text} />
+            </Box>
+          </Box>
           <Grid templateColumns="repeat(3, 1fr)" gap={12}>
-            <GridItem colSpan={3}>
-              <Box pt={12}>
-                <Logo />
-              </Box>
-            </GridItem>
             <GridItem colSpan={1} display={{ base: "none", lg: "block" }}>
-              <Box as="nav" pt={32}>
+              <Box as="nav">
                 <SideNavigation
                   data={data.allMdx.edges}
                   category={pageContext.frontmatter.category}
@@ -78,36 +107,8 @@ const DocsTemplate = ({ data, children, location, pageContext }) => {
               </Box>
             </GridItem>
             <GridItem colSpan={2}>
-              <Box as="main" pt={32}>
-                <Stack spacing={3} direction="row" align="center">
-                  <Tooltip
-                    aria-label="Click to go home"
-                    label="Home"
-                    placement="top-start"
-                  >
-                    <IconButton
-                      aria-label="Go home"
-                      icon={<MdHome />}
-                      color="sundial.500"
-                      background="sundial.100"
-                      _hover={{ background: "sundial.200 " }}
-                      _active={{ background: "sundial.300 " }}
-                      size="md"
-                      as={Link}
-                      to="/"
-                    />
-                  </Tooltip>
-                  <CustomBreadcrumbHidden />
-                </Stack>
+              <Box as="main">
                 <SkipNavContent />
-                <Box maxW="40ch" pt={16}>
-                  <Heading as="h1" color="purple.600" fontSize="5xl">
-                    {pageContext.frontmatter.title}
-                  </Heading>
-                  <Text fontFamily="heading" pt={6} fontSize="sm">
-                    {pageContext.frontmatter.prelude}
-                  </Text>
-                </Box>
                 <Box>
                   <Text>Contributors:</Text>
                   <AvatarGroup
@@ -123,7 +124,6 @@ const DocsTemplate = ({ data, children, location, pageContext }) => {
                     <Avatar name="Christian Nwamba" />
                   </AvatarGroup>
                 </Box>
-                <TimeToRead time={data.mdx.fields.timeToRead.text} />
                 <MDXProvider components={shortcodes}>
                   <Box maxW="42ch" className="mdx-prose">
                     {children}
