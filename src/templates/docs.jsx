@@ -1,5 +1,5 @@
 import * as React from "react";
-import { graphql, Link } from "gatsby";
+import { graphql, Link as GatsbyLink } from "gatsby";
 import { MDXProvider } from "@mdx-js/react";
 import theme from "../theme";
 import {
@@ -22,10 +22,11 @@ import Logo from "../components/Logo";
 import CopyURL from "../components/CopyURL";
 import CustomBreadcrumb from "../components/CustomBreadcrumb";
 import TimeToRead from "../components/TimeToRead";
-import SideNavigation from "../components/SideNavigation";
+import SideAccordion from "../components/SideAccordion";
+import Navigation from "../components/Navigation";
 
 const DocsTemplate = ({ data, children, location, pageContext }) => {
-  const shortcodes = { Link };
+  const shortcodes = { GatsbyLink };
   const currentUrl = data.site.siteMetadata.siteUrl + location.pathname;
   const {
     breadcrumb: { crumbs },
@@ -61,6 +62,7 @@ const DocsTemplate = ({ data, children, location, pageContext }) => {
   return (
     <ChakraProvider theme={theme}>
       <SkipNavLink>Skip to content</SkipNavLink>
+      <Navigation />
       <Flex justify="center" paddingX={layoutBorder}>
         <Box w={layoutWidth}>
           <Box pt={12} pb={16} w="full">
@@ -77,7 +79,7 @@ const DocsTemplate = ({ data, children, location, pageContext }) => {
                   _hover={{ background: "sundial.200 " }}
                   _active={{ background: "sundial.300 " }}
                   size="md"
-                  as={Link}
+                  as={GatsbyLink}
                   to="/"
                 />
               </Tooltip>
@@ -100,7 +102,7 @@ const DocsTemplate = ({ data, children, location, pageContext }) => {
           <Grid templateColumns="repeat(3, 1fr)" gap={12}>
             <GridItem colSpan={1} display={{ base: "none", lg: "block" }}>
               <Box as="nav">
-                <SideNavigation
+                <SideAccordion
                   data={data.allMdx.edges}
                   category={pageContext.frontmatter.category}
                 />
