@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link } from "gatsby";
+import { Link as GatsbyLink } from "gatsby";
 import { v4 as uuidv4 } from "uuid";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react";
 
@@ -26,7 +26,7 @@ const CustomBreadcrumb = ({
         return (
           <BreadcrumbItem key={i + uuidv4} isCurrentPage={isCurrentPage}>
             <BreadcrumbLink
-              as={Link}
+              as={GatsbyLink}
               to={c.pathname}
               title={
                 "Go to " +
