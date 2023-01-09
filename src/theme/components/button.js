@@ -13,9 +13,9 @@ export const ButtonStyles = defineStyleConfig({
       color: "gray.500",
     },
     navigation: {
-      py: 4,
-      px: 6,
-      fontSize: "sm",
+      py: { base: 1, md: 4 },
+      px: { base: 3, md: 6 },
+      fontSize: { base: "xs", md: "sm" },
       fontWeight: "400",
       borderRadius: "none",
       bg: "gray.800",
