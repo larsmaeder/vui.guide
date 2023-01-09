@@ -3,7 +3,7 @@ import { Link as GatsbyLink } from "gatsby";
 import { Box, HStack, Button } from "@chakra-ui/react";
 import { v4 as uuidv4 } from "uuid";
 
-const Navigation = () => {
+const Navigation = ({ crumbs: autoGenCrumbs }) => {
   const pages = [
     { id: 1, title: "Guidelines", slug: "/docs/", disabled: false },
     { id: 2, title: "Resources", slug: "/resources/", disabled: true },
@@ -27,17 +27,41 @@ const Navigation = () => {
       {/* set spacing -1px to remove anti-alised thin line in browser rendering */}
       <HStack spacing="-1px">
         {pages.map((c, i) => {
-          return (
-            <Button
-              as={GatsbyLink}
-              to={c.disabled ? "#" : c.slug}
-              key={i + uuidv4}
-              isDisabled={c.disabled}
-              variant="navigation"
-            >
-              {c.title}
-            </Button>
-          );
+          if (c.disabled)
+            return (
+              <Button
+                as="span"
+                key={i + uuidv4}
+                isDisabled
+                variant="navigation"
+                aria-disabled
+              >
+                {c.title}
+              </Button>
+            );
+          else if (autoGenCrumbs[1].pathname === c.slug)
+            return (
+              <Button
+                as={GatsbyLink}
+                to={c.slug}
+                key={i + uuidv4}
+                variant="navigation"
+                aria-current="location"
+              >
+                {c.title}
+              </Button>
+            );
+          else
+            return (
+              <Button
+                as={GatsbyLink}
+                to={c.slug}
+                key={i + uuidv4}
+                variant="navigation"
+              >
+                {c.title}
+              </Button>
+            );
         })}
       </HStack>
     </Box>
