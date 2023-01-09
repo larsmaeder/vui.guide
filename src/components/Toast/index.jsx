@@ -5,11 +5,12 @@ const Toast = ({ title, description, closeFunc }) => {
   return (
     <Box
       color="white"
-      bg="green.400"
+      bg="gray.600"
       py={2}
       px={4}
       fontFamily="heading"
       borderRadius="md"
+      boxShadow="base"
     >
       <Stack direction="row" spacing={3}>
         <Box>

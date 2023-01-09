@@ -22,7 +22,7 @@ const CopyURL = ({ url, standalone }) => {
     if (!toast.isActive(id)) {
       toast({
         id,
-        position: "top-right",
+        position: "top",
         duration: 4000,
         render: () => (
           <Toast
