@@ -31,6 +31,12 @@ export const ButtonStyles = defineStyleConfig({
           bg: "gray.800 !important",
         },
       },
+      _active: {
+        bg: "gray.800",
+      },
+      "&[aria-current]": {
+        bg: "gray.700",
+      },
     },
   },
   // The default `size` or `variant` values
