@@ -62,7 +62,7 @@ const DocsTemplate = ({ data, children, location, pageContext }) => {
   return (
     <ChakraProvider theme={theme}>
       <SkipNavLink>Skip to content</SkipNavLink>
-      <Navigation />
+      <Navigation crumbs={crumbs} />
       <Flex justify="center" paddingX={layoutBorder}>
         <Box w={layoutWidth}>
           <Box pt={12} pb={16} w="full">
