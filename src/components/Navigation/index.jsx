@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const Navigation = ({ crumbs: autoGenCrumbs }) => {
   const pages = [
-    { id: 1, title: "Guidelines", slug: "/docs/", disabled: false },
+    { id: 1, title: "Guide", slug: "/docs/", disabled: false },
     { id: 2, title: "Resources", slug: "/resources/", disabled: true },
     { id: 3, title: "Blog", slug: "/blog/", disabled: true },
     { id: 4, title: "Contribute", slug: "/contribute/", disabled: true },
