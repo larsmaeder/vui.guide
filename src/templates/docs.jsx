@@ -22,6 +22,8 @@ import {
   Td,
   TableCaption,
   TableContainer,
+  OrderedList,
+  ListItem,
 } from "@chakra-ui/react";
 import { Prose } from "@nikolovlazar/chakra-ui-prose";
 import { SkipNavLink, SkipNavContent } from "@chakra-ui/skip-nav";
@@ -32,6 +34,21 @@ import CustomBreadcrumb from "../components/CustomBreadcrumb";
 import TimeToRead from "../components/TimeToRead";
 import SideAccordion from "../components/SideAccordion";
 import Navigation from "../components/Navigation";
+import { v4 as uuidv4 } from "uuid";
+
+const Toc = ({ toc: { items } }) => {
+  return (
+    <OrderedList>
+      {items.map((c, i) => {
+        return (
+          <ListItem to={c.url} as={GatsbyLink} key={i + uuidv4}>
+            {c.title}
+          </ListItem>
+        );
+      })}
+    </OrderedList>
+  );
+};
 
 const DocsTemplate = ({ data, children, location, pageContext }) => {
   const shortcodes = {
@@ -141,6 +158,7 @@ const DocsTemplate = ({ data, children, location, pageContext }) => {
             <GridItem colSpan={{ base: 3, lg: 2 }}>
               <Box as="main">
                 <SkipNavContent />
+                <Toc toc={data.mdx.tableOfContents} />
                 <Box maxW={{ base: "full", lg: "42ch" }} className="mdx-prose">
                   <Prose>
                     <MDXProvider components={shortcodes}>
@@ -166,6 +184,7 @@ export const pageQuery = graphql`
     }
     mdx(id: { eq: $id }) {
       id
+      tableOfContents(maxDepth: 2)
       fields {
         timeToRead {
           minutes
