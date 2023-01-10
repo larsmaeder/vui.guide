@@ -13,9 +13,17 @@ import {
   Text,
   IconButton,
   Tooltip,
-  Avatar,
-  AvatarGroup,
+  Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+  TableContainer,
 } from "@chakra-ui/react";
+import { Prose } from "@nikolovlazar/chakra-ui-prose";
 import { SkipNavLink, SkipNavContent } from "@chakra-ui/skip-nav";
 import { MdHome } from "react-icons/md";
 import Logo from "../components/Logo";
@@ -26,7 +34,18 @@ import SideAccordion from "../components/SideAccordion";
 import Navigation from "../components/Navigation";
 
 const DocsTemplate = ({ data, children, location, pageContext }) => {
-  const shortcodes = { GatsbyLink };
+  const shortcodes = {
+    GatsbyLink,
+    Table,
+    Thead,
+    Tbody,
+    Tfoot,
+    Tr,
+    Th,
+    Td,
+    TableCaption,
+    TableContainer,
+  };
   const currentUrl = data.site.siteMetadata.siteUrl + location.pathname;
   const {
     breadcrumb: { crumbs },
@@ -88,10 +107,21 @@ const DocsTemplate = ({ data, children, location, pageContext }) => {
           </Box>
           <Box w="full" py={16}>
             <Box>
-              <Heading as="h1" color="purple.600" fontSize="6xl">
+              <Heading
+                as="h1"
+                color="purple.600"
+                fontSize="6xl"
+                letterSpacing="tight"
+              >
                 {pageContext.frontmatter.title}
               </Heading>
-              <Text fontFamily="heading" pt={6} fontSize="lg" maxW="60ch">
+              <Text
+                fontFamily="heading"
+                pt={6}
+                fontSize="lg"
+                maxW="60ch"
+                letterSpacing="tight"
+              >
                 {pageContext.frontmatter.prelude}
               </Text>
             </Box>
@@ -108,29 +138,16 @@ const DocsTemplate = ({ data, children, location, pageContext }) => {
                 />
               </Box>
             </GridItem>
-            <GridItem colSpan={2}>
+            <GridItem colSpan={{ base: 3, lg: 2 }}>
               <Box as="main">
                 <SkipNavContent />
-                <Box>
-                  <Text>Contributors:</Text>
-                  <AvatarGroup
-                    size="sm"
-                    max={2}
-                    fontFamily="heading"
-                    fontSize="sm"
-                  >
-                    <Avatar name="Lars Mäder" />
-                    <Avatar name="Segun Adebayo" />
-                    <Avatar name="Kent Dodds" />
-                    <Avatar name="Prosper Otemuyiwa" />
-                    <Avatar name="Christian Nwamba" />
-                  </AvatarGroup>
+                <Box maxW={{ base: "full", lg: "42ch" }} className="mdx-prose">
+                  <Prose>
+                    <MDXProvider components={shortcodes}>
+                      {children}
+                    </MDXProvider>
+                  </Prose>
                 </Box>
-                <MDXProvider components={shortcodes}>
-                  <Box maxW="42ch" className="mdx-prose">
-                    {children}
-                  </Box>
-                </MDXProvider>
               </Box>
             </GridItem>
           </Grid>
