@@ -1,4 +1,4 @@
-// import { withProse } from "@nikolovlazar/chakra-ui-prose";
+import { withProse } from "@nikolovlazar/chakra-ui-prose";
 import { extendTheme } from "@chakra-ui/react";
 import { GlobalStyles as styles } from "./styles";
 import { ColorStyles as colors } from "./foundations/colors";
@@ -10,6 +10,7 @@ import { ToolTipStyles as Tooltip } from "./components/tooltip";
 import { AlertStyles as Alert } from "./components/alert";
 import { BreadcrumbStyles as Breadcrumb } from "./components/breadcrumb";
 import { AccordionStyles as Accordion } from "./components/accordion";
+import { SkipLinkStyles as SkipLink } from "./components/skipLink";
 
 const theme = extendTheme(
   {
@@ -24,15 +25,31 @@ const theme = extendTheme(
       Alert,
       Breadcrumb,
       Accordion,
+      SkipLink,
     },
   },
-  // withProse({
-  //   baseStyle: {
-  //     h2: {
-  //       fontSize: "9xl",
-  //     },
-  //   },
-  // })
+  withProse({
+    baseStyle: {
+      h1: {
+        letterSpacing: "tight",
+      },
+      h2: {
+        letterSpacing: "tight",
+      },
+      h3: {
+        letterSpacing: "tight",
+      },
+      h4: {
+        letterSpacing: "tight",
+      },
+      h5: {
+        letterSpacing: "tight",
+      },
+      h6: {
+        letterSpacing: "tight",
+      },
+    },
+  })
 );
 
 export default theme;

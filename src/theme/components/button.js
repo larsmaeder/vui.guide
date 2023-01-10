@@ -16,7 +16,7 @@ export const ButtonStyles = defineStyleConfig({
       py: { base: 1, md: 4 },
       px: { base: 3, md: 6 },
       fontSize: { base: "xs", md: "sm" },
-      fontWeight: "400",
+      fontWeight: "normal",
       borderRadius: "none",
       bg: "gray.800",
       color: "gray.400",
@@ -36,6 +36,8 @@ export const ButtonStyles = defineStyleConfig({
       },
       "&[aria-current]": {
         bg: "gray.700",
+        boxShadow:
+          "inset 0px -16px 16px -16px var(--chakra-colors-purple-600), inset 0px -1px 0px 0px var(--chakra-colors-purple-600)",
       },
     },
   },
