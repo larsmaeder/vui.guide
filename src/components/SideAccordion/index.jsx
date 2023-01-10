@@ -10,6 +10,8 @@ import {
   Flex,
   Icon,
   Link,
+  LinkBox,
+  LinkOverlay,
 } from "@chakra-ui/react";
 import {
   MdKeyboardArrowDown,
@@ -32,7 +34,7 @@ const SideAccordion = ({ data: node, category }) => {
     <>
       <HStack spacing={2}>
         <Icon as={MdLibraryBooks} />
-        <Text fontFamily="heading">Guidelines</Text>
+        <Text fontFamily="heading">Guide</Text>
       </HStack>
       <Accordion defaultIndex={currentCatPos} allowMultiple>
         {cleanArray.map((c, i) => {
@@ -40,15 +42,16 @@ const SideAccordion = ({ data: node, category }) => {
           if (c.node.frontmatter.child === false) {
             return (
               <AccordionItem key={uuidv4}>
-                <AccordionButton>
-                  <Link
-                    as={GatsbyLink}
-                    to={c.node.frontmatter.slug}
-                    textDecoration="none !important"
-                  >
-                    {c.node.frontmatter.navDocTitle}
-                  </Link>
-                </AccordionButton>
+                <LinkBox display="inline-flex">
+                  <AccordionButton>
+                    <LinkOverlay
+                      as={GatsbyLink}
+                      to={c.node.frontmatter.slug}
+                    >
+                      {c.node.frontmatter.navDocTitle}
+                    </LinkOverlay>
+                  </AccordionButton>
+                </LinkBox>
               </AccordionItem>
             );
           } else
