@@ -21,7 +21,7 @@ import {
 import { Link as GatsbyLink } from "gatsby";
 import { v4 as uuidv4 } from "uuid";
 
-const SideAccordion = ({ data: node, category }) => {
+const DocsNavigation = ({ data: node, category }) => {
   // remove all category duplicates and create new array
   const cleanArray = [
     ...new Map(node.map((c) => [c.node.frontmatter.category, c])).values(),
@@ -99,4 +99,4 @@ const SideAccordion = ({ data: node, category }) => {
   );
 };
 
-export default SideAccordion;
+export default DocsNavigation;
