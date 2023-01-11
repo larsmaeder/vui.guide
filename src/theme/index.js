@@ -48,6 +48,10 @@ const theme = extendTheme(
       h6: {
         letterSpacing: "tight",
       },
+      p: {
+        fontSize: { base: "md", md: "lg" },
+        lineHeight: { base: "7", md: "8" },
+      },
     },
   })
 );
