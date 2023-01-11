@@ -22,8 +22,6 @@ import {
   Td,
   TableCaption,
   TableContainer,
-  OrderedList,
-  ListItem,
 } from "@chakra-ui/react";
 import { Prose } from "@nikolovlazar/chakra-ui-prose";
 import { SkipNavLink, SkipNavContent } from "@chakra-ui/skip-nav";
@@ -32,23 +30,9 @@ import Logo from "../components/Logo";
 import CopyURL from "../components/CopyURL";
 import CustomBreadcrumb from "../components/CustomBreadcrumb";
 import TimeToRead from "../components/TimeToRead";
-import SideAccordion from "../components/SideAccordion";
+import DocsNavigation from "../components/DocsNavigation";
 import Navigation from "../components/Navigation";
-import { v4 as uuidv4 } from "uuid";
-
-const Toc = ({ toc: { items } }) => {
-  return (
-    <OrderedList>
-      {items.map((c, i) => {
-        return (
-          <ListItem to={c.url} as={GatsbyLink} key={i + uuidv4}>
-            {c.title}
-          </ListItem>
-        );
-      })}
-    </OrderedList>
-  );
-};
+import Toc from "../components/Toc";
 
 const DocsTemplate = ({ data, children, location, pageContext }) => {
   const shortcodes = {
@@ -147,18 +131,23 @@ const DocsTemplate = ({ data, children, location, pageContext }) => {
             </Box>
           </Box>
           <Grid templateColumns="repeat(3, 1fr)" gap={12}>
-            <GridItem colSpan={1} display={{ base: "none", lg: "block" }}>
+            <GridItem colSpan={1} display={{ base: "none", md: "block" }}>
               <Box as="nav">
-                <SideAccordion
+                <DocsNavigation
                   data={data.allMdx.edges}
                   category={pageContext.frontmatter.category}
                 />
               </Box>
             </GridItem>
-            <GridItem colSpan={{ base: 3, lg: 2 }}>
+            <GridItem colSpan={{ base: 3, md: 2 }}>
               <Box as="main">
                 <SkipNavContent />
-                <Toc toc={data.mdx.tableOfContents} />
+                {/* <TocAvailable /> */}
+                <Toc
+                  toc={data.mdx.tableOfContents}
+                  isAvailable={data.mdx.frontmatter.toc}
+                  location={location.pathname}
+                />
                 <Box maxW={{ base: "full", lg: "42ch" }} className="mdx-prose">
                   <Prose>
                     <MDXProvider components={shortcodes}>
@@ -185,6 +174,9 @@ export const pageQuery = graphql`
     mdx(id: { eq: $id }) {
       id
       tableOfContents(maxDepth: 2)
+      frontmatter {
+        toc
+      }
       fields {
         timeToRead {
           minutes
