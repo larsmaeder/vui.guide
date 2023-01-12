@@ -11,6 +11,7 @@ import { AlertStyles as Alert } from "./components/alert";
 import { BreadcrumbStyles as Breadcrumb } from "./components/breadcrumb";
 import { AccordionStyles as Accordion } from "./components/accordion";
 import { SkipLinkStyles as SkipLink } from "./components/skipLink";
+import { pageWidth, pageGap } from "./foundations/layout";
 
 const theme = extendTheme(
   {
@@ -56,4 +57,4 @@ const theme = extendTheme(
   })
 );
 
-export default theme;
+export { theme, pageGap, pageWidth };

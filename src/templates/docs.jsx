@@ -1,7 +1,7 @@
 import * as React from "react";
 import { graphql, Link as GatsbyLink } from "gatsby";
 import { MDXProvider } from "@mdx-js/react";
-import theme from "../theme";
+import { theme, pageGap, pageWidth } from "../theme";
 import {
   ChakraProvider,
   Grid,
@@ -68,23 +68,12 @@ const DocsTemplate = ({ data, children, location, pageContext }) => {
       return <CopyURL url={currentUrl} standalone />;
     }
   };
-  const layoutWidth = {
-    base: "full",
-    lg: "60em",
-    xl: "70em",
-    "2xl": "90em",
-  };
-  const layoutBorder = {
-    base: "4",
-    md: "8",
-    lg: "12",
-  };
   return (
     <ChakraProvider theme={theme}>
       <SkipNavLink>Skip to content</SkipNavLink>
       <Navigation crumbs={crumbs} />
-      <Flex justify="center" paddingX={layoutBorder}>
-        <Box w={layoutWidth}>
+      <Flex justify="center" paddingX={pageGap}>
+        <Box w={pageWidth}>
           <Box pt={12} pb={16} w="full">
             <Logo />
           </Box>
@@ -142,7 +131,6 @@ const DocsTemplate = ({ data, children, location, pageContext }) => {
             <GridItem colSpan={{ base: 3, md: 2 }}>
               <Box as="main">
                 <SkipNavContent />
-                {/* <TocAvailable /> */}
                 <Toc
                   toc={data.mdx.tableOfContents}
                   isAvailable={data.mdx.frontmatter.toc}
