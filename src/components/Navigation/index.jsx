@@ -39,6 +39,17 @@ const Navigation = ({ crumbs: autoGenCrumbs }) => {
                 {c.title}
               </Button>
             );
+          else if (autoGenCrumbs[0].pathname === "/")
+            return (
+              <Button
+                as={GatsbyLink}
+                to={c.slug}
+                key={i + uuidv4}
+                variant="navigation"
+              >
+                {c.title}
+              </Button>
+            );
           else if (autoGenCrumbs[1].pathname === c.slug)
             return (
               <Button
