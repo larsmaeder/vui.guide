@@ -36,7 +36,7 @@ const DocsNavigation = ({ data: node, category }) => {
         <Icon as={MdLibraryBooks} />
         <Text fontFamily="heading">Guide</Text>
       </HStack>
-      <Accordion defaultIndex={currentCatPos} allowMultiple>
+      <Accordion defaultIndex={currentCatPos} allowMultiple variant="docs">
         {cleanArray.map((c, i) => {
           const category = c.node.frontmatter.category;
           if (c.node.frontmatter.child === false) {
@@ -44,10 +44,7 @@ const DocsNavigation = ({ data: node, category }) => {
               <AccordionItem key={uuidv4}>
                 <LinkBox display="inline-flex">
                   <AccordionButton>
-                    <LinkOverlay
-                      as={GatsbyLink}
-                      to={c.node.frontmatter.slug}
-                    >
+                    <LinkOverlay as={GatsbyLink} to={c.node.frontmatter.slug}>
                       {c.node.frontmatter.navDocTitle}
                     </LinkOverlay>
                   </AccordionButton>
@@ -81,6 +78,13 @@ const DocsNavigation = ({ data: node, category }) => {
                                 px={3}
                                 py={2}
                                 _hover={{ borderLeftColor: "purple.500" }}
+                                sx={{
+                                  "&[aria-current]": {
+                                    borderLeftColor: "purple.500",
+                                    borderLeft: "2px solid",
+                                    color: "purple.500",
+                                  },
+                                }}
                               >
                                 {c.node.frontmatter.navDocTitle}
                               </Link>
