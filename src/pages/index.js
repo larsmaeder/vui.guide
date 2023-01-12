@@ -9,8 +9,7 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import { SkipNavLink, SkipNavContent } from "@chakra-ui/skip-nav";
-import Logo from "../components/Logo";
-import Navigation from "../components/Navigation";
+import { Logo, Navigation } from "../components";
 
 const Index = ({ pageContext }) => {
   const {

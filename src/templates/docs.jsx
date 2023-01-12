@@ -26,13 +26,15 @@ import {
 import { Prose } from "@nikolovlazar/chakra-ui-prose";
 import { SkipNavLink, SkipNavContent } from "@chakra-ui/skip-nav";
 import { MdHome } from "react-icons/md";
-import Logo from "../components/Logo";
-import CopyURL from "../components/CopyURL";
-import CustomBreadcrumb from "../components/CustomBreadcrumb";
-import TimeToRead from "../components/TimeToRead";
-import DocsNavigation from "../components/DocsNavigation";
-import Navigation from "../components/Navigation";
-import Toc from "../components/Toc";
+import {
+  Logo,
+  CopyURL,
+  CustomBreadcrumb,
+  TimeToRead,
+  DocsNavigation,
+  Navigation,
+  Toc,
+} from "../components";
 
 const DocsTemplate = ({ data, children, location, pageContext }) => {
   const shortcodes = {
