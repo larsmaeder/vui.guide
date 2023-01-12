@@ -8,15 +8,15 @@ const baseStyle = definePartsStyle({
   // Styles for the base style
 });
 
-const sizes = defineMultiStyleConfig({
+const sizes = definePartsStyle({
   // Styles for the size variations
 });
 
-const variants = defineMultiStyleConfig({
+const variants = definePartsStyle({
   // Styles for the visual style variations
 });
 
-const defaultProps = defineMultiStyleConfig({
+const defaultProps = definePartsStyle({
   // The default `size` or `variant` values
 });
 
