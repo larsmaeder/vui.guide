@@ -6,6 +6,7 @@ import Navigation from "./Navigation";
 import TimeToRead from "./TimeToRead";
 import Toast from "./Toast";
 import Toc from "./Toc";
+import DelayedComponents from "./DelayedComponents";
 
 export {
   CopyURL,
@@ -16,4 +17,5 @@ export {
   TimeToRead,
   Toast,
   Toc,
+  DelayedComponents,
 };
