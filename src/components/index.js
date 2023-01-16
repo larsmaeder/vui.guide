@@ -7,6 +7,7 @@ import TimeToRead from "./TimeToRead";
 import Toast from "./Toast";
 import Toc from "./Toc";
 import DelayedComponents from "./DelayedComponents";
+import CookieConsent from "./CookieConsent";
 
 export {
   CopyURL,
@@ -18,4 +19,5 @@ export {
   Toast,
   Toc,
   DelayedComponents,
+  CookieConsent,
 };
