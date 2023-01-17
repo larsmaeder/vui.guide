@@ -4,6 +4,8 @@ export const ButtonStyles = defineStyleConfig({
   // Styles for the base style
   baseStyle: {
     borderRadius: "xl",
+    fontFamily: "heading",
+    fontWeight: "normal",
   },
   // Styles for the size variations
   sizes: {},

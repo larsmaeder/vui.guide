@@ -19,7 +19,6 @@ const Navigation = ({ crumbs: autoGenCrumbs }) => {
       transform="auto"
       translateX="-50%"
       zIndex="overlay"
-      fontFamily="heading"
       borderRadius={12}
       overflow="hidden"
       boxShadow="dark-lg"
