@@ -8,8 +8,7 @@ const Index = ({ pageContext }) => {
   const {
     breadcrumb: { crumbs },
   } = pageContext;
-  const [cookies, setCookie, removeCookie] = useCookies(["consent"]);
-  // setCookie("consent", "declined", { path: "/" });
+  const [cookies, setCookie, removeCookie] = useCookies(["consent", "_ga"]);
   return (
     <PagesTemplate crumbs={crumbs}>
       <GridItem colSpan={3}>
