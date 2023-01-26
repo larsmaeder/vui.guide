@@ -11,8 +11,8 @@ const AskForCookie = ({ setCookie, removeCookie }) => {
   };
   const handleCookieDecline = () => {
     setCookie("consent", "declined", { path: "/" });
+    removeCookie("_ga", { path: "/" });
     console.log("Declined");
-    removeCookie("_ga");
   };
   return (
     <ChatBot
@@ -38,13 +38,13 @@ const AskForCookie = ({ setCookie, removeCookie }) => {
         {
           id: "3",
           message:
-            "I’ll start with a fact about me: I need cookies to function properly.",
+            "To ensure I provide you with the best experience, I need your permission to use cookies.",
           trigger: "4",
           hideInput: true,
         },
         {
           id: "4",
-          message: "Do you want to accept cookies?",
+          message: "May I use cookies on your device?",
           trigger: "5",
           hideInput: true,
         },
@@ -124,6 +124,7 @@ const Introduction = () => {
 };
 
 const CookieConsent = ({ cookies, setCookie, removeCookie }) => {
+  setCookie("_ga", "FSJBFRFJB", { path: "/" });
   console.log(cookies._ga);
   if (cookies.consent === undefined)
     return <AskForCookie {...{ setCookie, removeCookie }} />;
