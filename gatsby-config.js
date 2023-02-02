@@ -28,8 +28,8 @@ module.exports = {
             crumbLabel: "Guide",
           },
           {
-            pathname: "/contribute",
-            crumbLabel: "Contribute",
+            pathname: "/about",
+            crumbLabel: "About",
           },
           {
             pathname: "/docs/fundamentals",
