@@ -1,27 +1,54 @@
 import * as React from "react";
-import { theme, pageGap, pageWidth } from "../theme";
-import { ChakraProvider, Grid, Flex, Box } from "@chakra-ui/react";
+import { Link as GatsbyLink } from "gatsby";
+import { theme, pageGutter, pageWidth } from "../theme";
+import {
+  ChakraProvider,
+  Flex,
+  Box,
+  Stack,
+  Tooltip,
+  IconButton,
+} from "@chakra-ui/react";
 import { SkipNavLink, SkipNavContent } from "@chakra-ui/skip-nav";
-import { Logo, Navigation } from "../components";
+import { Logo, Navigation, CopyURL } from "../components";
 import { CookiesProvider } from "react-cookie";
+import { MdHome } from "react-icons/md";
 
-const PagesTemplate = ({ crumbs, children }) => {
+const PagesTemplate = ({ url, crumbs, children }) => {
   return (
     <CookiesProvider>
       <ChakraProvider theme={theme}>
-        <SkipNavLink>Skip to content</SkipNavLink>
-        <Navigation crumbs={crumbs} />
-        <Flex justify="center" paddingX={pageGap}>
-          <Box w={pageWidth}>
-            <Box pt={12} pb={12} w="full">
-              <Logo />
+        <Box pb={32}>
+          <SkipNavLink>Skip to content</SkipNavLink>
+          <Navigation crumbs={crumbs} />
+          <Flex justify="center" paddingX={pageGutter}>
+            <Box w={pageWidth}>
+              <Box pt={{ base: 8, md: 12 }} pb={{ base: 8, md: 12 }} w="full">
+                <Logo />
+              </Box>
+              <Box w="full">
+                <Stack spacing={3} direction="row" align="center">
+                  <Tooltip aria-label="Home" label="Home" placement="top-start">
+                    <IconButton
+                      aria-label="Click to go home"
+                      icon={<MdHome />}
+                      color="sundial.500"
+                      background="sundial.100"
+                      _hover={{ background: "sundial.200 " }}
+                      _active={{ background: "sundial.300 " }}
+                      size="md"
+                      as={GatsbyLink}
+                      to="/"
+                    />
+                  </Tooltip>
+                  <CopyURL url={url} standalone />
+                </Stack>
+              </Box>
             </Box>
-            <SkipNavContent />
-            <Grid templateColumns="repeat(3, 1fr)" gap={12}>
-              {children}
-            </Grid>
-          </Box>
-        </Flex>
+          </Flex>
+          <SkipNavContent />
+          <Box as="main">{children}</Box>
+        </Box>
       </ChakraProvider>
     </CookiesProvider>
   );

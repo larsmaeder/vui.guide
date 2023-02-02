@@ -1,7 +1,7 @@
 import * as React from "react";
 import { graphql, Link as GatsbyLink } from "gatsby";
 import { MDXProvider } from "@mdx-js/react";
-import { theme, pageGap, pageWidth } from "../theme";
+import { theme, pageGutter, pageWidth } from "../theme";
 import {
   ChakraProvider,
   Grid,
@@ -74,9 +74,9 @@ const DocsTemplate = ({ data, children, location, pageContext }) => {
     <ChakraProvider theme={theme}>
       <SkipNavLink>Skip to content</SkipNavLink>
       <Navigation crumbs={crumbs} />
-      <Flex justify="center" paddingX={pageGap}>
+      <Flex justify="center" paddingX={pageGutter}>
         <Box w={pageWidth}>
-          <Box pt={12} pb={16} w="full">
+          <Box pt={{ base: 8, md: 12 }} pb={{ base: 8, md: 12 }} w="full">
             <Logo />
           </Box>
           <Box w="full">
