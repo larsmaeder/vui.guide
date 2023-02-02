@@ -6,8 +6,8 @@ export const GlobalStyles = {
     },
     ".chakra-stat": {
       dl: {
-        display: "flex",
-        alignItems: "center",
+        display: "inherit",
+        alignItems: "inherit",
       },
     },
     ".default .rsc": {
@@ -34,7 +34,6 @@ export const GlobalStyles = {
       color: "inherit",
       py: { base: 3, md: 4 },
       px: { base: 4, md: 6 },
-      m: 0.5,
       backgroundColor: "gray.200",
       boxShadow: "none",
       maxWidth: { base: "100%", md: "65%" },

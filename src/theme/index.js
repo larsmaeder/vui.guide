@@ -5,13 +5,14 @@ import { ColorStyles as colors } from "./foundations/colors";
 import { FontStyles as fonts } from "./foundations/fonts";
 import { FontSizesStyles as fontSizes } from "./foundations/fontSizes";
 import { BreakpointStyles as breakpoints } from "./foundations/breakpoints";
+import { pageWidth, pageGutter } from "./foundations/layout";
+import { HeadingStyles as Heading } from "./components/heading";
 import { ButtonStyles as Button } from "./components/button";
 import { ToolTipStyles as Tooltip } from "./components/tooltip";
 import { AlertStyles as Alert } from "./components/alert";
 import { BreadcrumbStyles as Breadcrumb } from "./components/breadcrumb";
 import { AccordionStyles as Accordion } from "./components/accordion";
 import { SkipLinkStyles as SkipLink } from "./components/skipLink";
-import { pageWidth, pageGap } from "./foundations/layout";
 
 const theme = extendTheme(
   {
@@ -21,6 +22,7 @@ const theme = extendTheme(
     fontSizes,
     breakpoints,
     components: {
+      Heading,
       Button,
       Tooltip,
       Alert,
@@ -57,4 +59,4 @@ const theme = extendTheme(
   })
 );
 
-export { theme, pageGap, pageWidth };
+export { theme, pageGutter, pageWidth };

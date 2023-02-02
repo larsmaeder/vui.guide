@@ -5,7 +5,7 @@ export const pageWidth = {
   "2xl": "90em",
 };
 
-export const pageGap = {
+export const pageGutter = {
   base: "4",
   md: "8",
   lg: "12",

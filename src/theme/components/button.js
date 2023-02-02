@@ -3,12 +3,24 @@ import { defineStyleConfig } from "@chakra-ui/react";
 export const ButtonStyles = defineStyleConfig({
   // Styles for the base style
   baseStyle: {
-    borderRadius: "xl",
     fontFamily: "heading",
     fontWeight: "normal",
   },
   // Styles for the size variations
-  sizes: {},
+  sizes: {
+    xs: {
+      borderRadius: "sm",
+    },
+    sm: {
+      borderRadius: "md",
+    },
+    md: {
+      borderRadius: "lg",
+    },
+    lg: {
+      borderRadius: "xl",
+    },
+  },
   // Styles for the visual style variations
   variants: {
     outline: {
@@ -39,7 +51,7 @@ export const ButtonStyles = defineStyleConfig({
       "&[aria-current]": {
         bg: "gray.700",
         boxShadow:
-          "inset 0px -16px 16px -16px var(--chakra-colors-purple-600), inset 0px -1px 0px 0px var(--chakra-colors-purple-600)",
+          "inset 0px -16px 32px -16px var(--chakra-colors-purple-900)",
       },
     },
   },
