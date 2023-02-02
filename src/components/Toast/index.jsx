@@ -1,25 +1,44 @@
 import * as React from "react";
-import { Box, Stack, Text, CloseButton } from "@chakra-ui/react";
+import {
+  Box,
+  Stack,
+  Text,
+  CloseButton,
+  useToast,
+  Icon,
+  Flex,
+} from "@chakra-ui/react";
 
-const Toast = ({ title, description, closeFunc }) => {
+const Toast = ({ title, description, id, icon, ...style }) => {
+  const toast = useToast();
+  // check id and close Toast if matching
+  function closeToast() {
+    if (id) {
+      toast.close(id);
+    }
+  }
   return (
     <Box
       color="white"
-      bg="gray.600"
+      bg={`${style.colorScheme}.600`}
       py={2}
       px={4}
       fontFamily="heading"
       borderRadius="md"
       boxShadow="base"
+      fontSize={`${style.size}`}
     >
       <Stack direction="row" spacing={3}>
+        {icon && (
+          <Flex align="center">
+            <Icon as={icon} boxSize={5} />
+          </Flex>
+        )}
         <Box>
-          <Text fontSize="xs" fontWeight="bold">
-            {title}
-          </Text>
-          <Text fontSize="xs">{description}</Text>
+          <Text fontWeight="bold">{title}</Text>
+          <Text>{description}</Text>
         </Box>
-        <CloseButton onClick={closeFunc} aria-label="Close" size="sm" />
+        <CloseButton onClick={closeToast} aria-label="Close" size="sm" />
       </Stack>
     </Box>
   );

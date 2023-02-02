@@ -8,13 +8,13 @@ const Navigation = ({ crumbs: autoGenCrumbs }) => {
     { id: 1, title: "Guide", slug: "/docs/", disabled: false },
     { id: 2, title: "Resources", slug: "/resources/", disabled: true },
     { id: 3, title: "Blog", slug: "/blog/", disabled: true },
-    { id: 4, title: "Contribute", slug: "/contribute/", disabled: true },
+    { id: 4, title: "About", slug: "/about/", disabled: false },
   ];
   return (
     <Box
       as="nav"
       pos="fixed"
-      bottom={16}
+      bottom={{ base: 10, md: 16 }}
       left="50%"
       transform="auto"
       translateX="-50%"

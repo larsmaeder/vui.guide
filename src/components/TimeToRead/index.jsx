@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Stat, StatLabel, StatNumber } from "@chakra-ui/react";
+import { Icon } from "@chakra-ui/react";
 import { MdAccessTimeFilled } from "react-icons/md";
 
 const TimeToRead = ({ time }) => {
@@ -7,14 +8,14 @@ const TimeToRead = ({ time }) => {
     <Stat
       title="Time to read"
       fontFamily="heading"
-      alignItems="center"
       color="gray.500"
-      display="inline-block"
+      display="flex"
+      alignItems="center"
     >
-      <StatLabel mr={2} display="inline-block">
-        <MdAccessTimeFilled />
+      <StatLabel mr={2} display="flex">
+        <Icon as={MdAccessTimeFilled} />
       </StatLabel>
-      <StatNumber fontSize="xs" display="inline-block">
+      <StatNumber fontSize="xs" display="flex">
         {time}
       </StatNumber>
     </Stat>
