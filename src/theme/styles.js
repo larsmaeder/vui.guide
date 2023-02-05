@@ -4,6 +4,11 @@ export const GlobalStyles = {
       backgroundColor: "white",
       color: "font.100",
     },
+    p: {
+      fontSize: ["md", null, "lg", null, "xl", null],
+      lineHeight: "1.6",
+      my: [3, null, 4, null, 5, null],
+    },
     ".chakra-stat": {
       dl: {
         display: "inherit",
