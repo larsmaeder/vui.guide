@@ -121,7 +121,7 @@ const DocsTemplate = ({ data, children, location, pageContext }) => {
               <TimeToRead time={data.mdx.fields.timeToRead.text} />
             </Box>
           </Box>
-          <Grid templateColumns="repeat(3, 1fr)" gap={12}>
+          <Grid templateColumns="repeat(4, 1fr)" gap={12}>
             <GridItem colSpan={1} display={{ base: "none", md: "block" }}>
               <Box as="nav">
                 <DocsNavigation
@@ -130,7 +130,7 @@ const DocsTemplate = ({ data, children, location, pageContext }) => {
                 />
               </Box>
             </GridItem>
-            <GridItem colSpan={{ base: 3, md: 2 }}>
+            <GridItem colSpan={{ base: 4, md: 3, lg: 3, xl: 2 }}>
               <Box as="main">
                 <SkipNavContent />
                 <Toc
@@ -138,7 +138,7 @@ const DocsTemplate = ({ data, children, location, pageContext }) => {
                   isAvailable={data.mdx.frontmatter.toc}
                   location={location.pathname}
                 />
-                <Box maxW={{ base: "full", lg: "42ch" }} className="mdx-prose">
+                <Box className="mdx-prose">
                   <Prose>
                     <MDXProvider components={shortcodes}>
                       {children}
