@@ -64,10 +64,13 @@ export const HeadingStyles = defineStyleConfig({
   },
   // Styles for the visual style variations
   variants: {
-    sup: {
+    runner: {
       textTransform: "uppercase",
       fontWeight: "normal",
-      letterSpacing: "wide"
+      letterSpacing: "wide",
+      fontSize: ["xs", null, "sm", null, null, null],
+      mt: 0,
+      mb: 2,
     },
   },
   // The default `size` or `variant` values

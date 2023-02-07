@@ -23,6 +23,13 @@ export const ButtonStyles = defineStyleConfig({
   },
   // Styles for the visual style variations
   variants: {
+    footer: {
+      color: "gray.400",
+      bg: "gray.100",
+      _hover: {
+        bg: "gray.50",
+      },
+    },
     outline: {
       color: "gray.500",
     },
@@ -50,8 +57,7 @@ export const ButtonStyles = defineStyleConfig({
       },
       "&[aria-current]": {
         bg: "gray.700",
-        boxShadow:
-          "inset 0px -16px 32px -16px var(--chakra-colors-purple-900)",
+        boxShadow: "inset 0px -16px 32px -16px var(--chakra-colors-purple-900)",
       },
     },
   },

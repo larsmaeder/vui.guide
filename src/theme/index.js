@@ -14,6 +14,9 @@ import { BreadcrumbStyles as Breadcrumb } from "./components/breadcrumb";
 import { AccordionStyles as Accordion } from "./components/accordion";
 import { SkipLinkStyles as SkipLink } from "./components/skipLink";
 import { BadgeStyles as Badge } from "./components/badge";
+import { LinkStyles as Link } from "./components/link";
+import { ListStyles as List } from "./components/list";
+import { CodeStyles as Code } from "./components/code";
 
 const theme = extendTheme(
   {
@@ -31,6 +34,9 @@ const theme = extendTheme(
       Accordion,
       SkipLink,
       Badge,
+      Link,
+      List,
+      Code,
     },
   },
   withProse({

@@ -1,29 +1,28 @@
-import { breadcrumbAnatomy } from "@chakra-ui/anatomy";
+import { listAnatomy } from "@chakra-ui/anatomy";
 import { createMultiStyleConfigHelpers } from "@chakra-ui/react";
 
 const {
   definePartsStyle,
   defineMultiStyleConfig,
-} = createMultiStyleConfigHelpers(breadcrumbAnatomy.keys);
+} = createMultiStyleConfigHelpers(listAnatomy.keys);
 
 const baseStyle = definePartsStyle({
   // Styles for the base style
   container: {
-    bg: "gray.200",
-    borderRadius: "xl",
-    fontFamily: "heading",
-    color: "gray.500",
-    alignContent: "center",
-    display: "flex",
-    px: 3,
+    my: [3, null, 4, null, 5, null],
+    marginInlineStart: [
+      "var(--chakra-fontSizes-md)",
+      null,
+      "var(--chakra-fontSizes-lg)",
+      null,
+      "var(--chakra-fontSizes-xl)",
+      null,
+    ],
   },
-  list: {
-    fontSize: "sm",
-    my: 0,
+  item: {
+    fontSize: ["md", null, "lg", null, "xl", null],
+    lineHeight: "1.6",
   },
-  item: {},
-  link: {},
-  seperator: {},
   icon: {},
 });
 
@@ -32,6 +31,12 @@ const sizes = definePartsStyle({
 });
 
 const variants = definePartsStyle({
+  attr: {
+    container: {
+      marginInlineStart: 0,
+      my: 0,
+    },
+  },
   // Styles for the visual style variations
 });
 
@@ -39,7 +44,7 @@ const defaultProps = definePartsStyle({
   // The default `size` or `variant` values
 });
 
-export const BreadcrumbStyles = defineMultiStyleConfig({
+export const ListStyles = defineMultiStyleConfig({
   baseStyle,
   sizes,
   variants,
