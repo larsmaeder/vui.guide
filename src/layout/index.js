@@ -1,3 +1,4 @@
 import Wrapper from "./Wrapper";
+import Footer from "./Footer";
 
-export { Wrapper };
+export { Wrapper, Footer };

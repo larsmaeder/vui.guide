@@ -3,13 +3,34 @@ import PropTypes from "prop-types";
 import { Flex, Box, Grid } from "@chakra-ui/react";
 import { pageGutter, pageWidth } from "../../theme";
 
-const Wrapper = ({ children, ...props }) => {
+const Wrapper = ({
+  children,
+  id,
+  as,
+  color,
+  bg,
+  gutters,
+  fluid,
+  pt,
+  pb,
+  grid,
+  templateColumns,
+  gap,
+  rowGap,
+  columnGap,
+  ...rest
+}) => {
   return (
-    <Box id={props.id} as={props.as} color={props.color} bg={props.bg}>
-      <Flex justify="center" paddingX={!props.gutters ? 0 : pageGutter}>
-        <Box w={props.fluid ? "full" : pageWidth} py={props.py} pos="relative">
-          {props.grid ? (
-            <Grid templateColumns={props.templateColumns} gap={props.gap}>
+    <Box id={id} as={as} color={color} bg={bg} {...rest}>
+      <Flex justify="center" px={!gutters ? 0 : pageGutter}>
+        <Box w={fluid ? "full" : pageWidth} pt={pt} pb={pb} pos="relative">
+          {grid ? (
+            <Grid
+              templateColumns={templateColumns}
+              gap={gap}
+              rowGap={rowGap}
+              columnGap={columnGap}
+            >
               {children}
             </Grid>
           ) : (
@@ -30,10 +51,13 @@ Wrapper.propTypes = {
   bg: PropTypes.string,
   gutters: PropTypes.bool,
   fluid: PropTypes.bool,
-  py: PropTypes.object,
+  pt: PropTypes.oneOfType([PropTypes.number, PropTypes.object]),
+  pb: PropTypes.oneOfType([PropTypes.number, PropTypes.object]),
   grid: PropTypes.bool,
   templateColumns: PropTypes.string,
   gap: PropTypes.oneOfType([PropTypes.number, PropTypes.object]),
+  rowGap: PropTypes.oneOfType([PropTypes.number, PropTypes.object]),
+  columnGap: PropTypes.oneOfType([PropTypes.number, PropTypes.object]),
   children: PropTypes.node.isRequired,
 };
 
@@ -44,9 +68,12 @@ Wrapper.defaultProps = {
   bg: "none",
   gutters: true,
   fluid: false,
-  py: { base: 16, md: 32 },
+  pt: { base: 16, md: 32 },
+  pb: { base: 16, md: 32 },
   grid: false,
   templateColumns: "repeat(3, 1fr)",
-  gap: 12,
+  gap: { base: 6, md: 12 },
+  rowGap: undefined,
+  columnGap: undefined,
   children: null,
 };
