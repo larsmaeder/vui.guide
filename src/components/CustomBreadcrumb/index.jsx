@@ -16,7 +16,6 @@ const CustomBreadcrumb = ({
       separator="/"
       borderTopLeftRadius="0"
       borderBottomLeftRadius="0"
-      size="xs"
     >
       {autoGenCrumbs.map((c, i) => {
         const isCurrentPage = crumbLocationRef === c.pathname;

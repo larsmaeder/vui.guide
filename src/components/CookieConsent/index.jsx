@@ -61,10 +61,10 @@ const AskForCookie = ({ setCookie, removeCookie }) => {
               <motion.div
                 initial={{ opacity: 0, y: "0px" }}
                 whileInView={{ opacity: 1, y: "-5px" }}
-                transition={{ duration: 0.4, delay: 0.2 }}
+                transition={{ duration: 0.4 }}
                 viewport={{ once: true }}
               >
-                <Text fontSize={{ base: "sm", sm: "md", md: "lg", xl: "xl" }}>
+                <Text>
                   I use cookies to analyze website traffic and performance. I
                   never collect personal information from you.
                 </Text>
@@ -119,14 +119,10 @@ const Introduction = () => {
               <motion.div
                 initial={{ opacity: 0, y: "0px" }}
                 whileInView={{ opacity: 1, y: "-5px" }}
-                transition={{ duration: 0.4, delay: 0.2 }}
+                transition={{ duration: 0.4 }}
                 viewport={{ once: true }}
               >
-                <UnorderedList
-                  fontSize={{ base: "sm", sm: "md", md: "lg", xl: "xl" }}
-                  pt={4}
-                  spacing={1}
-                >
+                <UnorderedList pt={4} spacing={1}>
                   <ListItem>
                     You can read through the voice user interface guide
                   </ListItem>

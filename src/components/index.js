@@ -8,6 +8,7 @@ import Toast from "./Toast";
 import Toc from "./Toc";
 import CookieConsent from "./CookieConsent";
 import Attribution from "./Attribution";
+import ImageFlag from "./ImageFlag";
 
 export {
   CopyURL,
@@ -20,4 +21,5 @@ export {
   Toc,
   CookieConsent,
   Attribution,
+  ImageFlag
 };

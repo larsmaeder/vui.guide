@@ -1,8 +1,8 @@
 import * as React from "react";
+import PropTypes from "prop-types";
 import {
   Box,
   Stack,
-  Text,
   CloseButton,
   useToast,
   Icon,
@@ -35,8 +35,8 @@ const Toast = ({ title, description, id, icon, ...style }) => {
           </Flex>
         )}
         <Box>
-          <Text fontWeight="bold">{title}</Text>
-          <Text>{description}</Text>
+          <Box fontWeight="bold">{title}</Box>
+          <Box>{description}</Box>
         </Box>
         <CloseButton onClick={closeToast} aria-label="Close" size="sm" />
       </Stack>
@@ -45,3 +45,21 @@ const Toast = ({ title, description, id, icon, ...style }) => {
 };
 
 export default Toast;
+
+Toast.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  icon: PropTypes.func,
+  colorScheme: PropTypes.string,
+  size: PropTypes.string,
+};
+
+Toast.defaultProps = {
+  title: null,
+  description: null,
+  id: null,
+  icon: undefined,
+  colorScheme: "gray",
+  size: "md",
+};
