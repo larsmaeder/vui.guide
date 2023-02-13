@@ -73,6 +73,9 @@ const Footer = ({ attr }) => {
           <br />
           VUI Guide All rights reserved
         </Box>
+        <Link href="https://www.netlify.com" isExternal fontSize="sm">
+          This site is powered by Netlify.
+        </Link>
         {attr && <Attribution attr={attr} />}
       </GridItem>
     </Wrapper>
