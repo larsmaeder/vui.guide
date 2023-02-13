@@ -116,7 +116,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `imagesDocs`,
-        path: `./docs/docs/images/`,
+        path: `./docs/images/`,
       },
       __key: "imagesDocs",
     },
@@ -132,7 +132,7 @@ module.exports = {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "docs",
-        path: "./docs/docs/",
+        path: "./docs/",
       },
       __key: "docs",
     },
