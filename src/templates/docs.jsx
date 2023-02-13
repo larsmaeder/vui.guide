@@ -1,10 +1,9 @@
 import * as React from "react";
 import { graphql, Link as GatsbyLink } from "gatsby";
 import { MDXProvider } from "@mdx-js/react";
-import { theme, pageGutter, pageWidth } from "../theme";
+import { theme } from "../theme";
 import {
   ChakraProvider,
-  Grid,
   GridItem,
   Flex,
   Box,
@@ -35,8 +34,9 @@ import {
   Navigation,
   Toc,
 } from "../components";
+import { Footer, Wrapper } from "../layout";
 
-const DocsTemplate = ({ data, children, location, pageContext }) => {
+const DocsTemplate = ({ data, children, location, pageContext, attr }) => {
   const shortcodes = {
     GatsbyLink,
     Table,
@@ -72,84 +72,67 @@ const DocsTemplate = ({ data, children, location, pageContext }) => {
   };
   return (
     <ChakraProvider theme={theme}>
-      <SkipNavLink>Skip to content</SkipNavLink>
-      <Navigation crumbs={crumbs} />
-      <Flex justify="center" paddingX={pageGutter}>
-        <Box w={pageWidth}>
-          <Box pt={{ base: 8, md: 12 }} pb={{ base: 8, md: 12 }} w="full">
-            <Logo />
+      <Wrapper as="header" pt={{ base: 8, md: 12 }} pb={0}>
+        <SkipNavLink>Skip to content</SkipNavLink>
+        <Navigation crumbs={crumbs} />
+        <GridItem colSpan={{ base: 3 }}>
+          <Logo />
+          <Stack
+            spacing={3}
+            direction="row"
+            align="center"
+            pt={{ base: 8, md: 12 }}
+          >
+            <Tooltip aria-label="Home" label="Home" placement="top-start">
+              <IconButton
+                aria-label="Click to go home"
+                icon={<MdHome />}
+                color="sundial.500"
+                background="sundial.100"
+                _hover={{ background: "sundial.200 " }}
+                _active={{ background: "sundial.300 " }}
+                size="md"
+                as={GatsbyLink}
+                to="/"
+              />
+            </Tooltip>
+            <CustomBreadcrumbHidden />
+          </Stack>
+        </GridItem>
+      </Wrapper>
+      <Wrapper grid as="section">
+        <GridItem colSpan={{ base: 3 }}>
+          <TimeToRead time={data.mdx.fields.timeToRead.text} />
+        </GridItem>
+        <GridItem colSpan={{ base: 3, md: 2 }}>
+          <Heading as="h1" size="4xl" color="purple.600" mt={0}>
+            {pageContext.frontmatter.title}
+          </Heading>
+          <Text>{pageContext.frontmatter.prelude}</Text>
+        </GridItem>
+      </Wrapper>
+      <SkipNavContent />
+      <Wrapper grid as="main" templateColumns="repeat(4, 1fr)" pt={0}>
+        <GridItem colSpan={1} display={{ base: "none", md: "block" }}>
+          <DocsNavigation
+            data={data.allMdx.edges}
+            category={pageContext.frontmatter.category}
+          />
+        </GridItem>
+        <GridItem colSpan={{ base: 4, md: 3, lg: 3, xl: 2 }}>
+          <Toc
+            toc={data.mdx.tableOfContents}
+            isAvailable={data.mdx.frontmatter.toc}
+            location={location.pathname}
+          />
+          <Box className="mdx-prose">
+            <Prose>
+              <MDXProvider components={shortcodes}>{children}</MDXProvider>
+            </Prose>
           </Box>
-          <Box w="full">
-            <Stack spacing={3} direction="row" align="center">
-              <Tooltip aria-label="Home" label="Home" placement="top-start">
-                <IconButton
-                  aria-label="Click to go home"
-                  icon={<MdHome />}
-                  color="sundial.500"
-                  background="sundial.100"
-                  _hover={{ background: "sundial.200 " }}
-                  _active={{ background: "sundial.300 " }}
-                  size="md"
-                  as={GatsbyLink}
-                  to="/"
-                />
-              </Tooltip>
-              <CustomBreadcrumbHidden />
-            </Stack>
-          </Box>
-          <Box w="full" py={16}>
-            <Box>
-              <Heading
-                as="h1"
-                color="purple.600"
-                fontSize="6xl"
-                letterSpacing="tight"
-              >
-                {pageContext.frontmatter.title}
-              </Heading>
-              <Text
-                fontFamily="heading"
-                pt={6}
-                fontSize="lg"
-                maxW="60ch"
-                letterSpacing="tight"
-              >
-                {pageContext.frontmatter.prelude}
-              </Text>
-            </Box>
-            <Box pt={9}>
-              <TimeToRead time={data.mdx.fields.timeToRead.text} />
-            </Box>
-          </Box>
-          <Grid templateColumns="repeat(4, 1fr)" gap={12}>
-            <GridItem colSpan={1} display={{ base: "none", md: "block" }}>
-              <Box as="nav">
-                <DocsNavigation
-                  data={data.allMdx.edges}
-                  category={pageContext.frontmatter.category}
-                />
-              </Box>
-            </GridItem>
-            <GridItem colSpan={{ base: 4, md: 3, lg: 3, xl: 2 }}>
-              <Box as="main">
-                <SkipNavContent />
-                <Toc
-                  toc={data.mdx.tableOfContents}
-                  isAvailable={data.mdx.frontmatter.toc}
-                  location={location.pathname}
-                />
-                <Box className="mdx-prose">
-                  <Prose>
-                    <MDXProvider components={shortcodes}>
-                      {children}
-                    </MDXProvider>
-                  </Prose>
-                </Box>
-              </Box>
-            </GridItem>
-          </Grid>
-        </Box>
-      </Flex>
+        </GridItem>
+      </Wrapper>
+      <Footer attr={attr} />
     </ChakraProvider>
   );
 };
