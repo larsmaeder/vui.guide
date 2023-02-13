@@ -100,16 +100,27 @@ const About = ({ data, location, pageContext }) => {
           <Text>
             We acknowledge that contributing to the VUI Guide may pose a
             challenge for non-technical individuals. If you have familiarity
-            with GitHub, the steps to contribute are outlined below. If you
-            require further information on using <Code>Git</Code> or{" "}
-            <Code>GitHub</Code>, helpful guides can be found here:
+            with GitHub, the steps to contribute are outlined below.
+          </Text>
+          <Text>
+            If you require further information on starting with <Code>Git</Code> or <Code>GitHub</Code>, helpful guides can be found here:
           </Text>
           <UnorderedList>
             <ListItem>
-              <Link>Adresse</Link>
+              <Link
+                isExternal
+                href="https://docs.github.com/en/get-started/onboarding/getting-started-with-your-github-account"
+              >
+                Getting started with your GitHub account (docs.github.com)
+              </Link>
             </ListItem>
             <ListItem>
-              <Link>Adresse</Link>
+              <Link
+                href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git"
+                isExternal
+              >
+                Getting Started – Installing Git (git-scm.com)
+              </Link>
             </ListItem>
           </UnorderedList>
           <Text>
