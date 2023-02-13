@@ -5,13 +5,13 @@ import {
   AccordionItem,
   AccordionButton,
   AccordionPanel,
-  Text,
   HStack,
   Flex,
   Icon,
   Link,
   LinkBox,
   LinkOverlay,
+  Heading,
 } from "@chakra-ui/react";
 import {
   MdKeyboardArrowDown,
@@ -31,10 +31,10 @@ const DocsNavigation = ({ data: node, category }) => {
     cleanArray.findIndex((x) => x.node.frontmatter.category === category)
   );
   return (
-    <>
-      <HStack spacing={2}>
-        <Icon as={MdLibraryBooks} />
-        <Text fontFamily="heading">Guide</Text>
+    <Box as="nav">
+      <HStack spacing={2} mb={4} color="gray.500">
+        <Icon boxSize={6} as={MdLibraryBooks} />
+        <Heading size="md">Guide</Heading>
       </HStack>
       <Accordion defaultIndex={currentCatPos} allowMultiple variant="docs">
         {cleanArray.map((c, i) => {
@@ -73,18 +73,7 @@ const DocsNavigation = ({ data: node, category }) => {
                                 as={GatsbyLink}
                                 to={c.node.frontmatter.slug}
                                 key={i + uuidv4}
-                                borderLeft="1px solid"
-                                borderLeftColor="gray.200"
-                                px={3}
-                                py={2}
-                                _hover={{ borderLeftColor: "purple.500" }}
-                                sx={{
-                                  "&[aria-current]": {
-                                    borderLeftColor: "purple.500",
-                                    borderLeft: "2px solid",
-                                    color: "purple.500",
-                                  },
-                                }}
+                                variant="docs"
                               >
                                 {c.node.frontmatter.navDocTitle}
                               </Link>
@@ -99,7 +88,7 @@ const DocsNavigation = ({ data: node, category }) => {
             );
         })}
       </Accordion>
-    </>
+    </Box>
   );
 };
 

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link as GatsbyLink } from "gatsby";
-import { Box, HStack, Button } from "@chakra-ui/react";
+import { Box, HStack, Button, Tooltip } from "@chakra-ui/react";
 import { v4 as uuidv4 } from "uuid";
 
 const Navigation = ({ crumbs: autoGenCrumbs }) => {
@@ -28,15 +28,22 @@ const Navigation = ({ crumbs: autoGenCrumbs }) => {
         {pages.map((c, i) => {
           if (c.disabled)
             return (
-              <Button
-                as="span"
-                key={i + uuidv4}
-                isDisabled
-                variant="navigation"
-                aria-disabled
+              <Tooltip
+                aria-label="Coming soon"
+                label="Coming soon"
+                placement="top"
+                hasArrow
               >
-                {c.title}
-              </Button>
+                <Button
+                  as="div"
+                  key={i + uuidv4}
+                  isDisabled
+                  variant="navigation"
+                  aria-disabled
+                >
+                  {c.title}
+                </Button>
+              </Tooltip>
             );
           else if (autoGenCrumbs[0].pathname === "/")
             return (
