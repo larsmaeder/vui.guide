@@ -11,7 +11,22 @@ export const LinkStyles = defineStyleConfig({
   // Styles for the size variations
   sizes: {},
   // Styles for the visual style variations
-  variants: {},
+  variants: {
+    docs: {
+      fontSize: "sm",
+      color: "gray.500",
+      borderLeft: "1px solid",
+      borderLeftColor: "gray.200",
+      px: 3,
+      py: 2,
+      _hover: { borderLeftColor: "purple.500" },
+      "&[aria-current]": {
+        borderLeftColor: "purple.500",
+        borderLeft: "2px solid",
+        color: "purple.500",
+      },
+    },
+  },
   // The default `size` or `variant` values
   defaultProps: {},
 });
