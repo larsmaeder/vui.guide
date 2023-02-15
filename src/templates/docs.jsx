@@ -53,23 +53,6 @@ const DocsTemplate = ({ data, children, location, pageContext, attr }) => {
   const {
     breadcrumb: { crumbs },
   } = pageContext;
-  const CustomBreadcrumbHidden = () => {
-    if (!(location.pathname === "/docs/")) {
-      return (
-        <Flex align="stretch">
-          <CopyURL url={currentUrl} />
-          <CustomBreadcrumb
-            crumbs={crumbs}
-            crumbLabel={pageContext.frontmatter.title}
-            crumbLocationRef={location.pathname}
-            hiddenCrumbs={["/"]}
-          />
-        </Flex>
-      );
-    } else {
-      return <CopyURL url={currentUrl} standalone />;
-    }
-  };
   return (
     <ChakraProvider theme={theme}>
       <Wrapper as="header" pt={{ base: 8, md: 12 }} pb={0}>
@@ -96,7 +79,19 @@ const DocsTemplate = ({ data, children, location, pageContext, attr }) => {
                 to="/"
               />
             </Tooltip>
-            <CustomBreadcrumbHidden />
+            {!(location.pathname === "/docs/") ? (
+              <Flex align="stretch">
+                <CopyURL url={currentUrl} />
+                <CustomBreadcrumb
+                  crumbs={crumbs}
+                  crumbLabel={pageContext.frontmatter.title}
+                  crumbLocationRef={location.pathname}
+                  hiddenCrumbs={["/"]}
+                />
+              </Flex>
+            ) : (
+              <CopyURL url={currentUrl} standalone />
+            )}
           </Stack>
         </GridItem>
       </Wrapper>
