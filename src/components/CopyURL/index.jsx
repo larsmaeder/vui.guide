@@ -5,9 +5,7 @@ import { MdOutlineLink, MdInfo, MdError } from "react-icons/md";
 import Toast from "../Toast";
 
 const CopyURL = ({ url, standalone }) => {
-  // hooks
   const toast = useToast();
-  // generate unique Id
   let id = uuidv4();
   async function writeClipURL() {
     const type = "text/plain";
@@ -51,11 +49,6 @@ const CopyURL = ({ url, standalone }) => {
       }
     }
   }
-  const standaloneBoolean = () => {
-    if (!standalone) {
-      return 0;
-    }
-  };
   return (
     <Tooltip
       aria-label="Click to copy page link"
@@ -68,8 +61,8 @@ const CopyURL = ({ url, standalone }) => {
         size="md"
         onClick={writeClipURL}
         variant="outline"
-        borderTopRightRadius={standaloneBoolean}
-        borderBottomRightRadius={standaloneBoolean}
+        borderTopRightRadius={!standalone && 0}
+        borderBottomRightRadius={!standalone && 0}
       />
     </Tooltip>
   );

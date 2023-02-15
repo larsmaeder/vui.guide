@@ -43,7 +43,7 @@ const Image = () => {
 
 const Logo = () => {
   return (
-    <Box display="inline-block" h={{ base: 8, md: 12 }} w="auto">
+    <Box display="inline-block" h={{ base: 10, md: 12 }} w="auto">
       <Link to="/" title="VUI Guide">
         <Image />
       </Link>

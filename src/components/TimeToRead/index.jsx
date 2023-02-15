@@ -1,21 +1,27 @@
 import * as React from "react";
+import PropTypes from "prop-types";
 import { Stat, StatLabel, StatNumber } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/react";
-import { MdAccessTimeFilled } from "react-icons/md";
+import { MdOutlineAccessTime } from "react-icons/md";
 
 const TimeToRead = ({ time }) => {
   return (
     <Stat
       title="Time to read"
+      fontWeight="normal"
       fontFamily="heading"
       color="gray.500"
-      display="flex"
+      display="inline-flex"
       alignItems="center"
     >
-      <StatLabel mr={2} display="flex">
-        <Icon as={MdAccessTimeFilled} />
+      <StatLabel mr={{ base: 1, md: 2 }} display="flex" fontWeight="inherit">
+        <Icon boxSize={{ base: 3, md: 4 }} as={MdOutlineAccessTime} />
       </StatLabel>
-      <StatNumber fontSize="xs" display="flex">
+      <StatNumber
+        fontSize={{ base: "xs", md: "sm" }}
+        display="flex"
+        fontWeight="inherit"
+      >
         {time}
       </StatNumber>
     </Stat>
@@ -23,3 +29,11 @@ const TimeToRead = ({ time }) => {
 };
 
 export default TimeToRead;
+
+TimeToRead.propTypes = {
+  time: PropTypes.string.isRequired,
+};
+
+TimeToRead.defaultProps = {
+  time: "Reading time unknown",
+};
