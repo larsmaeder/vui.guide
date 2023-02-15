@@ -1,9 +1,20 @@
 import * as React from "react";
 import { Link as GatsbyLink } from "gatsby";
-import { Box, HStack, Button, Tooltip } from "@chakra-ui/react";
+import {
+  Box,
+  HStack,
+  Button,
+  Tooltip,
+  Hide,
+  IconButton,
+} from "@chakra-ui/react";
 import { v4 as uuidv4 } from "uuid";
+import { MdMenu } from "react-icons/md";
+
+// TODO: set states for dynamic menu
 
 const Navigation = ({ crumbs: autoGenCrumbs }) => {
+  const [dynamicMenuDocs, setdynamicMenuDocs] = React.useState(false);
   const pages = [
     { id: 1, title: "Guide", slug: "/docs/", disabled: false },
     { id: 2, title: "Resources", slug: "/resources/", disabled: true },
@@ -25,6 +36,21 @@ const Navigation = ({ crumbs: autoGenCrumbs }) => {
     >
       {/* set spacing -1px to remove anti-alised thin line in browser rendering */}
       <HStack spacing="-1px">
+        <Hide above="md">
+          <IconButton
+            as="div"
+            variant="navigation"
+            onClick={() => console.log("open")}
+            cursor="pointer"
+            icon={<MdMenu />}
+            bg="blue.800"
+            _hover={{
+              bg: "blue.900",
+            }}
+          >
+            Menu
+          </IconButton>
+        </Hide>
         {pages.map((c, i) => {
           if (c.disabled)
             return (
@@ -33,14 +59,9 @@ const Navigation = ({ crumbs: autoGenCrumbs }) => {
                 label="Coming soon"
                 placement="top"
                 hasArrow
+                key={i + uuidv4}
               >
-                <Button
-                  as="div"
-                  key={i + uuidv4}
-                  isDisabled
-                  variant="navigation"
-                  aria-disabled
-                >
+                <Button as="div" isDisabled variant="navigation" aria-disabled>
                   {c.title}
                 </Button>
               </Tooltip>
