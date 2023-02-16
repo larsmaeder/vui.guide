@@ -37,6 +37,10 @@ import {
 import { Footer, Wrapper } from "../layout";
 
 const DocsTemplate = ({ data, children, location, pageContext, attr }) => {
+  const [dmDocs, setdmDocs] = React.useState(false);
+  React.useEffect(() => {
+    setdmDocs(true)
+  }, [dmDocs, setdmDocs]);
   const shortcodes = {
     GatsbyLink,
     Table,
@@ -57,7 +61,7 @@ const DocsTemplate = ({ data, children, location, pageContext, attr }) => {
     <ChakraProvider theme={theme}>
       <Wrapper as="header" pt={{ base: 8, md: 12 }} pb={0}>
         <SkipNavLink>Skip to content</SkipNavLink>
-        <Navigation crumbs={crumbs} />
+        <Navigation crumbs={crumbs} dynamicMenu={dmDocs} />
         <GridItem colSpan={{ base: 3 }}>
           <Logo />
           <Stack

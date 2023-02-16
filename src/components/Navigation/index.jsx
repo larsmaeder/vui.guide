@@ -13,8 +13,8 @@ import { MdMenu } from "react-icons/md";
 
 // TODO: set states for dynamic menu
 
-const Navigation = ({ crumbs: autoGenCrumbs }) => {
-  const [dynamicMenuDocs, setdynamicMenuDocs] = React.useState(false);
+const Navigation = ({ crumbs: autoGenCrumbs, dynamicMenu: dmDocs }) => {
+  console.log(dmDocs)
   const pages = [
     { id: 1, title: "Guide", slug: "/docs/", disabled: false },
     { id: 2, title: "Resources", slug: "/resources/", disabled: true },
@@ -36,21 +36,23 @@ const Navigation = ({ crumbs: autoGenCrumbs }) => {
     >
       {/* set spacing -1px to remove anti-alised thin line in browser rendering */}
       <HStack spacing="-1px">
-        <Hide above="md">
-          <IconButton
-            as="div"
-            variant="navigation"
-            onClick={() => console.log("open")}
-            cursor="pointer"
-            icon={<MdMenu />}
-            bg="blue.800"
-            _hover={{
-              bg: "blue.900",
-            }}
-          >
-            Menu
-          </IconButton>
-        </Hide>
+        {dmDocs && (
+          <Hide above="md">
+            <IconButton
+              as="div"
+              variant="navigation"
+              onClick={() => console.log("open")}
+              cursor="pointer"
+              icon={<MdMenu />}
+              bg="blue.800"
+              _hover={{
+                bg: "blue.900",
+              }}
+            >
+              Menu
+            </IconButton>
+          </Hide>
+        )}
         {pages.map((c, i) => {
           if (c.disabled)
             return (
