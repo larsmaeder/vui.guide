@@ -33,6 +33,7 @@ const variants = definePartsStyle({
       display: "inline-block",
     },
     button: {
+      textAlign: "left",
       fontSize: "sm",
       display: "inline-flex",
       borderRadius: 12,
