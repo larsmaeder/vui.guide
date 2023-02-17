@@ -21,6 +21,10 @@ import {
   Td,
   TableCaption,
   TableContainer,
+  Slide,
+  useDisclosure,
+  Hide,
+  Show,
 } from "@chakra-ui/react";
 import { Prose } from "@nikolovlazar/chakra-ui-prose";
 import { SkipNavLink, SkipNavContent } from "@chakra-ui/skip-nav";
@@ -37,10 +41,14 @@ import {
 import { Footer, Wrapper } from "../layout";
 
 const DocsTemplate = ({ data, children, location, pageContext, attr }) => {
-  const [dmDocs, setdmDocs] = React.useState(false);
+  const { isOpen, onToggle } = useDisclosure();
+  const [isDocsNavigation, setDocsNavigation] = React.useState(true);
+  const funcDocsNavigation = () => {
+    console.log("Hello World");
+  };
   React.useEffect(() => {
-    setdmDocs(true)
-  }, [dmDocs, setdmDocs]);
+    setDocsNavigation(true);
+  }, [isDocsNavigation, setDocsNavigation]);
   const shortcodes = {
     GatsbyLink,
     Table,
@@ -61,7 +69,7 @@ const DocsTemplate = ({ data, children, location, pageContext, attr }) => {
     <ChakraProvider theme={theme}>
       <Wrapper as="header" pt={{ base: 8, md: 12 }} pb={0}>
         <SkipNavLink>Skip to content</SkipNavLink>
-        <Navigation crumbs={crumbs} dynamicMenu={dmDocs} />
+        <Navigation crumbs={crumbs} dynamic={{ isDocsNavigation, onToggle }} />
         <GridItem colSpan={{ base: 3 }}>
           <Logo />
           <Stack
@@ -112,11 +120,37 @@ const DocsTemplate = ({ data, children, location, pageContext, attr }) => {
       </Wrapper>
       <SkipNavContent />
       <Wrapper grid as="main" templateColumns="repeat(4, 1fr)" pt={0}>
-        <GridItem colSpan={1} display={{ base: "none", md: "block" }}>
-          <DocsNavigation
-            data={data.allMdx.edges}
-            category={pageContext.frontmatter.category}
-          />
+        <GridItem colSpan={1}>
+          <Show above="md">
+            <DocsNavigation
+              data={data.allMdx.edges}
+              category={pageContext.frontmatter.category}
+            />
+          </Show>
+          <Show below="md">
+            <Slide direction="left" in={isOpen}>
+              <Box
+                position="fixed"
+                w="66%"
+                top={0}
+                bottom={0}
+                left={0}
+                zIndex="sticky"
+                pl={4}
+                bg="gray.50"
+                overflowY="scroll"
+                boxShadow="xs"
+              >
+                <Box py={{ base: 8, md: 12 }}>
+                  <Logo />
+                </Box>
+                <DocsNavigation
+                  data={data.allMdx.edges}
+                  category={pageContext.frontmatter.category}
+                />
+              </Box>
+            </Slide>
+          </Show>
         </GridItem>
         <GridItem colSpan={{ base: 4, md: 3, lg: 3, xl: 2 }}>
           <Toc

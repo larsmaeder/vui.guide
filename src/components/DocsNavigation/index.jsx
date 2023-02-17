@@ -22,12 +22,12 @@ import { Link as GatsbyLink } from "gatsby";
 import { v4 as uuidv4 } from "uuid";
 
 const DocsNavigation = ({ data: node, category }) => {
-  // remove all category duplicates and create new array
   const cleanArray = [
+    // remove all category duplicates and create new array
     ...new Map(node.map((c) => [c.node.frontmatter.category, c])).values(),
   ];
-  // write new array with the current position as an integer, if component passed down prop pageContext.frontmatter.category is equal to node.frontmatter.category
   const currentCatPos = Array.of(
+    // if component passed down prop pageContext.frontmatter.category is equal to node.frontmatter.category: write a new array with the current position as an integer
     cleanArray.findIndex((x) => x.node.frontmatter.category === category)
   );
   return (

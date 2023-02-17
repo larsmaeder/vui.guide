@@ -11,10 +11,8 @@ import {
 import { v4 as uuidv4 } from "uuid";
 import { MdMenu } from "react-icons/md";
 
-// TODO: set states for dynamic menu
-
-const Navigation = ({ crumbs: autoGenCrumbs, dynamicMenu: dmDocs }) => {
-  console.log(dmDocs)
+const Navigation = ({ crumbs: autoGenCrumbs, dynamic: { ...dynamic } }) => {
+  // * IMP.: set <HStack> spacing to "-1px" to remove anti-alised thin line in browser rendering
   const pages = [
     { id: 1, title: "Guide", slug: "/docs/", disabled: false },
     { id: 2, title: "Resources", slug: "/resources/", disabled: true },
@@ -34,14 +32,13 @@ const Navigation = ({ crumbs: autoGenCrumbs, dynamicMenu: dmDocs }) => {
       overflow="hidden"
       boxShadow="dark-lg"
     >
-      {/* set spacing -1px to remove anti-alised thin line in browser rendering */}
       <HStack spacing="-1px">
-        {dmDocs && (
+        {dynamic.isDocsNavigation && (
           <Hide above="md">
             <IconButton
               as="div"
               variant="navigation"
-              onClick={() => console.log("open")}
+              onClick={dynamic.onToggle}
               cursor="pointer"
               icon={<MdMenu />}
               bg="blue.800"
