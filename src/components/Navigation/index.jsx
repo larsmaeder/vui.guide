@@ -1,4 +1,5 @@
 import * as React from "react";
+import PropTypes from "prop-types";
 import { Link as GatsbyLink } from "gatsby";
 import {
   Box,
@@ -8,101 +9,123 @@ import {
   Hide,
   IconButton,
 } from "@chakra-ui/react";
-import { v4 as uuidv4 } from "uuid";
 import { MdMenu } from "react-icons/md";
 
-const Navigation = ({ crumbs: autoGenCrumbs, dynamic: { ...dynamic } }) => {
-  // * IMP.: set <HStack> spacing to "-1px" to remove anti-alised thin line in browser rendering
-  const pages = [
-    { id: 1, title: "Guide", slug: "/docs/", disabled: false },
-    { id: 2, title: "Resources", slug: "/resources/", disabled: true },
-    { id: 3, title: "Blog", slug: "/blog/", disabled: true },
-    { id: 4, title: "About", slug: "/about/", disabled: false },
-  ];
+const Navigation = ({ crumbs, dynamic, func, pages }) => {
+  const { docsNavigation } = dynamic;
+  const { onToggleDocsNavigation } = func;
   return (
-    <Box
-      as="nav"
-      pos="fixed"
-      bottom={{ base: 10, md: 16 }}
-      left="50%"
-      transform="auto"
-      translateX="-50%"
-      zIndex="overlay"
-      borderRadius={12}
-      overflow="hidden"
-      boxShadow="dark-lg"
-    >
-      <HStack spacing="-1px">
-        {dynamic.isDocsNavigation && (
-          <Hide above="md">
-            <IconButton
-              as="div"
-              variant="navigation"
-              onClick={dynamic.onToggle}
-              cursor="pointer"
-              icon={<MdMenu />}
-              bg="blue.800"
-              _hover={{
-                bg: "blue.900",
-              }}
-            >
-              Menu
-            </IconButton>
-          </Hide>
-        )}
-        {pages.map((c, i) => {
-          if (c.disabled)
-            return (
-              <Tooltip
-                aria-label="Coming soon"
-                label="Coming soon"
-                placement="top"
-                hasArrow
-                key={i + uuidv4}
+    <nav aria-label="Main navigation">
+      <Box
+        pos="fixed"
+        bottom={{ base: 10, md: 16 }}
+        left="50%"
+        transform="auto"
+        translateX="-50%"
+        zIndex="overlay"
+        borderRadius={12}
+        overflow="hidden"
+        boxShadow="dark-lg"
+      >
+        <HStack spacing="-1px">
+          {docsNavigation && (
+            <Hide above="md">
+              <IconButton
+                as="div"
+                variant="navigation"
+                onClick={onToggleDocsNavigation}
+                cursor="pointer"
+                icon={<MdMenu />}
+                bg="blue.800"
+                _hover={{
+                  bg: "blue.900",
+                }}
               >
-                <Button as="div" isDisabled variant="navigation" aria-disabled>
-                  {c.title}
+                Menu
+              </IconButton>
+            </Hide>
+          )}
+          {pages.map((page) => {
+            const { title, slug, disabled } = page;
+            const key = `page-${page.id}`;
+            if (disabled) {
+              return (
+                <Tooltip
+                  key={key}
+                  aria-label="Coming soon"
+                  label="Coming soon"
+                  placement="top"
+                  hasArrow
+                >
+                  <Button
+                    as="div"
+                    isDisabled
+                    variant="navigation"
+                    aria-disabled
+                  >
+                    {title}
+                  </Button>
+                </Tooltip>
+              );
+            } else if (crumbs[0].pathname === "/") {
+              return (
+                <Button
+                  as={GatsbyLink}
+                  to={slug}
+                  key={key}
+                  variant="navigation"
+                >
+                  {title}
                 </Button>
-              </Tooltip>
-            );
-          else if (autoGenCrumbs[0].pathname === "/")
-            return (
-              <Button
-                as={GatsbyLink}
-                to={c.slug}
-                key={i + uuidv4}
-                variant="navigation"
-              >
-                {c.title}
-              </Button>
-            );
-          else if (autoGenCrumbs[1].pathname === c.slug)
-            return (
-              <Button
-                as={GatsbyLink}
-                to={c.slug}
-                key={i + uuidv4}
-                variant="navigation"
-                aria-current="location"
-              >
-                {c.title}
-              </Button>
-            );
-          else
-            return (
-              <Button
-                as={GatsbyLink}
-                to={c.slug}
-                key={i + uuidv4}
-                variant="navigation"
-              >
-                {c.title}
-              </Button>
-            );
-        })}
-      </HStack>
-    </Box>
+              );
+            } else if (crumbs[1].pathname === slug) {
+              return (
+                <Button
+                  as={GatsbyLink}
+                  to={slug}
+                  key={key}
+                  variant="navigation"
+                  aria-current="location"
+                >
+                  {title}
+                </Button>
+              );
+            } else {
+              return (
+                <Button
+                  as={GatsbyLink}
+                  to={slug}
+                  key={key}
+                  variant="navigation"
+                >
+                  {title}
+                </Button>
+              );
+            }
+          })}
+        </HStack>
+      </Box>
+    </nav>
   );
 };
 
 export default Navigation;
+
+Navigation.propTypes = {
+  crumbs: PropTypes.array.isRequired,
+  dynamic: PropTypes.object,
+  func: PropTypes.object,
+  pages: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      slug: PropTypes.string.isRequired,
+      disabled: PropTypes.bool,
+    })
+  ).isRequired,
+};
+
+Navigation.defaultProps = {
+  dynamic: {},
+  func: {},
+};

@@ -23,7 +23,6 @@ import {
   TableContainer,
   Slide,
   useDisclosure,
-  Hide,
   Show,
 } from "@chakra-ui/react";
 import { Prose } from "@nikolovlazar/chakra-ui-prose";
@@ -39,16 +38,13 @@ import {
   Toc,
 } from "../components";
 import { Footer, Wrapper } from "../layout";
+import pages from "../data/mainNavigation.json";
 
 const DocsTemplate = ({ data, children, location, pageContext, attr }) => {
-  const { isOpen, onToggle } = useDisclosure();
-  const [isDocsNavigation, setDocsNavigation] = React.useState(true);
-  const funcDocsNavigation = () => {
-    console.log("Hello World");
-  };
-  React.useEffect(() => {
-    setDocsNavigation(true);
-  }, [isDocsNavigation, setDocsNavigation]);
+  const {
+    isOpen: isOpenDocsNavigation,
+    onToggle: onToggleDocsNavigation,
+  } = useDisclosure();
   const shortcodes = {
     GatsbyLink,
     Table,
@@ -69,7 +65,12 @@ const DocsTemplate = ({ data, children, location, pageContext, attr }) => {
     <ChakraProvider theme={theme}>
       <Wrapper as="header" pt={{ base: 8, md: 12 }} pb={0}>
         <SkipNavLink>Skip to content</SkipNavLink>
-        <Navigation crumbs={crumbs} dynamic={{ isDocsNavigation, onToggle }} />
+        <Navigation
+          crumbs={crumbs}
+          dynamic={{ docsNavigation: true }}
+          func={{ onToggleDocsNavigation }}
+          pages={pages}
+        />
         <GridItem colSpan={{ base: 3 }}>
           <Logo />
           <Stack
@@ -128,7 +129,7 @@ const DocsTemplate = ({ data, children, location, pageContext, attr }) => {
             />
           </Show>
           <Show below="md">
-            <Slide direction="left" in={isOpen}>
+            <Slide direction="left" in={isOpenDocsNavigation}>
               <Box
                 position="fixed"
                 w="66%"

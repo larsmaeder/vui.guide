@@ -14,6 +14,7 @@ import { Logo, Navigation, CopyURL } from "../components";
 import { CookiesProvider } from "react-cookie";
 import { MdHome } from "react-icons/md";
 import { Footer, Wrapper } from "../layout";
+import pages from "../data/mainNavigation.json";
 
 const PagesTemplate = ({ url, crumbs, attr, children }) => {
   return (
@@ -21,7 +22,7 @@ const PagesTemplate = ({ url, crumbs, attr, children }) => {
       <ChakraProvider theme={theme}>
         <Wrapper as="header" pt={{ base: 8, md: 12 }} pb={0}>
           <SkipNavLink>Skip to content</SkipNavLink>
-          <Navigation crumbs={crumbs} />
+          <Navigation crumbs={crumbs} pages={pages} />
           <GridItem colSpan={{ base: 3 }}>
             <Logo />
             <Stack
