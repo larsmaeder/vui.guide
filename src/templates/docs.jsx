@@ -129,28 +129,26 @@ const DocsTemplate = ({ data, children, location, pageContext, attr }) => {
             />
           </Show>
           <Show below="md">
-            <Slide direction="left" in={isOpenDocsNavigation}>
-              <Box
-                position="fixed"
-                w="66%"
-                top={0}
-                bottom={0}
-                left={0}
-                zIndex="sticky"
-                pl={4}
-                bg="gray.50"
-                overflowY="scroll"
-                boxShadow="xs"
-              >
-                <Box py={{ base: 8, md: 12 }}>
-                  <Logo />
+            <Box zIndex="dropdown" position="fixed" top={0} bottom={0} left={0} right={0}>
+              <Slide direction="left" in={isOpenDocsNavigation}>
+                <Box
+                  w="66%"
+                  pl={4}
+                  bg="gray.50"
+                  overflowY="scroll"
+                  boxShadow="xs"
+                  h="full"
+                >
+                  <Box py={{ base: 8, md: 12 }}>
+                    <Logo />
+                  </Box>
+                  <DocsNavigation
+                    data={data.allMdx.edges}
+                    category={pageContext.frontmatter.category}
+                  />
                 </Box>
-                <DocsNavigation
-                  data={data.allMdx.edges}
-                  category={pageContext.frontmatter.category}
-                />
-              </Box>
-            </Slide>
+              </Slide>
+            </Box>
           </Show>
         </GridItem>
         <GridItem colSpan={{ base: 4, md: 3, lg: 3, xl: 2 }}>
