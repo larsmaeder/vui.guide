@@ -22,7 +22,7 @@ const Navigation = ({ crumbs, dynamic, func, pages }) => {
         left="50%"
         transform="auto"
         translateX="-50%"
-        zIndex="overlay"
+        zIndex="sticky"
         borderRadius={12}
         overflow="hidden"
         boxShadow="dark-lg"
@@ -40,9 +40,7 @@ const Navigation = ({ crumbs, dynamic, func, pages }) => {
                 _hover={{
                   bg: "blue.900",
                 }}
-              >
-                Menu
-              </IconButton>
+              />
             </Hide>
           )}
           {pages.map((page) => {
