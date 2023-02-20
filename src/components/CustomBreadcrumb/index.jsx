@@ -1,15 +1,14 @@
 import * as React from "react";
+import PropTypes from "prop-types";
 import { Link as GatsbyLink } from "gatsby";
-import { v4 as uuidv4 } from "uuid";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react";
 
 const CustomBreadcrumb = ({
-  crumbs: autoGenCrumbs,
+  crumbs,
   crumbLabel: crumbLabelOverride,
   crumbLocationRef,
   disableLinks,
   hiddenCrumbs,
-  ...rest
 }) => {
   return (
     <Breadcrumb
@@ -17,26 +16,22 @@ const CustomBreadcrumb = ({
       borderTopLeftRadius="0"
       borderBottomLeftRadius="0"
     >
-      {autoGenCrumbs.map((c, i) => {
-        const isCurrentPage = crumbLocationRef === c.pathname;
-        if (hiddenCrumbs.includes(c.pathname) || isCurrentPage) {
+      {crumbs.map((crumb) => {
+        const isCurrentPage = crumbLocationRef === crumb.pathname;
+        if (hiddenCrumbs.includes(crumb.pathname) || isCurrentPage) {
           return null;
         }
+        const label =
+          crumbLabelOverride && crumbs.indexOf(crumb) === crumbs.length - 1
+            ? crumbLabelOverride
+            : crumb.crumbLabel;
+        const linkProps = disableLinks.includes(crumb.pathname)
+          ? {}
+          : { as: GatsbyLink, to: crumb.pathname };
         return (
-          <BreadcrumbItem key={i + uuidv4} isCurrentPage={isCurrentPage}>
-            <BreadcrumbLink
-              as={GatsbyLink}
-              to={c.pathname}
-              title={
-                "Go to " +
-                (crumbLabelOverride && i === autoGenCrumbs.length - 1
-                  ? crumbLabelOverride
-                  : c.crumbLabel)
-              }
-            >
-              {crumbLabelOverride && i === autoGenCrumbs.length - 1
-                ? crumbLabelOverride
-                : c.crumbLabel}
+          <BreadcrumbItem key={crumb.pathname} isCurrentPage={isCurrentPage}>
+            <BreadcrumbLink title={`Go to ${label}`} {...linkProps}>
+              {label}
             </BreadcrumbLink>
           </BreadcrumbItem>
         );
@@ -45,7 +40,21 @@ const CustomBreadcrumb = ({
   );
 };
 
+CustomBreadcrumb.propTypes = {
+  crumbs: PropTypes.arrayOf(
+    PropTypes.shape({
+      pathname: PropTypes.string.isRequired,
+      crumbLabel: PropTypes.string.isRequired,
+    })
+  ),
+  crumbLabel: PropTypes.string,
+  crumbLocationRef: PropTypes.string.isRequired,
+  disableLinks: PropTypes.arrayOf(PropTypes.string),
+  hiddenCrumbs: PropTypes.arrayOf(PropTypes.string),
+};
+
 CustomBreadcrumb.defaultProps = {
+  crumbs: [],
   crumbLabel: null,
   disableLinks: [],
   hiddenCrumbs: [],
