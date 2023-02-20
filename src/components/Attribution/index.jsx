@@ -56,7 +56,7 @@ export default Attribution;
 Attribution.propTypes = {
   imageAttributions: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      id: PropTypes.oneOfType([PropTypes.number.isRequired, PropTypes.string.isRequired]),
       href: PropTypes.string.isRequired,
       text: PropTypes.string.isRequired,
     })

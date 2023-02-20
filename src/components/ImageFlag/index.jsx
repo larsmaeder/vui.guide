@@ -37,10 +37,10 @@ ImageFlag.propTypes = {
   children: PropTypes.node.isRequired,
   bg: PropTypes.string,
   color: PropTypes.string,
-  top: PropTypes.string,
-  bottom: PropTypes.string,
-  left: PropTypes.string,
-  right: PropTypes.string,
+  top: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  bottom: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  left: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  right: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 ImageFlag.defaultProps = {
