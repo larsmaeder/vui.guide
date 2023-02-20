@@ -2,21 +2,26 @@ import * as React from "react";
 import PropTypes from "prop-types";
 import { Box } from "@chakra-ui/react";
 
-const ImageFlag = ({ children, ...props }) => {
+const ImageFlag = ({ children, label, bg, color, ...props }) => {
+  const content = React.useMemo(() => {
+    return label !== null ? String(label) : "";
+  }, [label]);
   return (
     <Box
       pos="relative"
       _after={{
-        content: "'" + props.num + "'",
+        content: `"${content}"`,
         py: 1,
         px: 2,
         pos: "absolute",
-        top: 0,
-        right: 0,
+        top: props.top,
+        bottom: props.bottom,
+        left: props.left,
+        right: props.right,
         fontFamily: "heading",
         fontSize: "xs",
-        bg: props.bg,
-        color: props.color,
+        bg,
+        color,
         borderRadius: 4,
       }}
     >
@@ -28,15 +33,21 @@ const ImageFlag = ({ children, ...props }) => {
 export default ImageFlag;
 
 ImageFlag.propTypes = {
-  num: PropTypes.number.isRequired,
+  label: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   children: PropTypes.node.isRequired,
   bg: PropTypes.string,
   color: PropTypes.string,
+  top: PropTypes.string,
+  bottom: PropTypes.string,
+  left: PropTypes.string,
+  right: PropTypes.string,
 };
 
 ImageFlag.defaultProps = {
-  num: null,
+  label: null,
   children: null,
   bg: "gray.50",
   color: "gray.300",
+  top: 0,
+  right: 0,
 };

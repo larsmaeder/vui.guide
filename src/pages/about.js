@@ -70,7 +70,7 @@ const About = ({ data, location, pageContext }) => {
             translateY="-50%"
             zIndex="docked"
           >
-            <ImageFlag num={1}>
+            <ImageFlag label={1}>
               <Image
                 src={svgGlobalization}
                 w={{ md: "md", lg: "lg", xl: "xl" }}
