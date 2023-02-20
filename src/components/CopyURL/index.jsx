@@ -1,18 +1,17 @@
 import * as React from "react";
-import { v4 as uuidv4 } from "uuid";
-import { IconButton, Tooltip, useToast } from "@chakra-ui/react";
+import PropTypes from "prop-types";
+import { IconButton, Tooltip, useToast, useClipboard } from "@chakra-ui/react";
 import { MdOutlineLink, MdInfo, MdError } from "react-icons/md";
 import Toast from "../Toast";
 
 const CopyURL = ({ url, standalone }) => {
   const toast = useToast();
-  let id = uuidv4();
-  async function writeClipURL() {
-    const type = "text/plain";
-    const blob = new Blob([url], { type });
+  const id = `id-${url}`;
+  const { onCopy, hasCopied } = useClipboard(url);
+  const handleCopyURL = React.useCallback(() => {
     try {
-      await navigator.clipboard.write([new ClipboardItem({ [type]: blob })]);
-      if (!toast.isActive(id)) {
+      onCopy();
+      if (!toast.isActive(id) && !hasCopied) {
         toast({
           id,
           position: "top",
@@ -30,15 +29,15 @@ const CopyURL = ({ url, standalone }) => {
         });
       }
     } catch (err) {
-      if (!toast.isActive(id)) {
+      if (!toast.isActive(id) && !hasCopied) {
         toast({
           id,
           position: "top",
           duration: 4000,
           render: () => (
             <Toast
-              title="Something went wrong!"
-              description="The page link could not be copied to your clipboard."
+              title="Error copying link"
+              description="Sorry, we could not copy the page link to your clipboard."
               colorScheme="red"
               id={id}
               size="sm"
@@ -48,7 +47,7 @@ const CopyURL = ({ url, standalone }) => {
         });
       }
     }
-  }
+  }, [onCopy, hasCopied, id, toast]);
   return (
     <Tooltip
       aria-label="Click to copy page link"
@@ -59,13 +58,24 @@ const CopyURL = ({ url, standalone }) => {
         aria-label="Copy page link"
         icon={<MdOutlineLink />}
         size="md"
-        onClick={writeClipURL}
+        onClick={handleCopyURL}
         variant="outline"
-        borderTopRightRadius={!standalone && 0}
-        borderBottomRightRadius={!standalone && 0}
+        sx={{
+          borderTopRightRadius: !standalone && 0,
+          borderBottomRightRadius: !standalone && 0,
+        }}
       />
     </Tooltip>
   );
+};
+
+CopyURL.propTypes = {
+  url: PropTypes.string.isRequired,
+  standalone: PropTypes.bool,
+};
+
+CopyURL.defaultProps = {
+  standalone: false,
 };
 
 export default CopyURL;
