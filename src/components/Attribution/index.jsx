@@ -11,9 +11,8 @@ import {
   ListItem,
 } from "@chakra-ui/react";
 import { MdOpenInNew } from "react-icons/md";
-import { v4 as uuidv4 } from "uuid";
 
-const Attribution = ({ attr }) => {
+const Attribution = ({ imageAttributions }) => {
   return (
     <Box fontFamily="heading" color="gray.400" fontSize="xs">
       <Divider mt={12} borderColor="gray.300" />
@@ -21,22 +20,26 @@ const Attribution = ({ attr }) => {
         Images used on the page:
       </Text>
       <List variant="attr">
-        {attr.map((c, i) => {
+        {imageAttributions.map((attribution) => {
           return (
-            <ListItem key={i + uuidv4} fontSize="inherit">
+            <ListItem key={attribution.id} fontSize="inherit">
               <HStack spacing={2}>
-                <Link color="inherit" fontSize="inherit" href={"#attr-" + c.id}>
-                  {c.id}
+                <Link
+                  color="inherit"
+                  fontSize="inherit"
+                  href={"#attr-" + attribution.id}
+                >
+                  {attribution.id}
                 </Link>
                 <Link
-                  href={c.href}
+                  href={attribution.href}
                   isExternal
                   display="flex"
                   alignItems="center"
                   color="inherit"
                   fontSize="inherit"
                 >
-                  {c.text}
+                  {attribution.text}
                   <Icon as={MdOpenInNew} ml={1} />
                 </Link>
               </HStack>
@@ -51,9 +54,11 @@ const Attribution = ({ attr }) => {
 export default Attribution;
 
 Attribution.propTypes = {
-  attr: PropTypes.array.isRequired,
-};
-
-Attribution.defaultProps = {
-  attr: null,
+  imageAttributions: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      href: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };

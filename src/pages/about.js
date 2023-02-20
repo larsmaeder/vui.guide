@@ -36,7 +36,7 @@ const About = ({ data, location, pageContext }) => {
     breadcrumb: { crumbs },
   } = pageContext;
   return (
-    <PagesTemplate crumbs={crumbs} url={currentUrl} attr={dataAttr}>
+    <PagesTemplate crumbs={crumbs} url={currentUrl} imageAttributions={imageAttributions}>
       <Wrapper grid as="section">
         <GridItem colSpan={{ base: 3, md: 2 }}>
           <Heading as="h1" size="4xl" color="purple.600" mt={0}>
@@ -216,7 +216,7 @@ const ContributionCard = ({ ...props }) => {
   );
 };
 
-const dataAttr = [
+const imageAttributions = [
   {
     id: 1,
     text: "People illustrations by Storyset",

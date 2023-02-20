@@ -40,7 +40,7 @@ import {
 import { Footer, Wrapper } from "../layout";
 import pages from "../data/mainNavigation.json";
 
-const DocsTemplate = ({ data, children, location, pageContext, attr }) => {
+const DocsTemplate = ({ data, children, location, pageContext, imageAttributions }) => {
   const {
     isOpen: isOpenDocsNavigation,
     onToggle: onToggleDocsNavigation,
@@ -164,7 +164,7 @@ const DocsTemplate = ({ data, children, location, pageContext, attr }) => {
           </Box>
         </GridItem>
       </Wrapper>
-      <Footer attr={attr} />
+      <Footer imageAttributions={imageAttributions} />
     </ChakraProvider>
   );
 };

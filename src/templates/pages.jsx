@@ -16,7 +16,7 @@ import { MdHome } from "react-icons/md";
 import { Footer, Wrapper } from "../layout";
 import pages from "../data/mainNavigation.json";
 
-const PagesTemplate = ({ url, crumbs, attr, children }) => {
+const PagesTemplate = ({ url, crumbs, imageAttributions, children }) => {
   return (
     <CookiesProvider>
       <ChakraProvider theme={theme}>
@@ -50,7 +50,7 @@ const PagesTemplate = ({ url, crumbs, attr, children }) => {
         </Wrapper>
         <SkipNavContent />
         <Box as="main">{children}</Box>
-        <Footer attr={attr} />
+        <Footer imageAttributions={imageAttributions} />
       </ChakraProvider>
     </CookiesProvider>
   );

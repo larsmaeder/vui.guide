@@ -6,7 +6,7 @@ import { MdBugReport, MdEmail } from "react-icons/md";
 import { Wrapper } from "../index";
 import { Attribution } from "../../components";
 
-const Footer = ({ attr }) => {
+const Footer = ({ imageAttributions }) => {
   const currentYear = new Date().getFullYear();
   return (
     <Wrapper
@@ -76,7 +76,7 @@ const Footer = ({ attr }) => {
         <Link href="https://www.netlify.com" isExternal fontSize="sm">
           This site is powered by Netlify.
         </Link>
-        {attr && <Attribution attr={attr} />}
+        {imageAttributions && <Attribution imageAttributions={imageAttributions} />}
       </GridItem>
     </Wrapper>
   );
@@ -85,9 +85,9 @@ const Footer = ({ attr }) => {
 export default Footer;
 
 Footer.propTypes = {
-  attr: PropTypes.array,
+  imageAttributions: PropTypes.array,
 };
 
 Footer.defaultProps = {
-  attr: undefined,
+  imageAttributions: undefined,
 };
