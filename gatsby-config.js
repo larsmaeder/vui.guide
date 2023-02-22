@@ -63,7 +63,6 @@ module.exports = {
         isUsingColorMode: true,
       },
     },
-    "gatsby-plugin-sass",
     {
       resolve: "gatsby-plugin-google-analytics",
       options: {
