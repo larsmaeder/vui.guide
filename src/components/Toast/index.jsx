@@ -11,7 +11,6 @@ import {
 
 const Toast = ({ title, description, id, icon, ...style }) => {
   const toast = useToast();
-  // check id and close Toast if matching
   function closeToast() {
     if (id) {
       toast.close(id);
@@ -50,15 +49,12 @@ Toast.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  icon: PropTypes.func,
+  icon: PropTypes.elementType,
   colorScheme: PropTypes.string,
   size: PropTypes.string,
 };
 
 Toast.defaultProps = {
-  title: null,
-  description: null,
-  id: null,
   icon: undefined,
   colorScheme: "gray",
   size: "md",
