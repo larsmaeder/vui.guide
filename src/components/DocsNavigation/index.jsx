@@ -1,4 +1,5 @@
 import * as React from "react";
+import PropTypes from "prop-types";
 import {
   Box,
   Accordion,
@@ -19,16 +20,20 @@ import {
   MdLibraryBooks,
 } from "react-icons/md";
 import { Link as GatsbyLink } from "gatsby";
-import { v4 as uuidv4 } from "uuid";
 
-const DocsNavigation = ({ data: node, category }) => {
-  const cleanArray = [
-    // remove all category duplicates and create new array
-    ...new Map(node.map((c) => [c.node.frontmatter.category, c])).values(),
-  ];
-  const currentCatPos = Array.of(
-    // if component passed down prop pageContext.frontmatter.category is equal to node.frontmatter.category: write a new array with the current position as an integer
-    cleanArray.findIndex((x) => x.node.frontmatter.category === category)
+const DocsNavigation = ({ data: nodes, category }) => {
+  const categories = React.useMemo(
+    () =>
+      nodes.reduce((acc, node) => {
+        const category = node.node.frontmatter.category;
+        acc[category] = acc[category] ? [...acc[category], node] : [node];
+        return acc;
+      }, {}),
+    [nodes]
+  );
+  const currentCategoryIndex = React.useMemo(
+    () => Object.keys(categories).indexOf(category),
+    [categories, category]
   );
   return (
     <Box as="nav">
@@ -36,24 +41,30 @@ const DocsNavigation = ({ data: node, category }) => {
         <Icon boxSize={6} as={MdLibraryBooks} />
         <Heading size="md">Guide</Heading>
       </HStack>
-      <Accordion defaultIndex={currentCatPos} allowMultiple variant="docs">
-        {cleanArray.map((c, i) => {
-          const category = c.node.frontmatter.category;
-          if (c.node.frontmatter.child === false) {
-            return (
-              <AccordionItem key={uuidv4}>
+      <Accordion
+        defaultIndex={[currentCategoryIndex]}
+        allowMultiple
+        variant="docs"
+      >
+        {Object.entries(categories).map(([category, nodes]) => {
+          if (nodes.length === 1) {
+            return nodes.map((nodeData) => (
+              <AccordionItem key={`item-${category}`}>
                 <LinkBox display="inline-flex">
                   <AccordionButton>
-                    <LinkOverlay as={GatsbyLink} to={c.node.frontmatter.slug}>
-                      {c.node.frontmatter.navDocTitle}
+                    <LinkOverlay
+                      as={GatsbyLink}
+                      to={nodeData.node.frontmatter.slug}
+                    >
+                      {nodeData.node.frontmatter.navDocTitle}
                     </LinkOverlay>
                   </AccordionButton>
                 </LinkBox>
               </AccordionItem>
-            );
-          } else
+            ));
+          } else {
             return (
-              <AccordionItem key={i + uuidv4}>
+              <AccordionItem key={`item-${category}`}>
                 {({ isExpanded }) => (
                   <>
                     <AccordionButton>
@@ -66,26 +77,23 @@ const DocsNavigation = ({ data: node, category }) => {
                     </AccordionButton>
                     <AccordionPanel pb={4}>
                       <Flex direction="column" alignItems="self-start">
-                        {node.map((c, i) => {
-                          if (category === c.node.frontmatter.category) {
-                            return (
-                              <Link
-                                as={GatsbyLink}
-                                to={c.node.frontmatter.slug}
-                                key={i + uuidv4}
-                                variant="docs"
-                              >
-                                {c.node.frontmatter.navDocTitle}
-                              </Link>
-                            );
-                          } else return null;
-                        })}
+                        {nodes.map((nodeData) => (
+                          <Link
+                            as={GatsbyLink}
+                            to={nodeData.node.frontmatter.slug}
+                            key={`item-${nodeData.node.frontmatter.slug}`}
+                            variant="docs"
+                          >
+                            {nodeData.node.frontmatter.navDocTitle}
+                          </Link>
+                        ))}
                       </Flex>
                     </AccordionPanel>
                   </>
                 )}
               </AccordionItem>
             );
+          }
         })}
       </Accordion>
     </Box>
@@ -93,3 +101,8 @@ const DocsNavigation = ({ data: node, category }) => {
 };
 
 export default DocsNavigation;
+
+DocsNavigation.propTypes = {
+  data: PropTypes.array.isRequired,
+  category: PropTypes.string.isRequired,
+};
