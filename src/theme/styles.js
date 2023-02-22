@@ -50,6 +50,7 @@ export const GlobalStyles = {
       width: "100%",
       boxShadow: "none",
       backgroundColor: "transparent",
+      overflow: "visible",
     },
   },
 };

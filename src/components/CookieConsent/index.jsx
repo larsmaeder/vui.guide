@@ -1,25 +1,25 @@
 import * as React from "react";
-import { Link as GatsbyLink } from "gatsby";
+// import { Link as GatsbyLink } from "gatsby";
 import { motion } from "framer-motion";
 import {
   Button,
   ButtonGroup,
   Box,
   Text,
-  UnorderedList,
-  ListItem,
+  SimpleGrid,
+  Card,
+  CardHeader,
+  Heading,
+  CardBody,
+  CardFooter,
+  // UnorderedList,
+  // ListItem,
 } from "@chakra-ui/react";
 import ChatBot from "react-simple-chatbot";
 
-const AskForCookie = ({ setCookie, removeCookie }) => {
-  const handleCookieAccept = () => {
-    setCookie("consent", "accepted", { path: "/" });
-  };
-  const handleCookieDecline = () => {
-    setCookie("consent", "declined", { path: "/" });
-    // removeCookie("_ga", { path: "/" });
-    // removeCookie("_ga_XXXXXXXX", { path: "/" });
-  };
+// TODO: create cards for the 3 different options to choose 
+
+const AskForCookie = ({ onAcceptCookies, onDeclineCookies }) => {
   return (
     <ChatBot
       hideHeader={true}
@@ -73,8 +73,8 @@ const AskForCookie = ({ setCookie, removeCookie }) => {
                   colorScheme="purple"
                   size={{ base: "sm", sm: "md", md: "lg" }}
                 >
-                  <Button onClick={handleCookieAccept}>Accept Cookies</Button>
-                  <Button variant="ghost" onClick={handleCookieDecline}>
+                  <Button onClick={onAcceptCookies}>Accept Cookies</Button>
+                  <Button variant="ghost" onClick={onDeclineCookies}>
                     Decline Cookies
                   </Button>
                 </ButtonGroup>
@@ -107,75 +107,132 @@ const Introduction = () => {
         },
         {
           id: "2",
-          message: "You have several options to choose from:",
+          message: "There are several options available to you:",
           trigger: "3",
           hideInput: true,
         },
         {
           id: "3",
-          trigger: "4",
           component: (
-            <Box>
+            <Box pt={16}>
               <motion.div
                 initial={{ opacity: 0, y: "0px" }}
                 whileInView={{ opacity: 1, y: "-5px" }}
                 transition={{ duration: 0.4 }}
                 viewport={{ once: true }}
               >
-                <UnorderedList pt={4} spacing={1}>
+                <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
+                  <Card>
+                    <CardHeader>
+                      <Heading size="md"> Customer dashboard</Heading>
+                    </CardHeader>
+                    <CardBody>
+                      <Text>
+                        View a summary of all your customers over the last
+                        month.
+                      </Text>
+                    </CardBody>
+                    <CardFooter>
+                      <Button>View here</Button>
+                    </CardFooter>
+                  </Card>
+                  <Card>
+                    <CardHeader>
+                      <Heading size="md"> Customer dashboard</Heading>
+                    </CardHeader>
+                    <CardBody>
+                      <Text>
+                        View a summary of all your customers over the last
+                        month.
+                      </Text>
+                    </CardBody>
+                    <CardFooter>
+                      <Button>View here</Button>
+                    </CardFooter>
+                  </Card>
+                  <Card>
+                    <CardHeader>
+                      <Heading size="md"> Customer dashboard</Heading>
+                    </CardHeader>
+                    <CardBody>
+                      <Text>
+                        View a summary of all your customers over the last
+                        month.
+                      </Text>
+                    </CardBody>
+                    <CardFooter>
+                      <Button>View here</Button>
+                    </CardFooter>
+                  </Card>
+                </SimpleGrid>
+
+                {/* <UnorderedList pt={4} spacing={1}>
                   <ListItem>
-                    You can read through the voice user interface guide
+                    Read through the voice user interface guide
                   </ListItem>
                   <ListItem>
-                    You can learn more about the project and how you can help
-                    and make meaningful changes to the platform.
+                    Learn more about the project and how you can contribute to
+                    it
                   </ListItem>
                   <ListItem>
-                    You can also write a blog post for the VUI Guide to share
-                    your knowledge and insights with the community.
+                    Share your knowledge and insights with the community by
+                    writing a blog post for the VUI Guide
                   </ListItem>
-                </UnorderedList>
-              </motion.div>
-            </Box>
-          ),
-          hideInput: true,
-        },
-        {
-          id: "4",
-          component: (
-            <Box>
-              <motion.div
-                initial={{ opacity: 0, y: "0px" }}
-                whileInView={{ opacity: 1, y: "-5px" }}
-                transition={{ duration: 0.4, delay: 0.2 }}
-                viewport={{ once: true }}
-              >
-                <ButtonGroup
-                  pt={16}
-                  colorScheme="purple"
-                  size={{ base: "sm", sm: "md", md: "lg" }}
-                >
-                  <Button as={GatsbyLink} to="/docs/">
-                    Read the Guide
-                  </Button>
-                  <Button as={GatsbyLink} to="/about/" variant="ghost">
-                    Learn more about it
-                  </Button>
-                </ButtonGroup>
+                </UnorderedList> */}
               </motion.div>
             </Box>
           ),
           end: true,
           hideInput: true,
         },
+        // {
+        //   id: "4",
+        //   component: (
+        //     <Box>
+        //       <motion.div
+        //         initial={{ opacity: 0, y: "0px" }}
+        //         whileInView={{ opacity: 1, y: "-5px" }}
+        //         transition={{ duration: 0.4, delay: 0.2 }}
+        //         viewport={{ once: true }}
+        //       >
+        //         <ButtonGroup
+        //           pt={16}
+        //           colorScheme="purple"
+        //           size={{ base: "sm", sm: "md", md: "lg" }}
+        //         >
+        //           <Button as={GatsbyLink} to="/docs/">
+        //             Read the Guide
+        //           </Button>
+        //           <Button as={GatsbyLink} to="/about/" variant="ghost">
+        //             Learn more about it
+        //           </Button>
+        //         </ButtonGroup>
+        //       </motion.div>
+        //     </Box>
+        //   ),
+        //   hideInput: true,
+        // },
       ]}
     />
   );
 };
 
 const CookieConsent = ({ cookies, setCookie, removeCookie }) => {
+  const onAcceptCookies = () => {
+    setCookie("consent", "accepted", { path: "/" });
+  };
+  const onDeclineCookies = () => {
+    setCookie("consent", "declined", { path: "/" });
+    // removeCookie("_ga", { path: "/" });
+    // removeCookie("_ga_XXXXXXXX", { path: "/" });
+  };
   if (cookies.consent === undefined)
-    return <AskForCookie {...{ setCookie, removeCookie }} />;
+    return (
+      <AskForCookie
+        onAcceptCookies={onAcceptCookies}
+        onDeclineCookies={onDeclineCookies}
+      />
+    );
   else return <Introduction />;
 };
 
