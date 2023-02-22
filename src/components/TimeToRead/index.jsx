@@ -15,7 +15,11 @@ const TimeToRead = ({ time }) => {
       alignItems="center"
     >
       <StatLabel mr={{ base: 1, md: 2 }} display="flex" fontWeight="inherit">
-        <Icon boxSize={{ base: 3, md: 4 }} as={MdOutlineAccessTime} />
+        <Icon
+          boxSize={{ base: 3, md: 4 }}
+          as={MdOutlineAccessTime}
+          aria-label="Time to read"
+        />
       </StatLabel>
       <StatNumber
         fontSize={{ base: "xs", md: "sm" }}
@@ -35,5 +39,5 @@ TimeToRead.propTypes = {
 };
 
 TimeToRead.defaultProps = {
-  time: "Reading time unknown",
+  time: "Estimated time to read not available",
 };
