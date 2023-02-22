@@ -43,64 +43,68 @@ const Navigation = ({ crumbs, dynamic, func, pages }) => {
               />
             </Hide>
           )}
-          {pages.map((page) => {
-            const { title, slug, disabled } = page;
-            const key = `page-${page.id}`;
-            if (disabled) {
-              return (
-                <Tooltip
-                  key={key}
-                  aria-label="Coming soon"
-                  label="Coming soon"
-                  placement="top"
-                  hasArrow
-                >
-                  <Button
-                    as="div"
-                    isDisabled
-                    variant="navigation"
-                    aria-disabled
-                  >
-                    {title}
-                  </Button>
-                </Tooltip>
-              );
-            } else if (crumbs[0].pathname === "/") {
-              return (
-                <Button
-                  as={GatsbyLink}
-                  to={slug}
-                  key={key}
-                  variant="navigation"
-                >
-                  {title}
-                </Button>
-              );
-            } else if (crumbs[1].pathname === slug) {
-              return (
-                <Button
-                  as={GatsbyLink}
-                  to={slug}
-                  key={key}
-                  variant="navigation"
-                  aria-current="location"
-                >
-                  {title}
-                </Button>
-              );
-            } else {
-              return (
-                <Button
-                  as={GatsbyLink}
-                  to={slug}
-                  key={key}
-                  variant="navigation"
-                >
-                  {title}
-                </Button>
-              );
-            }
-          })}
+          {React.useMemo(
+            () =>
+              pages.map((page) => {
+                const { title, slug, disabled } = page;
+                const key = `page-${page.id}`;
+                if (disabled) {
+                  return (
+                    <Tooltip
+                      key={key}
+                      aria-label="Coming soon"
+                      label="Coming soon"
+                      placement="top"
+                      hasArrow
+                    >
+                      <Button
+                        as="div"
+                        isDisabled
+                        variant="navigation"
+                        aria-disabled
+                      >
+                        {title}
+                      </Button>
+                    </Tooltip>
+                  );
+                } else if (crumbs[0].pathname === "/") {
+                  return (
+                    <Button
+                      as={GatsbyLink}
+                      to={slug}
+                      key={key}
+                      variant="navigation"
+                    >
+                      {title}
+                    </Button>
+                  );
+                } else if (crumbs[1].pathname === slug) {
+                  return (
+                    <Button
+                      as={GatsbyLink}
+                      to={slug}
+                      key={key}
+                      variant="navigation"
+                      aria-current="location"
+                    >
+                      {title}
+                    </Button>
+                  );
+                } else {
+                  return (
+                    <Button
+                      as={GatsbyLink}
+                      to={slug}
+                      key={key}
+                      variant="navigation"
+                    >
+                      {title}
+                    </Button>
+                  );
+                }
+              }),
+            [crumbs, pages]
+          )}
         </HStack>
       </Box>
     </nav>
