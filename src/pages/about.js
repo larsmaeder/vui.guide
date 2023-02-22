@@ -24,7 +24,6 @@ import {
   ListItem,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { v4 as uuidv4 } from "uuid";
 import { ImageFlag } from "../components";
 import githubSteps from "../data/githubSteps";
 
@@ -36,7 +35,11 @@ const About = ({ data, location, pageContext }) => {
     breadcrumb: { crumbs },
   } = pageContext;
   return (
-    <PagesTemplate crumbs={crumbs} url={currentUrl} imageAttributions={imageAttributions}>
+    <PagesTemplate
+      crumbs={crumbs}
+      url={currentUrl}
+      imageAttributions={imageAttributions}
+    >
       <Wrapper grid as="section">
         <GridItem colSpan={{ base: 3, md: 2 }}>
           <Heading as="h1" size="4xl" color="purple.600" mt={0}>
@@ -80,7 +83,7 @@ const About = ({ data, location, pageContext }) => {
         </Hide>
         {dataContributionCard.map((c, i) => {
           return (
-            <GridItem key={i + uuidv4} colSpan={{ base: 2, lg: 1 }}>
+            <GridItem key={`card-${i}`} colSpan={{ base: 2, lg: 1 }}>
               <ContributionCard
                 to={c.to}
                 runner={c.runner}
@@ -103,7 +106,8 @@ const About = ({ data, location, pageContext }) => {
             with GitHub, the steps to contribute are outlined below.
           </Text>
           <Text>
-            If you require further information on starting with <Code>Git</Code> or <Code>GitHub</Code>, helpful guides can be found here:
+            If you require further information on starting with <Code>Git</Code>{" "}
+            or <Code>GitHub</Code>, helpful guides can be found here:
           </Text>
           <UnorderedList>
             <ListItem>
@@ -152,7 +156,7 @@ const About = ({ data, location, pageContext }) => {
         {githubSteps.map((c, i) => {
           return (
             <GridItem
-              key={i + uuidv4}
+              key={`steps-${i}`}
               colSpan={{ base: 4, md: 2, xl: 2, "2xl": 1 }}
             >
               <VStack spacing={4} alignItems="flex-start">
