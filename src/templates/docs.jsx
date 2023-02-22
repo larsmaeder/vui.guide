@@ -153,7 +153,7 @@ const DocsTemplate = ({ data, children, location, pageContext, imageAttributions
         </GridItem>
         <GridItem colSpan={{ base: 4, md: 3, lg: 3, xl: 2 }}>
           <Toc
-            toc={data.mdx.tableOfContents}
+            tocData={data.mdx.tableOfContents}
             isAvailable={data.mdx.frontmatter.toc}
             location={location.pathname}
           />
@@ -203,7 +203,6 @@ export const pageQuery = graphql`
             title
             navDocTitle
             sort
-            child
             toc
           }
         }
