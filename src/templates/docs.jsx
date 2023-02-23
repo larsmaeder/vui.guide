@@ -36,11 +36,18 @@ import {
   DocsNavigation,
   Navigation,
   Toc,
+  Seo,
 } from "../components";
 import { Footer, Wrapper } from "../layout";
 import pages from "../data/mainNavigation.json";
 
-const DocsTemplate = ({ data, children, location, pageContext, imageAttributions }) => {
+const DocsTemplate = ({
+  data,
+  children,
+  location,
+  pageContext,
+  imageAttributions,
+}) => {
   const {
     isOpen: isOpenDocsNavigation,
     onToggle: onToggleDocsNavigation,
@@ -129,7 +136,14 @@ const DocsTemplate = ({ data, children, location, pageContext, imageAttributions
             />
           </Show>
           <Show below="md">
-            <Box zIndex="dropdown" position="fixed" top={0} bottom={0} left={0} right={0}>
+            <Box
+              zIndex="dropdown"
+              position="fixed"
+              top={0}
+              bottom={0}
+              left={0}
+              right={0}
+            >
               <Slide direction="left" in={isOpenDocsNavigation}>
                 <Box
                   w="66%"
@@ -212,3 +226,7 @@ export const pageQuery = graphql`
 `;
 
 export default DocsTemplate;
+
+// TODO: there's an issue in dev env, fontFamily css is not loading correctly 
+
+export const Head = ({ location }) => <Seo pathname={location.pathname} />;
