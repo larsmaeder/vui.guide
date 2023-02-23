@@ -9,6 +9,7 @@ import Toc from "./Toc";
 import CookieConsent from "./CookieConsent";
 import Attribution from "./Attribution";
 import ImageFlag from "./ImageFlag";
+import Seo from "./Seo";
 
 export {
   CopyURL,
@@ -21,5 +22,6 @@ export {
   Toc,
   CookieConsent,
   Attribution,
-  ImageFlag
+  ImageFlag,
+  Seo
 };
