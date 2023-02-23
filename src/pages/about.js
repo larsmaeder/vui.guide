@@ -48,11 +48,10 @@ const About = ({ data, location, pageContext }) => {
           <Text>
             VUI Guide provides an open source hodgepodge for designing voice
             user interfaces. It covers best practices, design patterns, and
-            practical tips to help designers create effective and engaging
-            voice-only experiences. Whether you’re new to designing voice user
-            interfaces or looking to take your skills to the next level, VUI
-            Guide is the go-to source for all your voice user interfaces design
-            needs.
+            practical tips to help create effective and engaging voice-only
+            experiences. Whether you’re new to designing voice user interfaces
+            or looking to deepen your knowledge, VUI Guide is the go-to source
+            for all your voice user interfaces design needs.
           </Text>
         </GridItem>
       </Wrapper>
