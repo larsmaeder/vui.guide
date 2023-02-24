@@ -70,6 +70,7 @@ const DocsTemplate = ({
   } = pageContext;
   return (
     <ChakraProvider theme={theme}>
+      <Seo pathname={location.pathname} />
       <Wrapper as="header" pt={{ base: 8, md: 12 }} pb={0}>
         <SkipNavLink>Skip to content</SkipNavLink>
         <Navigation
@@ -226,7 +227,3 @@ export const pageQuery = graphql`
 `;
 
 export default DocsTemplate;
-
-// TODO: there's an issue in dev env, fontFamily css is not loading correctly 
-
-export const Head = ({ location }) => <Seo pathname={location.pathname} />;

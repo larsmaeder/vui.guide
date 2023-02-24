@@ -16,7 +16,7 @@ import { MdHome } from "react-icons/md";
 import { Footer, Wrapper } from "../layout";
 import pages from "../data/mainNavigation.json";
 
-const PagesTemplate = ({ url, crumbs, imageAttributions, children }) => {
+const PagesTemplate = ({ currentUrl, crumbs, imageAttributions, children }) => {
   return (
     <CookiesProvider>
       <ChakraProvider theme={theme}>
@@ -44,7 +44,7 @@ const PagesTemplate = ({ url, crumbs, imageAttributions, children }) => {
                   to="/"
                 />
               </Tooltip>
-              <CopyURL url={url} standalone />
+              <CopyURL url={currentUrl} standalone />
             </Stack>
           </GridItem>
         </Wrapper>

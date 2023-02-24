@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Helmet } from "react-helmet";
 import PropTypes from "prop-types";
 import { useSiteMetadata } from "../../hooks/useSiteMetadata";
 
@@ -12,10 +13,10 @@ const Seo = ({ title, description, canonical, pathname, children }) => {
     title: title || defaultTitle,
     description: description || defaultDescription,
     url: `${siteUrl}${pathname || ``}`,
-    canonical: canonical || siteUrl + pathname,
+    canonical: `${siteUrl}${canonical || pathname}`,
   };
   return (
-    <>
+    <Helmet>
       <title>{seo.title}</title>
       <meta name="description" content={seo.description} />
       <meta name="og:title" content={seo.title} />
@@ -27,7 +28,7 @@ const Seo = ({ title, description, canonical, pathname, children }) => {
       <meta name="twitter:description" content={seo.description} />
       <link rel="canonical" href={seo.canonical} />
       {children}
-    </>
+    </Helmet>
   );
 };
 

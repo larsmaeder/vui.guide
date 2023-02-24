@@ -24,7 +24,7 @@ import {
   ListItem,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { ImageFlag } from "../components";
+import { ImageFlag, Seo } from "../components";
 import githubSteps from "../data/githubSteps";
 
 // TODO: add github references for non-tech persons; repository card styles/wording; new section to describe who is behind and what's the goal of vui guide
@@ -34,12 +34,10 @@ const About = ({ data, location, pageContext }) => {
   const {
     breadcrumb: { crumbs },
   } = pageContext;
+  const templateProps = { crumbs, currentUrl, imageAttributions, location };
   return (
-    <PagesTemplate
-      crumbs={crumbs}
-      url={currentUrl}
-      imageAttributions={imageAttributions}
-    >
+    <PagesTemplate {...templateProps}>
+      <Seo pathname={location.pathname} />
       <Wrapper grid as="section">
         <GridItem colSpan={{ base: 3, md: 2 }}>
           <Heading as="h1" size="4xl" color="purple.600" mt={0}>

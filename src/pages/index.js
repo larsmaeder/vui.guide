@@ -3,7 +3,7 @@ import { graphql } from "gatsby";
 import PagesTemplate from "../templates/pages";
 import { GridItem } from "@chakra-ui/react";
 import { useCookies } from "react-cookie";
-import { CookieConsent } from "../components";
+import { CookieConsent, Seo } from "../components";
 import { Wrapper } from "../layout";
 
 const Index = ({ data, location, pageContext }) => {
@@ -12,8 +12,10 @@ const Index = ({ data, location, pageContext }) => {
     breadcrumb: { crumbs },
   } = pageContext;
   const [cookies, setCookie, removeCookie] = useCookies(["consent", "_ga"]);
+  const templateProps = { crumbs, currentUrl };
   return (
-    <PagesTemplate crumbs={crumbs} url={currentUrl}>
+    <PagesTemplate {...templateProps}>
+      <Seo pathname={location.pathname} />
       <Wrapper
         grid
         as="section"
