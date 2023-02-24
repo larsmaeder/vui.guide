@@ -137,7 +137,7 @@ module.exports = {
         display: "minimal-ui",
         icon: "src/images/icon-path-vuiLogo.png",
         icon_options: {
-          purpose: "any maskable",
+          purpose: "any",
         },
         cache_busting_mode: "none",
         shortcuts: [
