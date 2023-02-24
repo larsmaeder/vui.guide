@@ -223,8 +223,8 @@ const CookieConsent = ({ cookies, setCookie, removeCookie }) => {
   };
   const onDeclineCookies = () => {
     setCookie("consent", "declined", { path: "/" });
-    // removeCookie("_ga", { path: "/" });
-    // removeCookie("_ga_XXXXXXXX", { path: "/" });
+    removeCookie("_ga", { path: "/" });
+    removeCookie("_ga_JBVJ2688BG", { path: "/" });
   };
   if (cookies.consent === undefined)
     return (
