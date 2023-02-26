@@ -92,16 +92,17 @@ const CookieConsent = () => {
     "_ga",
     "_ga_JBVJ2688BG",
   ]);
-  const [optIn, setOptIn] = React.useState(cookies.consent === "accepted");
+  const [optIn, setOptIn] = React.useState(cookies.consent);
+  console.log(cookies.consent);
   const onAcceptCookies = () => {
-    setOptIn(true);
     setCookie("consent", "accepted", { path: "/" });
+    setOptIn("accepted");
   };
   const onDeclineCookies = () => {
-    setOptIn(false);
     setCookie("consent", "declined", { path: "/" });
     removeCookie("_ga", { path: "/" });
     removeCookie("_ga_JBVJ2688BG", { path: "/" });
+    setOptIn("declined");
   };
   const stepsAskForCookies = [
     {
@@ -194,10 +195,10 @@ const CookieConsent = () => {
       hideInput: true,
     },
   ];
-  return optIn ? (
-    <Introduction steps={stepsIntroduction} />
-  ) : (
+  return optIn === undefined ? (
     <AskForCookies steps={stepsAskForCookies} />
+  ) : (
+    <Introduction steps={stepsIntroduction} />
   );
 };
 
