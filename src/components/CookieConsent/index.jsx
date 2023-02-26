@@ -1,25 +1,65 @@
 import * as React from "react";
-// import { Link as GatsbyLink } from "gatsby";
-import { motion } from "framer-motion";
+import { Link as GatsbyLink } from "gatsby";
 import {
   Button,
   ButtonGroup,
-  Box,
-  Text,
-  SimpleGrid,
   Card,
-  CardHeader,
-  Heading,
   CardBody,
   CardFooter,
-  // UnorderedList,
-  // ListItem,
+  GridItem,
+  Heading,
+  Text,
 } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import ChatBot from "react-simple-chatbot";
+import Wrapper from "../../layout/Wrapper";
+import { useCookies } from "react-cookie";
 
-// TODO: create cards for the 3 different options to choose 
+const OptionsCard = React.memo(() => {
+  const defaultOptions = [
+    {
+      title: "Explore the Guide",
+      cta: "Explore",
+      url: "/docs/",
+    },
+    {
+      title: "Join the community",
+      cta: "Contribute",
+      url: "/about/#contribute-using-gitHub",
+    },
+    {
+      title: "About the Guide",
+      cta: "Learn more",
+      url: "/about/",
+    },
+  ];
+  return defaultOptions.map((options) => {
+    const { title, cta, url } = options;
+    return (
+      <GridItem colSpan={{ base: 3, lg: 1 }}>
+        <Card variant="outline">
+          <CardBody>
+            <Heading color="purple.600" size="lg" mt={0} mb={0}>
+              {title}
+            </Heading>
+          </CardBody>
+          <CardFooter>
+            <Button
+              colorScheme="purple"
+              size={{ base: "sm", sm: "md", md: "lg" }}
+              as={GatsbyLink}
+              to={url}
+            >
+              {cta}
+            </Button>
+          </CardFooter>
+        </Card>
+      </GridItem>
+    );
+  });
+});
 
-const AskForCookie = ({ onAcceptCookies, onDeclineCookies }) => {
+const AskForCookies = ({ steps }) => {
   return (
     <ChatBot
       hideHeader={true}
@@ -28,68 +68,11 @@ const AskForCookie = ({ onAcceptCookies, onDeclineCookies }) => {
       hideBotAvatar={true}
       hideUserAvatar={true}
       className="default"
-      steps={[
-        {
-          id: "1",
-          message: "Hi, I’m Vox.",
-          trigger: "2",
-          hideInput: true,
-        },
-        {
-          id: "2",
-          message: "It seems like we don’t know each other yet.",
-          trigger: "3",
-          hideInput: true,
-        },
-        {
-          id: "3",
-          message:
-            "To ensure I provide you with the best experience, I need your permission to use cookies.",
-          trigger: "4",
-          hideInput: true,
-        },
-        {
-          id: "4",
-          message: "May I use cookies on your device?",
-          trigger: "5",
-          hideInput: true,
-        },
-        {
-          id: "5",
-          component: (
-            <Box mt={12}>
-              <motion.div
-                initial={{ opacity: 0, y: "0px" }}
-                whileInView={{ opacity: 1, y: "-5px" }}
-                transition={{ duration: 0.4 }}
-                viewport={{ once: true }}
-              >
-                <Text>
-                  I use cookies to analyze website traffic and performance. I
-                  never collect personal information from you.
-                </Text>
-                <ButtonGroup
-                  pt={6}
-                  colorScheme="purple"
-                  size={{ base: "sm", sm: "md", md: "lg" }}
-                >
-                  <Button onClick={onAcceptCookies}>Accept Cookies</Button>
-                  <Button variant="ghost" onClick={onDeclineCookies}>
-                    Decline Cookies
-                  </Button>
-                </ButtonGroup>
-              </motion.div>
-            </Box>
-          ),
-          end: true,
-          hideInput: true,
-        },
-      ]}
+      steps={steps}
     />
   );
 };
-
-const Introduction = () => {
+const Introduction = ({ steps }) => {
   return (
     <ChatBot
       hideHeader={true}
@@ -98,142 +81,124 @@ const Introduction = () => {
       hideBotAvatar={true}
       hideUserAvatar={true}
       className="default"
-      steps={[
-        {
-          id: "1",
-          message: "Welcome to VUI Guide.",
-          trigger: "2",
-          hideInput: true,
-        },
-        {
-          id: "2",
-          message: "There are several options available to you:",
-          trigger: "3",
-          hideInput: true,
-        },
-        {
-          id: "3",
-          component: (
-            <Box pt={16}>
-              <motion.div
-                initial={{ opacity: 0, y: "0px" }}
-                whileInView={{ opacity: 1, y: "-5px" }}
-                transition={{ duration: 0.4 }}
-                viewport={{ once: true }}
-              >
-                <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
-                  <Card>
-                    <CardHeader>
-                      <Heading size="md"> Customer dashboard</Heading>
-                    </CardHeader>
-                    <CardBody>
-                      <Text>
-                        View a summary of all your customers over the last
-                        month.
-                      </Text>
-                    </CardBody>
-                    <CardFooter>
-                      <Button>View here</Button>
-                    </CardFooter>
-                  </Card>
-                  <Card>
-                    <CardHeader>
-                      <Heading size="md"> Customer dashboard</Heading>
-                    </CardHeader>
-                    <CardBody>
-                      <Text>
-                        View a summary of all your customers over the last
-                        month.
-                      </Text>
-                    </CardBody>
-                    <CardFooter>
-                      <Button>View here</Button>
-                    </CardFooter>
-                  </Card>
-                  <Card>
-                    <CardHeader>
-                      <Heading size="md"> Customer dashboard</Heading>
-                    </CardHeader>
-                    <CardBody>
-                      <Text>
-                        View a summary of all your customers over the last
-                        month.
-                      </Text>
-                    </CardBody>
-                    <CardFooter>
-                      <Button>View here</Button>
-                    </CardFooter>
-                  </Card>
-                </SimpleGrid>
-
-                {/* <UnorderedList pt={4} spacing={1}>
-                  <ListItem>
-                    Read through the voice user interface guide
-                  </ListItem>
-                  <ListItem>
-                    Learn more about the project and how you can contribute to
-                    it
-                  </ListItem>
-                  <ListItem>
-                    Share your knowledge and insights with the community by
-                    writing a blog post for the VUI Guide
-                  </ListItem>
-                </UnorderedList> */}
-              </motion.div>
-            </Box>
-          ),
-          end: true,
-          hideInput: true,
-        },
-        // {
-        //   id: "4",
-        //   component: (
-        //     <Box>
-        //       <motion.div
-        //         initial={{ opacity: 0, y: "0px" }}
-        //         whileInView={{ opacity: 1, y: "-5px" }}
-        //         transition={{ duration: 0.4, delay: 0.2 }}
-        //         viewport={{ once: true }}
-        //       >
-        //         <ButtonGroup
-        //           pt={16}
-        //           colorScheme="purple"
-        //           size={{ base: "sm", sm: "md", md: "lg" }}
-        //         >
-        //           <Button as={GatsbyLink} to="/docs/">
-        //             Read the Guide
-        //           </Button>
-        //           <Button as={GatsbyLink} to="/about/" variant="ghost">
-        //             Learn more about it
-        //           </Button>
-        //         </ButtonGroup>
-        //       </motion.div>
-        //     </Box>
-        //   ),
-        //   hideInput: true,
-        // },
-      ]}
+      steps={steps}
     />
   );
 };
 
-const CookieConsent = ({ cookies, setCookie, removeCookie }) => {
+const CookieConsent = () => {
+  const [cookies, setCookie, removeCookie] = useCookies([
+    "consent",
+    "_ga",
+    "_ga_JBVJ2688BG",
+  ]);
+  const [optIn, setOptIn] = React.useState(cookies.consent === "accepted");
   const onAcceptCookies = () => {
+    setOptIn(true);
     setCookie("consent", "accepted", { path: "/" });
   };
   const onDeclineCookies = () => {
+    setOptIn(false);
     setCookie("consent", "declined", { path: "/" });
     removeCookie("_ga", { path: "/" });
     removeCookie("_ga_JBVJ2688BG", { path: "/" });
   };
-  if (cookies.consent === undefined)
-    return (
-      <AskForCookie
-        onAcceptCookies={onAcceptCookies}
-        onDeclineCookies={onDeclineCookies}
-      />
-    );
-  else return <Introduction />;
+  const stepsAskForCookies = [
+    {
+      id: "1",
+      message: "Hi, I’m Vox.",
+      trigger: "2",
+      hideInput: true,
+    },
+    {
+      id: "2",
+      message: "It seems like we don’t know each other yet.",
+      trigger: "3",
+      hideInput: true,
+    },
+    {
+      id: "3",
+      message:
+        "To ensure I provide you with the best experience, I need your permission to use cookies.",
+      trigger: "4",
+      hideInput: true,
+    },
+    {
+      id: "4",
+      message: "May I use cookies on your device?",
+      trigger: "5",
+      hideInput: true,
+    },
+    {
+      id: "5",
+      component: (
+        <motion.div
+          initial={{ opacity: 0, y: "0px", width: "100%" }}
+          whileInView={{ opacity: 1, y: "-5px" }}
+          transition={{ duration: 0.4 }}
+          viewport={{ once: true }}
+        >
+          <Wrapper grid fluid gutters={false} pb={0} pt={12}>
+            <GridItem colSpan="3">
+              <Text>
+                I use cookies to analyze website traffic and performance. I
+                never collect personal information from you.
+              </Text>
+              <ButtonGroup
+                pt={6}
+                colorScheme="purple"
+                size={{ base: "sm", sm: "md", md: "lg" }}
+              >
+                <Button onClick={onAcceptCookies}>Accept Cookies</Button>
+                <Button variant="ghost" onClick={onDeclineCookies}>
+                  Decline Cookies
+                </Button>
+              </ButtonGroup>
+            </GridItem>
+          </Wrapper>
+        </motion.div>
+      ),
+      end: true,
+      hideInput: true,
+    },
+  ];
+  const stepsIntroduction = [
+    {
+      id: "1",
+      message: "Welcome to VUI Guide.",
+      trigger: "2",
+      hideInput: true,
+    },
+    {
+      id: "2",
+      message: "There are several options available to you:",
+      trigger: "3",
+
+      hideInput: true,
+    },
+    {
+      id: "3",
+      component: (
+        <motion.div
+          initial={{ opacity: 0, y: "0px", width: "100%" }}
+          whileInView={{ opacity: 1, y: "-5px" }}
+          transition={{ duration: 0.4 }}
+          viewport={{ once: true }}
+        >
+          <Wrapper grid fluid gutters={false} pb={0} pt={12}>
+            <OptionsCard />
+          </Wrapper>
+        </motion.div>
+      ),
+      end: true,
+      hideInput: true,
+    },
+  ];
+  return optIn ? (
+    <Introduction steps={stepsIntroduction} />
+  ) : (
+    <AskForCookies steps={stepsAskForCookies} />
+  );
 };
 
 export default CookieConsent;
