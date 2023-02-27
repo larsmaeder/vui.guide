@@ -1,1 +1,8 @@
+import "@fontsource/roboto/400.css"
+import "@fontsource/roboto/400-italic.css"
+import "@fontsource/roboto/700.css"
+import "@fontsource/roboto/700-italic.css"
+import "@fontsource/roboto/900.css"
+import "@fontsource/roboto-mono"
+import "@fontsource/eb-garamond"
 import "./src/styles/app.scss"

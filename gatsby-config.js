@@ -142,25 +142,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
-      options: {
-        fonts: [
-          {
-            family: `Roboto`,
-            variants: [`400`, `400i`, `700`, `700i`, `900`],
-          },
-          {
-            family: `Roboto Mono`,
-            variants: [`400`],
-          },
-          {
-            family: `EB Garamond`,
-            variants: [`400`],
-          },
-        ],
-      },
-    },
-    {
       resolve: `gatsby-plugin-typography`,
       options: {
         pathToConfigModule: `src/utils/typography`,
