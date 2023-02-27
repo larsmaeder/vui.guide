@@ -157,15 +157,15 @@ module.exports = {
         ],
       },
     },
-    {
-      resolve: "gatsby-plugin-offline",
-      options: {
-        precachePages: ["/about/", "/docs/*"],
-        workboxConfig: {
-          globPatterns: ["**/icon-path*"],
-        },
-      },
-    },
+    // {
+    //   resolve: "gatsby-plugin-offline",
+    //   options: {
+    //     precachePages: ["/about/", "/docs/*"],
+    //     workboxConfig: {
+    //       globPatterns: ["**/icon-path*"],
+    //     },
+    //   },
+    // },
     {
       resolve: "gatsby-plugin-mdx",
       options: {
