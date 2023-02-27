@@ -68,6 +68,9 @@ const AskForCookies = ({ steps }) => {
       hideUserAvatar={true}
       className="default"
       steps={steps}
+      footerStyle={{
+        display: "none",
+      }}
     />
   );
 };
@@ -81,6 +84,9 @@ const Introduction = ({ steps }) => {
       hideUserAvatar={true}
       className="default"
       steps={steps}
+      footerStyle={{
+        display: "none",
+      }}
     />
   );
 };
@@ -101,9 +107,8 @@ const CookieConsent = () => {
     setCookie("consent", "declined", { path: "/", maxAge: "31536000" });
     removeCookie("_ga", { path: "/" });
     removeCookie(`_ga_${gaProperty}`, { path: "/" });
-    (document.cookie =
-      disableStr + "=true; expires=Thu, 31 Dec 2099 23:59:59 UTC;path=/"),
-      (window[disableStr] = !0);
+    document.cookie = `${disableStr}=true; expires=Thu, 31 Dec 2099 23:59:59 UTC;path=/`;
+    window[disableStr] = true;
     setOptIn("declined");
   };
   const stepsAskForCookies = [
