@@ -96,7 +96,7 @@ const CookieConsent = () => {
   const [cookies, setCookie, removeCookie] = useCookies([
     "consent",
     "_ga",
-    `_ga_${gaProperty}`,
+    "_ga_JBVJ2688BG",
   ]);
   const [optIn, setOptIn] = React.useState(cookies.consent);
   const gaOptIn = () => {
@@ -106,7 +106,7 @@ const CookieConsent = () => {
   const gaOptOut = () => {
     setCookie("consent", "declined", { path: "/", maxAge: "31536000" });
     removeCookie("_ga", { path: "/" });
-    removeCookie(`_ga_${gaProperty}`, { path: "/" });
+    removeCookie("_ga_JBVJ2688BG", { path: "/" });
     document.cookie = `${disableStr}=true; expires=Thu, 31 Dec 2099 23:59:59 UTC;path=/`;
     window[disableStr] = true;
     setOptIn("declined");
