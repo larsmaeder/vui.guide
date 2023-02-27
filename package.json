@@ -46,7 +46,6 @@
   },
   "devDependencies": {
     "cssnano": "^4.1.10",
-    "gatsby-plugin-robots-txt": "^1.5.1",
     "postcss-preset-env": "^6.7.0",
     "postcss-pxtorem": "^5.1.1",
     "postcss-typography": "^1.0.0",
