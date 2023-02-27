@@ -63,5 +63,8 @@
     "react-simple-chatbot": "^0.6.1",
     "reading-time": "^1.5.0",
     "styled-components": "^4.4.1"
+  },
+  "devDependencies": {
+    "netlify-cli": "^13.0.0"
   }
 }
