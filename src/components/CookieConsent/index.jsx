@@ -58,7 +58,6 @@ const OptionsCard = React.memo(() => {
     );
   });
 });
-
 const AskForCookies = ({ steps }) => {
   return (
     <ChatBot
@@ -85,23 +84,26 @@ const Introduction = ({ steps }) => {
     />
   );
 };
-
 const CookieConsent = () => {
+  const gaProperty = "JBVJ2688BG";
+  const disableStr = `ga-disable-G-${gaProperty}`;
   const [cookies, setCookie, removeCookie] = useCookies([
     "consent",
     "_ga",
-    "_ga_JBVJ2688BG",
+    `_ga_${gaProperty}`,
   ]);
   const [optIn, setOptIn] = React.useState(cookies.consent);
-  console.log(cookies.consent);
-  const onAcceptCookies = () => {
-    setCookie("consent", "accepted", { path: "/" });
+  const gaOptIn = () => {
+    setCookie("consent", "accepted", { path: "/", maxAge: "31536000" });
     setOptIn("accepted");
   };
-  const onDeclineCookies = () => {
-    setCookie("consent", "declined", { path: "/" });
+  const gaOptOut = () => {
+    setCookie("consent", "declined", { path: "/", maxAge: "31536000" });
     removeCookie("_ga", { path: "/" });
-    removeCookie("_ga_JBVJ2688BG", { path: "/" });
+    removeCookie(`_ga_${gaProperty}`, { path: "/" });
+    (document.cookie =
+      disableStr + "=true; expires=Thu, 31 Dec 2099 23:59:59 UTC;path=/"),
+      (window[disableStr] = !0);
     setOptIn("declined");
   };
   const stepsAskForCookies = [
@@ -150,8 +152,8 @@ const CookieConsent = () => {
                 colorScheme="purple"
                 size={{ base: "sm", sm: "md", md: "lg" }}
               >
-                <Button onClick={onAcceptCookies}>Accept Cookies</Button>
-                <Button variant="ghost" onClick={onDeclineCookies}>
+                <Button onClick={gaOptIn}>Accept Cookies</Button>
+                <Button variant="ghost" onClick={gaOptOut}>
                   Decline Cookies
                 </Button>
               </ButtonGroup>
