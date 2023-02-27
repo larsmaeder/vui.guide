@@ -7,12 +7,12 @@ module.exports = {
     siteUrl: "https://www.vui.guide",
   },
   plugins: [
-    {
-      resolve: 'gatsby-plugin-robots-txt',
-      options: {
-        policy: [{ userAgent: '*', allow: '/', crawlDelay: 10 }]
-      }
-    },
+    // {
+    //   resolve: 'gatsby-plugin-robots-txt',
+    //   options: {
+    //     policy: [{ userAgent: '*', allow: '/', crawlDelay: 10 }]
+    //   }
+    // },
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {
