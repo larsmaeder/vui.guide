@@ -100,16 +100,16 @@ const CookieConsent = () => {
   ]);
   const [optIn, setOptIn] = React.useState(cookies.consent);
   const gaOptIn = () => {
-    setCookie("consent", "accepted", { path: "/", maxAge: "31536000" });
-    setOptIn("accepted");
+    setCookie("consent", "true", { path: "/", maxAge: "31536000" });
+    setOptIn("true");
   };
   const gaOptOut = () => {
-    setCookie("consent", "declined", { path: "/", maxAge: "31536000" });
-    removeCookie("_ga", { path: "/" });
-    removeCookie("_ga_JBVJ2688BG", { path: "/" });
+    setCookie("consent", "false", { path: "/", maxAge: "31536000" });
+    removeCookie("_ga", { path: "/", domain: ".vui.guide" });
+    removeCookie("_ga_JBVJ2688BG", { path: "/", domain: ".vui.guide" });
     document.cookie = `${disableStr}=true; expires=Thu, 31 Dec 2099 23:59:59 UTC;path=/`;
     window[disableStr] = true;
-    setOptIn("declined");
+    setOptIn("false");
   };
   const stepsAskForCookies = [
     {
