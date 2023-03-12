@@ -1,13 +1,23 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-import { Box, GridItem, Tooltip, Icon, Link, HStack } from "@chakra-ui/react";
+import {
+  Box,
+  GridItem,
+  Tooltip,
+  Icon,
+  Link,
+  HStack,
+  Image,
+  LinkBox,
+  LinkOverlay,
+  VStack,
+} from "@chakra-ui/react";
 import { GoMarkGithub } from "react-icons/go";
 import { MdBugReport, MdEmail } from "react-icons/md";
 import { Wrapper } from "../index";
 import { Attribution } from "../../components";
 
 const Footer = ({ imageAttributions }) => {
-  const currentYear = new Date().getFullYear();
   return (
     <Wrapper
       as="footer"
@@ -28,8 +38,8 @@ const Footer = ({ imageAttributions }) => {
         boxShadow: "xl",
       }}
     >
-      <GridItem colSpan={3} color="gray.400">
-        <HStack spacing={6}>
+      <GridItem colSpan={3}>
+        <HStack spacing={6} color="gray.400">
           <Tooltip
             aria-label="Click to open GitHub Repository"
             label="Open GitHub Repository"
@@ -68,15 +78,38 @@ const Footer = ({ imageAttributions }) => {
             </Link>
           </Tooltip>
         </HStack>
-        <Box fontSize="sm" fontFamily="heading" mt={6}>
-          Copyright © {currentYear}
-          <br />
-          VUI Guide All rights reserved
-        </Box>
-        <Link href="https://www.netlify.com" isExternal fontSize="sm">
-          This site is powered by Netlify.
-        </Link>
-        {imageAttributions && <Attribution imageAttributions={imageAttributions} />}
+        <VStack
+          align="flex-start"
+          fontSize="xs"
+          fontFamily="heading"
+          mt={6}
+          color="gray.400"
+          spacing={0}
+        >
+          <Box>
+            VUI Guide is licensed under the <Link fontSize="inherit" href="https://github.com/larsmaeder/vui.guide/blob/master/LICENSE" isExternal>MIT License</Link>.
+          </Box>
+          <Box>
+            All graphics and content, unless otherwise noted, are licensed under a <Link fontSize="inherit" href="https://creativecommons.org/licenses/by-sa/4.0/" isExternal>Creative Commons Attribution-ShareAlike 4.0 International License</Link>.
+          </Box>
+        </VStack>
+
+        {imageAttributions && (
+          <Attribution imageAttributions={imageAttributions} />
+        )}
+        <LinkBox mt={12} display="inline-block">
+          <Image
+            mb={2}
+            width={20}
+            src="https://www.netlify.com/v3/img/components/netlify-dark.svg"
+            alt="Deploys by Netlify"
+          />
+          <LinkOverlay href="https://www.netlify.com" isExternal>
+            <Box fontSize="xs" fontFamily="heading" color="font">
+              This site is powered by Netlify.
+            </Box>
+          </LinkOverlay>
+        </LinkBox>
       </GridItem>
     </Wrapper>
   );
