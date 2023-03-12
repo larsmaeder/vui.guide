@@ -3,12 +3,18 @@
  */
 const {
   NODE_ENV,
-  URL: NETLIFY_SITE_URL = "https://beta.vui.guide",
+  URL: NETLIFY_SITE_URL = "https://vui.guide",
   DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
   CONTEXT: NETLIFY_ENV = NODE_ENV,
+  BRANCH: NETLIFY_BRANCH,
 } = process.env;
 const isNetlifyProduction = NETLIFY_ENV === "production";
-const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
+let siteUrl;
+if (NETLIFY_BRANCH === "beta") {
+  siteUrl = "https://beta.vui.guide";
+} else {
+  siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
+}
 module.exports = {
   siteMetadata: {
     title: "Voice User Interface Guide",
@@ -199,14 +205,6 @@ module.exports = {
         path: "./src/images/",
       },
       __key: "images",
-    },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "imagesDocs",
-        path: "./docs/images/",
-      },
-      __key: "imagesDocs",
     },
     {
       resolve: "gatsby-source-filesystem",
