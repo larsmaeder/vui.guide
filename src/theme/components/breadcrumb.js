@@ -9,7 +9,7 @@ const {
 const baseStyle = definePartsStyle({
   // Styles for the base style
   container: {
-    bg: "gray.200",
+    bg: "blackAlpha.200",
     borderRadius: "xl",
     fontFamily: "heading",
     color: "gray.500",
