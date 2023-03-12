@@ -35,10 +35,7 @@ const PagesTemplate = ({ currentUrl, crumbs, imageAttributions, children }) => {
                 <IconButton
                   aria-label="Click to go home"
                   icon={<MdHome />}
-                  color="sundial.500"
-                  background="sundial.100"
-                  _hover={{ background: "sundial.200 " }}
-                  _active={{ background: "sundial.300 " }}
+                  colorScheme="blackAlpha"
                   size="md"
                   as={GatsbyLink}
                   to="/"

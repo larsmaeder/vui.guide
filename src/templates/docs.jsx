@@ -1,5 +1,6 @@
 import * as React from "react";
 import { graphql, Link as GatsbyLink } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { MDXProvider } from "@mdx-js/react";
 import { theme } from "../theme";
 import {
@@ -24,6 +25,7 @@ import {
   Slide,
   useDisclosure,
   Show,
+  Image,
 } from "@chakra-ui/react";
 import { Prose } from "@nikolovlazar/chakra-ui-prose";
 import { SkipNavLink, SkipNavContent } from "@chakra-ui/skip-nav";
@@ -48,6 +50,7 @@ const DocsTemplate = ({
   pageContext,
   imageAttributions,
 }) => {
+  const image = getImage(data.mdx.frontmatter.heroImage);
   const {
     isOpen: isOpenDocsNavigation,
     onToggle: onToggleDocsNavigation,
@@ -70,6 +73,28 @@ const DocsTemplate = ({
   } = pageContext;
   return (
     <ChakraProvider theme={theme}>
+      {image && (
+        <Image
+          as={GatsbyImage}
+          image={image}
+          alt={data.mdx.frontmatter.heroImageAlt}
+          pos="absolute"
+          top={0}
+          left={0}
+          width="full"
+          height="80vh"
+          zIndex="base"
+          _before={{
+            bgGradient:
+              "linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%), linear-gradient(90deg, rgba(255,255,255,0.7) 40%, rgba(255,255,255,0) 100%)",
+            content: '""',
+            position: "absolute",
+            width: "full",
+            height: "100%",
+            zIndex: "docked",
+          }}
+        />
+      )}
       <Seo pathname={location.pathname} />
       <Wrapper as="header" pt={{ base: 8, md: 12 }} pb={0}>
         <SkipNavLink>Skip to content</SkipNavLink>
@@ -91,10 +116,7 @@ const DocsTemplate = ({
               <IconButton
                 aria-label="Click to go home"
                 icon={<MdHome />}
-                color="sundial.500"
-                background="sundial.100"
-                _hover={{ background: "sundial.200 " }}
-                _active={{ background: "sundial.300 " }}
+                colorScheme="blackAlpha"
                 size="md"
                 as={GatsbyLink}
                 to="/"
@@ -117,11 +139,9 @@ const DocsTemplate = ({
         </GridItem>
       </Wrapper>
       <Wrapper grid as="section">
-        <GridItem colSpan={{ base: 3 }}>
-          <TimeToRead time={data.mdx.fields.timeToRead.text} />
-        </GridItem>
         <GridItem colSpan={{ base: 3, md: 2 }}>
-          <Heading as="h1" size="4xl" color="purple.600" mt={0}>
+          <TimeToRead time={data.mdx.fields.timeToRead.text} />
+          <Heading as="h1" size="4xl" color="purple.600" mt={4}>
             {pageContext.frontmatter.title}
           </Heading>
           <Text>{pageContext.frontmatter.prelude}</Text>
@@ -196,6 +216,12 @@ export const pageQuery = graphql`
       tableOfContents(maxDepth: 2)
       frontmatter {
         toc
+        heroImageAlt
+        heroImage {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
       }
       fields {
         timeToRead {
