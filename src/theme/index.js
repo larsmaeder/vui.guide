@@ -83,7 +83,7 @@ const theme = extendTheme(
         mt: 10,
         mb: 5,
       },
-      p: {
+      "p, ol, ul": {
         fontSize: ["md", null, "lg", null, "xl", null],
         lineHeight: "1.6",
         my: [3, null, 4, null, 5, null],
