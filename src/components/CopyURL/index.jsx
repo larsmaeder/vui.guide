@@ -59,7 +59,7 @@ const CopyURL = ({ url, standalone }) => {
         icon={<MdOutlineLink />}
         size="md"
         onClick={handleCopyURL}
-        variant="outline"
+        colorScheme="blackAlpha"
         sx={{
           borderTopRightRadius: !standalone && 0,
           borderBottomRightRadius: !standalone && 0,

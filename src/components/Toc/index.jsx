@@ -1,7 +1,7 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 import { AnchorLink } from "gatsby-plugin-anchor-links";
-import { OrderedList, ListItem, Text } from "@chakra-ui/react";
+import { OrderedList, ListItem, Text, Link, Box } from "@chakra-ui/react";
 
 const Toc = ({ tocData: { items }, isAvailable, location }) => {
   const umlautMap = {
@@ -18,22 +18,20 @@ const Toc = ({ tocData: { items }, isAvailable, location }) => {
   };
   return (
     isAvailable && (
-      <>
-        <Text fontFamily="heading" paddingBottom={2}>
-          Table of contents
-        </Text>
+      <Box fontFamily="heading">
+        <Text paddingBottom={2}>Table of contents</Text>
         <OrderedList>
           {items.map((c) => {
             return (
               <ListItem key={`item-${c.url}`}>
-                <AnchorLink to={location + replaceUmlauts(c.url)}>
+                <Link as={AnchorLink} to={location + replaceUmlauts(c.url)}>
                   {c.title}
-                </AnchorLink>
+                </Link>
               </ListItem>
             );
           })}
         </OrderedList>
-      </>
+      </Box>
     )
   );
 };

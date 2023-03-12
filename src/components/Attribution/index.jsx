@@ -15,9 +15,9 @@ import { MdOpenInNew } from "react-icons/md";
 const Attribution = ({ imageAttributions }) => {
   return (
     <Box fontFamily="heading" color="gray.400" fontSize="xs">
-      <Divider mt={12} borderColor="gray.300" />
+      <Divider mt={8} borderColor="gray.300" />
       <Text fontSize="inherit" fontWeight="bold" mb={2}>
-        Images used on the page:
+        Image attributions:
       </Text>
       <List variant="attr">
         {imageAttributions.map((attribution) => {
