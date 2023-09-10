@@ -9,7 +9,14 @@ const Image = () => {
       viewBox="0 0 162 48"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      aria-labelledby="logoTitle logoDesc"
+      role="img"
     >
+      <title id="logoTitle">Logo for VUI Guide</title>
+      <desc id="logoDesc">
+        A purple, round illustrated logo featuring the text "VUI Guide" beside
+        it.
+      </desc>
       <g clipPath="url(#clip0_70_80)">
         <rect width={48} height={48} rx={22.5} fill="#5F49A2" />
         <path
@@ -44,7 +51,7 @@ const Image = () => {
 const Logo = () => {
   return (
     <Box display="inline-block" h={{ base: 10, md: 12 }} w="auto">
-      <Link to="/" title="VUI Guide">
+      <Link to="/" title="Go to Home" aria-label="Home">
         <Image />
       </Link>
     </Box>

@@ -8,12 +8,16 @@ import {
   CardFooter,
   GridItem,
   Heading,
-  Text,
+  Box,
+  Icon,
+  Flex,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import ChatBot from "react-simple-chatbot";
 import Wrapper from "../../layout/Wrapper";
 import { useCookies } from "react-cookie";
+import { MdInfoOutline } from "react-icons/md";
+import { useEffect, useState } from "react";
 
 const OptionsCard = React.memo(() => {
   const defaultOptions = [
@@ -37,7 +41,7 @@ const OptionsCard = React.memo(() => {
     const { title, cta, url } = options;
     return (
       <GridItem colSpan={{ base: 3, lg: 1 }}>
-        <Card variant="outline">
+        <Card variant="vui">
           <CardBody>
             <Heading color="purple.600" size="lg" mt={0} mb={0}>
               {title}
@@ -59,19 +63,39 @@ const OptionsCard = React.memo(() => {
   });
 });
 const AskForCookies = ({ steps }) => {
+  const [timeStamp, setTimeStamp] = useState("");
+  useEffect(() => {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, "0");
+    const minutes = String(now.getMinutes()).padStart(2, "0");
+    const time = `${hours}:${minutes}`;
+    setTimeStamp(time);
+  }, []); // Empty dependency array ensures this runs only once when the component mounts.
   return (
-    <ChatBot
-      hideHeader={true}
-      width="100%"
-      height="auto"
-      hideBotAvatar={true}
-      hideUserAvatar={true}
-      className="default"
-      steps={steps}
-      footerStyle={{
-        display: "none",
-      }}
-    />
+    <>
+      <Box fontFamily="heading" fontSize="xs" color="gray.400" ml="3" mb="3">
+        {timeStamp} Orion:
+      </Box>
+      <ChatBot
+        hideHeader={true}
+        width="100%"
+        height="auto"
+        hideBotAvatar={true}
+        hideUserAvatar={true}
+        className="default"
+        steps={steps}
+        footerStyle={{
+          display: "none",
+        }}
+      />
+    </>
+  );
+};
+const Introduction2 = () => {
+  return (
+    <Heading as="h1" size="2xl" color="purple.600" mt={0}>
+      Welcome to VUI Guide
+    </Heading>
   );
 };
 const Introduction = ({ steps }) => {
@@ -114,31 +138,25 @@ const CookieConsent = () => {
   const stepsAskForCookies = [
     {
       id: "1",
-      message: "Hi, I’m Vox.",
+      message: "Hi, it seems like we don’t know each other yet.",
       trigger: "2",
       hideInput: true,
     },
     {
       id: "2",
-      message: "It seems like we don’t know each other yet.",
+      message:
+        "To ensure I provide you with the best experience, I need your permission to use cookies.",
       trigger: "3",
       hideInput: true,
     },
     {
       id: "3",
-      message:
-        "To ensure I provide you with the best experience, I need your permission to use cookies.",
+      message: "May I use cookies on your device?",
       trigger: "4",
       hideInput: true,
     },
     {
       id: "4",
-      message: "May I use cookies on your device?",
-      trigger: "5",
-      hideInput: true,
-    },
-    {
-      id: "5",
       component: (
         <motion.div
           initial={{ opacity: 0, y: "0px", width: "100%" }}
@@ -148,12 +166,7 @@ const CookieConsent = () => {
         >
           <Wrapper grid fluid gutters={false} pb={0} pt={12}>
             <GridItem colSpan="3">
-              <Text>
-                I use cookies to analyze website traffic and performance. I
-                never collect personal information from you.
-              </Text>
               <ButtonGroup
-                pt={6}
                 colorScheme="purple"
                 size={{ base: "sm", sm: "md", md: "lg" }}
               >
@@ -162,6 +175,13 @@ const CookieConsent = () => {
                   Decline Cookies
                 </Button>
               </ButtonGroup>
+              <Flex gap={1.5} pt={8} color="gray.400" w="md">
+                <Icon boxSize={3} as={MdInfoOutline} mt={1} />
+                <Box fontFamily="heading" fontSize="xs">
+                  We use cookies to analyze experience, website traffic and
+                  performance. We never collect personal information from you.
+                </Box>
+              </Flex>
             </GridItem>
           </Wrapper>
         </motion.div>
@@ -205,7 +225,8 @@ const CookieConsent = () => {
   return optIn === undefined ? (
     <AskForCookies steps={stepsAskForCookies} />
   ) : (
-    <Introduction steps={stepsIntroduction} />
+    // <Introduction steps={stepsIntroduction} />
+    <Introduction2></Introduction2>
   );
 };
 

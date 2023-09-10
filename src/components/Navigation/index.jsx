@@ -15,99 +15,99 @@ const Navigation = ({ crumbs, dynamic, func, pages }) => {
   const { docsNavigation } = dynamic;
   const { onToggleDocsNavigation } = func;
   return (
-    <nav aria-label="Main navigation">
-      <Box
-        pos="fixed"
-        bottom={{ base: 10, md: 16 }}
-        left="50%"
-        transform="auto"
-        translateX="-50%"
-        zIndex="sticky"
-        borderRadius={12}
-        overflow="hidden"
-        boxShadow="dark-lg"
-      >
-        <HStack spacing="-1px">
-          {docsNavigation && (
-            <Hide above="md">
-              <IconButton
-                as="div"
-                variant="navigation"
-                onClick={onToggleDocsNavigation}
-                cursor="pointer"
-                icon={<MdMenu />}
-                bg="blue.800"
-                _hover={{
-                  bg: "blue.900",
-                }}
-              />
-            </Hide>
-          )}
-          {React.useMemo(
-            () =>
-              pages.map((page) => {
-                const { title, slug, disabled } = page;
-                const key = `page-${page.id}`;
-                if (disabled) {
-                  return (
-                    <Tooltip
-                      key={key}
-                      aria-label="Coming soon"
-                      label="Coming soon"
-                      placement="top"
-                      hasArrow
-                    >
-                      <Button
-                        as="div"
-                        isDisabled
-                        variant="navigation"
-                        aria-disabled
-                      >
-                        {title}
-                      </Button>
-                    </Tooltip>
-                  );
-                } else if (crumbs[0].pathname === "/") {
-                  return (
+    <Box
+      as="nav"
+      aria-label="Main navigation"
+      pos="fixed"
+      bottom={{ base: 10, md: 16 }}
+      left="50%"
+      transform="auto"
+      translateX="-50%"
+      zIndex="sticky"
+      borderRadius={12}
+      overflow="hidden"
+      boxShadow="dark-lg"
+    >
+      <HStack spacing="-1px">
+        {docsNavigation && (
+          <Hide above="md">
+            <IconButton
+              as="div"
+              variant="navigation"
+              onClick={onToggleDocsNavigation}
+              cursor="pointer"
+              icon={<MdMenu />}
+              bg="blue.800"
+              _hover={{
+                bg: "blue.900",
+              }}
+            />
+          </Hide>
+        )}
+        {React.useMemo(
+          () =>
+            pages.map((page) => {
+              const { title, slug, disabled } = page;
+              const key = `page-${page.id}`;
+              if (disabled) {
+                return (
+                  <Tooltip
+                    key={key}
+                    aria-label="Coming soon"
+                    label="Coming soon"
+                    placement="top"
+                    hasArrow
+                  >
                     <Button
-                      as={GatsbyLink}
-                      to={slug}
-                      key={key}
+                      as="div"
+                      isDisabled
                       variant="navigation"
+                      aria-disabled
                     >
                       {title}
                     </Button>
-                  );
-                } else if (crumbs[1].pathname === slug) {
-                  return (
-                    <Button
-                      as={GatsbyLink}
-                      to={slug}
-                      key={key}
-                      variant="navigation"
-                      aria-current="location"
-                    >
-                      {title}
-                    </Button>
-                  );
-                } else {
-                  return (
-                    <Button
-                      as={GatsbyLink}
-                      to={slug}
-                      key={key}
-                      variant="navigation"
-                    >
-                      {title}
-                    </Button>
-                  );
-                }
-              }),
-            [crumbs, pages]
-          )}
-        </HStack>
-      </Box>
-    </nav>
+                  </Tooltip>
+                );
+              } else if (crumbs[0].pathname === "/") {
+                return (
+                  <Button
+                    as={GatsbyLink}
+                    to={slug}
+                    key={key}
+                    variant="navigation"
+                  >
+                    {title}
+                  </Button>
+                );
+              } else if (crumbs[1].pathname === slug) {
+                return (
+                  <Button
+                    as={GatsbyLink}
+                    to={slug}
+                    key={key}
+                    variant="navigation"
+                    aria-current="location"
+                  >
+                    {title}
+                  </Button>
+                );
+              } else {
+                return (
+                  <Button
+                    as={GatsbyLink}
+                    to={slug}
+                    key={key}
+                    variant="navigation"
+                  >
+                    {title}
+                  </Button>
+                );
+              }
+            }),
+          [crumbs, pages]
+        )}
+      </HStack>
+    </Box>
   );
 };
 

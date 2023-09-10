@@ -14,11 +14,11 @@ const TimeToRead = ({ time }) => {
       display="inline-flex"
       alignItems="center"
     >
-      <StatLabel mr={{ base: 1, md: 2 }} display="flex" fontWeight="inherit">
+      <StatLabel mr={{ base: 0.5, md: 1 }} display="flex" fontWeight="inherit">
         <Icon
-          boxSize={{ base: 3, md: 4 }}
+          boxSize={{ base: 3 }}
           as={MdOutlineAccessTime}
-          aria-label="Time to read"
+          aria-label="Time"
         />
       </StatLabel>
       <StatNumber
