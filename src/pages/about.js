@@ -38,12 +38,12 @@ const About = ({ data, location, pageContext }) => {
   return (
     <PagesTemplate {...templateProps}>
       <Seo pathname={location.pathname} />
-      <Wrapper grid as="section">
+      <Wrapper grid as="section" pt={16}>
         <GridItem colSpan={{ base: 3, md: 2 }}>
           <Heading as="h1" size="4xl" color="purple.600" mt={0}>
             What is VUI Guide?
           </Heading>
-          <Text>
+          <Text fontFamily="heading">
             VUI Guide provides an open source hodgepodge for designing voice
             user interfaces. It covers best practices, design patterns, and
             practical tips to help create effective and engaging voice-only

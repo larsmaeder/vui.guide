@@ -17,6 +17,7 @@ const Index = ({ data, location, pageContext }) => {
       <Wrapper
         grid
         as="section"
+        pt={16}
         minH={{ base: "calc(100vh - 479px)", md: "calc(100vh - 591px)" }}
       >
         <GridItem colSpan={3}>
