@@ -12,7 +12,7 @@ import {
   LinkOverlay,
   VStack,
 } from "@chakra-ui/react";
-import { GoMarkGithub } from "react-icons/go";
+import { VscGithub } from "react-icons/vsc";
 import { MdBugReport, MdEmail } from "react-icons/md";
 import { Wrapper } from "../index";
 import { Attribution } from "../../components";
@@ -51,7 +51,7 @@ const Footer = ({ imageAttributions }) => {
               color="inherit"
               h={6}
             >
-              <Icon boxSize={6} as={GoMarkGithub} />
+              <Icon boxSize={6} as={VscGithub} />
             </Link>
           </Tooltip>
           <Tooltip
@@ -84,7 +84,7 @@ const Footer = ({ imageAttributions }) => {
           fontFamily="heading"
           mt={6}
           color="gray.400"
-          spacing={0}
+          spacing={0.5}
         >
           <Box>
             VUI Guide is licensed under the <Link fontSize="inherit" href="https://github.com/larsmaeder/vui.guide/blob/master/LICENSE" isExternal>MIT License</Link>.
