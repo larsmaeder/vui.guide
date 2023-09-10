@@ -5,22 +5,10 @@ export const ButtonStyles = defineStyleConfig({
   baseStyle: {
     fontFamily: "heading",
     fontWeight: "normal",
+    borderRadius: "md",
   },
   // Styles for the size variations
-  sizes: {
-    xs: {
-      borderRadius: "sm",
-    },
-    sm: {
-      borderRadius: "md",
-    },
-    md: {
-      borderRadius: "lg",
-    },
-    lg: {
-      borderRadius: "xl",
-    },
-  },
+  sizes: {},
   // Styles for the visual style variations
   variants: {
     footer: {

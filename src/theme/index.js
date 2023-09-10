@@ -17,6 +17,7 @@ import { BadgeStyles as Badge } from "./components/badge";
 import { LinkStyles as Link } from "./components/link";
 import { ListStyles as List } from "./components/list";
 import { CodeStyles as Code } from "./components/code";
+import { CardStyles as Card } from "./components/card";
 
 const theme = extendTheme(
   {
@@ -37,6 +38,7 @@ const theme = extendTheme(
       Link,
       List,
       Code,
+      Card,
     },
   },
   withProse({
@@ -87,6 +89,9 @@ const theme = extendTheme(
         fontSize: ["md", null, "lg", null, "xl", null],
         lineHeight: "1.6",
         my: [3, null, 4, null, 5, null],
+      },
+      "*:first-child": {
+        mt: 0,
       },
     },
   })

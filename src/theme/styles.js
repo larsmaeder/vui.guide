@@ -2,7 +2,7 @@ export const GlobalStyles = {
   global: {
     "html, body": {
       backgroundColor: "white",
-      color: "font.100",
+      color: "blue.800",
     },
     p: {
       fontSize: ["md", null, "lg", null, "xl", null],
@@ -17,7 +17,7 @@ export const GlobalStyles = {
     },
     ".default .rsc": {
       fontFamily: "body",
-      color: "font.100",
+      color: "purple.800",
     },
     ".default .rsc-cs": {
       p: 0,
@@ -25,6 +25,7 @@ export const GlobalStyles = {
       borderRadius: "none",
       boxShadow: "none",
       justifyContent: "flex-start",
+      background: "inherit",
     },
     ".default .rsc-content": {
       p: 0,
@@ -35,13 +36,18 @@ export const GlobalStyles = {
       display: "none",
     },
     ".default .rsc-ts-bubble": {
-      fontSize: { base: "md", sm: "lg", md: "xl", xl: "2xl" },
-      color: "inherit",
+      fontFamily: "heading",
+      fontSize: { base: "sm", sm: "md", md: "lg", xl: "xl" },
+      color: "blue.800",
+      borderColor: "gray.200",
+      borderWidth: "1px",
       py: { base: 3, md: 4 },
       px: { base: 4, md: 6 },
-      backgroundColor: "gray.200",
+      mb: { base: 3, md: 3 },
+      background: "white",
       boxShadow: "none",
-      maxWidth: { base: "100%", md: "65%" },
+      borderRadius: 12,
+      maxWidth: { base: "full", md: "xl", lg: "2xl" },
     },
     ".default .rsc-container": {
       fontFamily: "inherit",
