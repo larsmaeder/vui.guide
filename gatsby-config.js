@@ -15,6 +15,14 @@ if (NETLIFY_BRANCH === "beta") {
 } else {
   siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
 }
+const wrapESMPlugin = (name) =>
+  function wrapESM(opts) {
+    return async (...args) => {
+      const mod = await import(name);
+      const plugin = mod.default(opts);
+      return plugin(...args);
+    };
+  };
 module.exports = {
   siteMetadata: {
     title: "Voice User Interface Guide",
