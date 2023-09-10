@@ -35,10 +35,11 @@ const PagesTemplate = ({ currentUrl, crumbs, imageAttributions, children }) => {
                 <IconButton
                   aria-label="Click to go home"
                   icon={<MdHome />}
-                  colorScheme="blackAlpha"
+                  colorScheme="gray"
                   size="md"
                   as={GatsbyLink}
                   to="/"
+                  variant="outline"
                 />
               </Tooltip>
               <CopyURL url={currentUrl} standalone />

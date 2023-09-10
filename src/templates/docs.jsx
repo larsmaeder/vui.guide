@@ -5,6 +5,7 @@ import { MDXProvider } from "@mdx-js/react";
 import { theme } from "../theme";
 import {
   ChakraProvider,
+  Grid,
   GridItem,
   Flex,
   Box,
@@ -26,6 +27,7 @@ import {
   useDisclosure,
   Show,
   Image,
+  Divider,
 } from "@chakra-ui/react";
 import { Prose } from "@nikolovlazar/chakra-ui-prose";
 import { SkipNavLink, SkipNavContent } from "@chakra-ui/skip-nav";
@@ -73,7 +75,15 @@ const DocsTemplate = ({
   } = pageContext;
   return (
     <ChakraProvider theme={theme}>
-      {image && (
+      <Seo pathname={location.pathname} />
+      <SkipNavLink zIndex="skipLink">Skip to content</SkipNavLink>
+      <Navigation
+        crumbs={crumbs}
+        dynamic={{ docsNavigation: true }}
+        func={{ onToggleDocsNavigation }}
+        pages={pages}
+      />
+      {image ? (
         <Image
           as={GatsbyImage}
           image={image}
@@ -94,32 +104,43 @@ const DocsTemplate = ({
             zIndex: "docked",
           }}
         />
+      ) : (
+        <Box
+          pos="absolute"
+          top={0}
+          left={0}
+          width="full"
+          height="80vh"
+          zIndex="base"
+          bgColor={data.mdx.frontmatter.color || "purple.100"}
+          _before={{
+            bgGradient:
+              "linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%), linear-gradient(90deg, rgba(255,255,255,0.7) 40%, rgba(255,255,255,0) 100%)",
+            content: '""',
+            position: "absolute",
+            width: "full",
+            height: "100%",
+            zIndex: "docked",
+          }}
+        ></Box>
       )}
-      <Seo pathname={location.pathname} />
       <Wrapper as="header" pt={{ base: 8, md: 12 }} pb={0}>
-        <SkipNavLink>Skip to content</SkipNavLink>
-        <Navigation
-          crumbs={crumbs}
-          dynamic={{ docsNavigation: true }}
-          func={{ onToggleDocsNavigation }}
-          pages={pages}
-        />
         <GridItem colSpan={{ base: 3 }}>
           <Logo />
-          <Stack
-            spacing={3}
-            direction="row"
-            align="center"
-            pt={{ base: 8, md: 12 }}
-          >
+        </GridItem>
+      </Wrapper>
+      <Wrapper pt={{ base: 8, md: 12 }} pb={0}>
+        <GridItem colSpan={{ base: 3 }}>
+          <Stack spacing={3} direction="row" align="center">
             <Tooltip aria-label="Home" label="Home" placement="top-start">
               <IconButton
                 aria-label="Click to go home"
                 icon={<MdHome />}
-                colorScheme="blackAlpha"
+                colorScheme="gray"
                 size="md"
                 as={GatsbyLink}
                 to="/"
+                variant="outline"
               />
             </Tooltip>
             {!(location.pathname === "/docs/") ? (
@@ -138,66 +159,69 @@ const DocsTemplate = ({
           </Stack>
         </GridItem>
       </Wrapper>
-      <Wrapper grid as="section">
-        <GridItem colSpan={{ base: 3, md: 2 }}>
-          <TimeToRead time={data.mdx.fields.timeToRead.text} />
-          <Heading as="h1" size="4xl" color="purple.600" mt={4}>
-            {pageContext.frontmatter.title}
-          </Heading>
-          <Text>{pageContext.frontmatter.prelude}</Text>
-        </GridItem>
-      </Wrapper>
-      <SkipNavContent />
-      <Wrapper grid as="main" templateColumns="repeat(4, 1fr)" pt={0}>
-        <GridItem colSpan={1}>
-          <Show above="md">
-            <DocsNavigation
-              data={data.allMdx.edges}
-              category={pageContext.frontmatter.category}
-            />
-          </Show>
-          <Show below="md">
-            <Box
-              zIndex="dropdown"
-              position="fixed"
-              top={0}
-              bottom={0}
-              left={0}
-              right={0}
-            >
-              <Slide direction="left" in={isOpenDocsNavigation}>
+      <Wrapper as="main" pt={16}>
+        <Grid templateColumns="repeat(3, 1fr)" gap={{ base: 6, md: 12 }}>
+          <GridItem colSpan={{ base: 3, md: 2 }}>
+            <SkipNavContent />
+            <Heading as="h1" size="4xl" color="purple.600" mt={0}>
+              {pageContext.frontmatter.title}
+            </Heading>
+            <Text fontFamily="heading">{pageContext.frontmatter.prelude}</Text>
+            <TimeToRead time={data.mdx.fields.timeToRead.text} />
+          </GridItem>
+        </Grid>
+        <Grid
+          templateColumns="repeat(4, 1fr)"
+          gap={{ base: 6, md: 12 }}
+          pt={{ base: 4, md: 24 }}
+        >
+          <GridItem colSpan={1}>
+            <Show above="md">
+              <DocsNavigation
+                data={data.allMdx.edges}
+                category={pageContext.frontmatter.category}
+              />
+            </Show>
+            <Show below="md">
+              <Slide
+                direction="left"
+                in={isOpenDocsNavigation}
+                style={{ zIndex: "var(--chakra-zIndices-dropdown)" }}
+              >
                 <Box
                   w="66%"
-                  pl={4}
-                  bg="gray.50"
+                  px={4}
+                  py={8}
+                  bg="white"
                   overflowY="scroll"
                   boxShadow="xs"
                   h="full"
                 >
-                  <Box py={{ base: 8, md: 12 }}>
-                    <Logo />
-                  </Box>
                   <DocsNavigation
                     data={data.allMdx.edges}
                     category={pageContext.frontmatter.category}
                   />
                 </Box>
               </Slide>
+            </Show>
+          </GridItem>
+          <GridItem colSpan={{ base: 4, md: 3, lg: 3, xl: 2 }}>
+            <Toc
+              tocData={data.mdx.tableOfContents}
+              isAvailable={data.mdx.frontmatter.toc}
+              location={location.pathname}
+            />
+            <Box className="mdx-prose">
+              <Prose>
+                <MDXProvider components={shortcodes}>{children}</MDXProvider>
+              </Prose>
             </Box>
-          </Show>
-        </GridItem>
-        <GridItem colSpan={{ base: 4, md: 3, lg: 3, xl: 2 }}>
-          <Toc
-            tocData={data.mdx.tableOfContents}
-            isAvailable={data.mdx.frontmatter.toc}
-            location={location.pathname}
-          />
-          <Box className="mdx-prose">
-            <Prose>
-              <MDXProvider components={shortcodes}>{children}</MDXProvider>
-            </Prose>
-          </Box>
-        </GridItem>
+            <Divider mt={16} />
+            <Text fontFamily="heading" fontSize="xs" color="gray.400">
+              Last edited: {data.mdx.parent.modifiedTime}
+            </Text>
+          </GridItem>
+        </Grid>
       </Wrapper>
       <Footer imageAttributions={imageAttributions} />
     </ChakraProvider>
@@ -215,12 +239,18 @@ export const pageQuery = graphql`
       id
       tableOfContents(maxDepth: 2)
       frontmatter {
+        color
         toc
         heroImageAlt
         heroImage {
           childImageSharp {
             gatsbyImageData
           }
+        }
+      }
+      parent {
+        ... on File {
+          modifiedTime(formatString: "MMMM DD, YYYY")
         }
       }
       fields {
