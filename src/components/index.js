@@ -10,6 +10,7 @@ import CookieConsent from "./CookieConsent";
 import Attribution from "./Attribution";
 import ImageFlag from "./ImageFlag";
 import Seo from "./Seo";
+import Orion from "./Orion";
 
 export {
   CopyURL,
@@ -23,5 +24,6 @@ export {
   CookieConsent,
   Attribution,
   ImageFlag,
-  Seo
+  Seo,
+  Orion,
 };

@@ -38,21 +38,18 @@ const Orion = ({ steps }) => {
   }, [currentIndex, displayQueue, stepsMap]);
 
   return (
-    <div>
-      <h1>Monologue</h1>
-      <div>
-        {displayQueue.slice(0, currentIndex + 1).map((id, index) => {
-          const step = stepsMap[id];
-          return (
-            <div key={step.id}>
-              {index === 0 && <div>{getTime()} Orion:</div>}
-              {step.message && <div>{step.message}</div>}
-              {step.component && step.component}
-            </div>
-          );
-        })}
-      </div>
-    </div>
+    <>
+      {displayQueue.slice(0, currentIndex + 1).map((id) => {
+        const step = stepsMap[id];
+        return (
+          <div key={step.id}>
+            {step.time && <div>{getTime()} Orion</div>}
+            {step.message && <div>{step.message}</div>}
+            {step.component && step.component}
+          </div>
+        );
+      })}
+    </>
   );
 };
 
@@ -64,6 +61,7 @@ Orion.propTypes = {
       component: PropTypes.element,
       trigger: PropTypes.string,
       end: PropTypes.bool,
+      time: PropTypes.bool,
     })
   ).isRequired,
 };
