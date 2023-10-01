@@ -19,7 +19,7 @@ export const ButtonStyles = defineStyleConfig({
       },
     },
     outline: {
-      color: "gray.500",
+      // color: "gray.500",
     },
     navigation: {
       py: { base: 1, md: 4 },
