@@ -1,79 +1,83 @@
-import { useCallback, useEffect, useState } from "react";
-import { useCookies } from "react-cookie";
+import { useReducer, useEffect } from 'react';
+import { useCookies } from 'react-cookie';
+
+const initialState = {
+  choiceMade: false,
+  hasOptedIn: false,
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'SET_INITIAL_STATE':
+      return {
+        ...state,
+        choiceMade: typeof action.payload.consent !== 'undefined',
+        hasOptedIn: action.payload.consent === 'true',
+      };
+    case 'OPT_IN':
+      return {
+        ...state,
+        choiceMade: true,
+        hasOptedIn: true,
+      };
+    case 'OPT_OUT':
+      return {
+        ...state,
+        choiceMade: true,
+        hasOptedIn: false,
+      };
+    default:
+      throw new Error(`Unhandled action type: ${action.type}`);
+  }
+};
 
 export const useCookieConsent = () => {
-  const gaProperty = "JBVJ2688BG";
-  const disableStr = `ga-disable-G-${gaProperty}`;
-
   const [cookies, setCookie, removeCookie] = useCookies([
-    "consent",
-    "_ga",
-    "_ga_JBVJ2688BG",
-    disableStr,
+    'consent',
+    '_ga',
+    '_ga_JBVJ2688BG',
+    'ga-disable-G-JBVJ2688BG',
   ]);
 
-  const [optIn, setOptIn] = useState(cookies.consent || "false");
-  const [initialGaCookie, setInitialGaCookie] = useState(null);
-  const [initialGaPropertyCookie, setInitialGaPropertyCookie] = useState(null);
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const cookieOptions = {
+    path: '/',
+    maxAge: 63072000,
+  };
 
   useEffect(() => {
-    if (optIn === "false") {
-      setInitialGaCookie(cookies._ga);
-      setInitialGaPropertyCookie(cookies._ga_JBVJ2688BG);
-    }
-  }, [cookies._ga, cookies._ga_JBVJ2688BG, optIn]);
+    dispatch({ type: 'SET_INITIAL_STATE', payload: cookies });
+  }, [cookies]);
 
-  const gaOptOut = useCallback(() => {
-    setCookie("consent", "false", {
-      path: "/",
-      domain: ".vui.guide",
-      maxAge: 63072000,
-    });
-    removeCookie("_ga", { path: "/", domain: ".vui.guide" });
-    removeCookie("_ga_JBVJ2688BG", { path: "/", domain: ".vui.guide" });
-    setCookie(disableStr, "true", {
-      path: "/",
-      domain: ".vui.guide",
-      maxAge: 63072000,
-    });
-    setOptIn("false");
-  }, [disableStr, removeCookie, setCookie]);
-
-  const gaOptIn = useCallback(() => {
-    if (initialGaCookie) {
-      setCookie("_ga", initialGaCookie, {
-        path: "/",
-        domain: ".vui.guide",
-        maxAge: 63072000,
-      });
+  const manageGaCookies = (shouldEnable) => {
+    if (shouldEnable) {
+      if (!cookies._ga) setCookie('_ga', '', cookieOptions);
+      if (!cookies._ga_JBVJ2688BG) setCookie('_ga_JBVJ2688BG', '', cookieOptions);
+      setCookie('ga-disable-G-JBVJ2688BG', 'false', cookieOptions);
+    } else {
+      removeCookie('_ga');
+      removeCookie('_ga_JBVJ2688BG');
+      setCookie('ga-disable-G-JBVJ2688BG', 'true', cookieOptions);
     }
-    if (initialGaPropertyCookie) {
-      setCookie("_ga_JBVJ2688BG", initialGaPropertyCookie, {
-        path: "/",
-        domain: ".vui.guide",
-        maxAge: 63072000,
-      });
-    }
-    setCookie(disableStr, "false", {
-      path: "/",
-      domain: ".vui.guide",
-      maxAge: 63072000,
-    });
-    setCookie("consent", "true", {
-      path: "/",
-      domain: ".vui.guide",
-      maxAge: 63072000,
-    });
-    setOptIn("true");
-  }, [disableStr, initialGaCookie, initialGaPropertyCookie, setCookie]);
+  };
 
-  useEffect(() => {
-    if (optIn === "true") {
-      gaOptIn();
-    } else if (optIn === "false") {
-      gaOptOut();
-    }
-  }, [optIn, gaOptIn, gaOptOut]);
+  const optIn = () => {
+    manageGaCookies(true);
+    setCookie('consent', 'true', cookieOptions);
+    dispatch({ type: 'OPT_IN' });
+  };
 
-  return { optIn, setOptIn };
+  const optOut = () => {
+    manageGaCookies(false);
+    setCookie('consent', 'false', cookieOptions);
+    dispatch({ type: 'OPT_OUT' });
+  };
+
+  return {
+    cookies,
+    optIn,
+    optOut,
+    ...state,
+  };
 };

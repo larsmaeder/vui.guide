@@ -41,6 +41,7 @@ import {
   Navigation,
   Toc,
   Seo,
+  CookieConsent,
 } from "../components";
 import { Footer, Wrapper } from "../layout";
 import pages from "../data/mainNavigation.json";
@@ -77,6 +78,7 @@ const DocsTemplate = ({
     <ChakraProvider theme={theme}>
       <Seo pathname={location.pathname} />
       <SkipNavLink zIndex="skipLink">Skip to content</SkipNavLink>
+      <CookieConsent />
       <Navigation
         crumbs={crumbs}
         dynamic={{ docsNavigation: true }}
