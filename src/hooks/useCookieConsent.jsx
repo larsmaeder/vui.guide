@@ -36,7 +36,7 @@ export const useCookieConsent = () => {
     "consent",
     "_ga",
     "_ga_JBVJ2688BG",
-    "ga-disable-G-JBVJ2688BG",
+    // "ga-disable-G-JBVJ2688BG",
     "stor_ga",
     "stor_ga_JBVJ2688BG",
   ]);
@@ -66,7 +66,7 @@ export const useCookieConsent = () => {
             cookies.stor_ga_JBVJ2688BG,
             cookieOptions
           );
-        setCookie("ga-disable-G-JBVJ2688BG", "false", cookieOptions);
+        // setCookie("ga-disable-G-JBVJ2688BG", "false", cookieOptions);
       } else {
         // Check if stor_ cookies are already set before setting them again
         if (!cookies.stor_ga && cookies._ga) {
@@ -79,9 +79,18 @@ export const useCookieConsent = () => {
             cookieOptions
           );
         }
-        setCookie("ga-disable-G-JBVJ2688BG", "true", cookieOptions);
-        setCookie("_ga", "false", cookieOptions);
-        setCookie("_ga_JBVJ2688BG", "false", cookieOptions);
+        // setCookie("ga-disable-G-JBVJ2688BG", "true", cookieOptions);
+        removeCookie("_ga", {
+          path: "/",
+          domain: ".vui.guide",
+        });
+        removeCookie("_ga_JBVJ2688BG", {
+          path: "/",
+          domain: ".vui.guide",
+        });
+        if (typeof window.gaOptout === "function") {
+          window.gaOptout();
+        }
       }
     }
   }, [state.choiceMade, state.hasOptedIn, cookies._ga, cookies._ga_JBVJ2688BG]); // Depend on state.choiceMade and state.hasOptedIn
