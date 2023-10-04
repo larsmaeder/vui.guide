@@ -50,9 +50,9 @@ export const useCookieConsent = () => {
   };
 
   useEffect(() => {
-    dispatch({ type: "SET_INITIAL_STATE", payload: cookies });
-  }, [cookies]);
-
+    dispatch({ type: "SET_INITIAL_STATE", payload: { consent: cookies.consent } });
+  }, [cookies.consent]);
+  
   const manageGaCookies = (shouldEnable) => {
     if (shouldEnable) {
       if (cookies.stor_ga) setCookie("_ga", cookies.stor_ga, cookieOptions);
@@ -70,8 +70,8 @@ export const useCookieConsent = () => {
         cookies._ga_JBVJ2688BG || "",
         cookieOptions
       );
-      removeCookie("_ga");
-      removeCookie("_ga_JBVJ2688BG");
+      removeCookie("_ga", { path: "/", domain: ".vui.guide" });
+      removeCookie("_ga_JBVJ2688BG", { path: "/", domain: ".vui.guide" });      
       setCookie("ga-disable-G-JBVJ2688BG", "true", cookieOptions);
     }
   };
