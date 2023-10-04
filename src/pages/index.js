@@ -54,7 +54,12 @@ const Index = ({ data, location, pageContext }) => {
                   Decline Cookies
                 </Button>
               </ButtonGroup>
-              <Flex gap={1.5} pt={8} color="gray.400" w="md">
+              <Flex
+                gap={1.5}
+                pt={8}
+                color="gray.400"
+                w={{ base: "full", sm: "md" }}
+              >
                 <Icon boxSize={3} as={MdInfoOutline} mt={1} />
                 <Box fontFamily="heading" fontSize="xs">
                   We use cookies to improve your experience, analyze website
