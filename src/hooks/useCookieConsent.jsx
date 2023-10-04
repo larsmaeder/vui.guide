@@ -49,6 +49,21 @@ export const useCookieConsent = () => {
     domain: ".vui.guide",
   };
 
+  const getCookie = (name) => {
+    const value = "; " + document.cookie;
+    const parts = value.split("; " + name + "=");
+    if (parts.length === 2)
+      return parts
+        .pop()
+        .split(";")
+        .shift();
+    return null;
+  };
+
+  let stor_ga = getCookie("_ga");
+  let stor_ga_JBVJ2688BG = getCookie("_ga_JBVJ2688BG");
+  console.log(stor_ga, stor_ga_JBVJ2688BG);
+
   useEffect(() => {
     dispatch({
       type: "SET_INITIAL_STATE",
@@ -63,19 +78,17 @@ export const useCookieConsent = () => {
         setCookie("_ga_JBVJ2688BG", cookies.stor_ga_JBVJ2688BG, cookieOptions);
       setCookie("ga-disable-G-JBVJ2688BG", "false", cookieOptions);
     } else {
-      setCookie("stor_ga", cookies._ga || "", {
+      setCookie("stor_ga", stor_ga || "", {
         path: "/",
         domain: ".vui.guide",
       });
-      setCookie("stor_ga_JBVJ2688BG", cookies._ga_JBVJ2688BG || "", {
+      setCookie("stor_ga_JBVJ2688BG", stor_ga_JBVJ2688BG || "", {
         path: "/",
         domain: ".vui.guide",
       });
-      setTimeout(() => {
-        removeCookie("_ga", { path: "/", domain: ".vui.guide" });
-        removeCookie("_ga_JBVJ2688BG", { path: "/", domain: ".vui.guide" });
-        setCookie("ga-disable-G-JBVJ2688BG", "true", cookieOptions);
-      }, 400); // 400ms delay
+      removeCookie("_ga", { path: "/", domain: ".vui.guide" });
+      removeCookie("_ga_JBVJ2688BG", { path: "/", domain: ".vui.guide" });
+      setCookie("ga-disable-G-JBVJ2688BG", "true", cookieOptions);
     }
   };
 
