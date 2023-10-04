@@ -21,7 +21,7 @@ const Index = ({ data, location, pageContext }) => {
   const {
     breadcrumb: { crumbs },
   } = pageContext;
-  const templateProps = { crumbs, currentUrl };
+  const templateProps = { crumbs, currentUrl, data, location };
   const messages = [
     {
       id: "1",

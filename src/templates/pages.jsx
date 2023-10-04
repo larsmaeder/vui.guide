@@ -15,11 +15,17 @@ import { MdHome } from "react-icons/md";
 import { Footer, Wrapper } from "../layout";
 import pages from "../data/mainNavigation.json";
 
-const PagesTemplate = ({ currentUrl, crumbs, imageAttributions, children }) => {
-  console.log(currentUrl);
+const PagesTemplate = ({
+  data,
+  currentUrl,
+  crumbs,
+  imageAttributions,
+  children,
+}) => {
+  let siteUrl = data.site.siteMetadata.siteUrl + "/";
   return (
     <ChakraProvider theme={theme}>
-      {currentUrl !== "https://vui.guide/" && <CookieConsent />}
+      {currentUrl !== siteUrl && <CookieConsent />}
       <Wrapper as="header" pt={{ base: 8, md: 12 }} pb={0}>
         <SkipNavLink>Skip to content</SkipNavLink>
         <Navigation crumbs={crumbs} pages={pages} />

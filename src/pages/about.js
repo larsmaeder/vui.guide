@@ -34,7 +34,7 @@ const About = ({ data, location, pageContext }) => {
   const {
     breadcrumb: { crumbs },
   } = pageContext;
-  const templateProps = { crumbs, currentUrl, imageAttributions, location };
+  const templateProps = { crumbs, currentUrl, imageAttributions, location, data };
   return (
     <PagesTemplate {...templateProps}>
       <Seo pathname={location.pathname} />
