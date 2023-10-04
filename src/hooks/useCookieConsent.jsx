@@ -46,7 +46,7 @@ export const useCookieConsent = () => {
   const cookieOptions = {
     path: "/",
     maxAge: 63072000,
-    // domain: ".vui.guide",
+    domain: ".vui.guide",
   };
 
   useEffect(() => {
