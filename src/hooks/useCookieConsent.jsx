@@ -68,14 +68,19 @@ export const useCookieConsent = () => {
           );
         setCookie("ga-disable-G-JBVJ2688BG", "false", cookieOptions);
       } else {
-        setCookie("stor_ga", cookies._ga || "", {
-          path: "/",
-          domain: ".vui.guide",
-        });
-        setCookie("stor_ga_JBVJ2688BG", cookies._ga_JBVJ2688BG || "", {
-          path: "/",
-          domain: ".vui.guide",
-        });
+        // Check if stor_ cookies are already set before setting them again
+        if (!cookies.stor_ga && cookies._ga) {
+          setCookie("stor_ga", cookies._ga, {
+            path: "/",
+            domain: ".vui.guide",
+          });
+        }
+        if (!cookies.stor_ga_JBVJ2688BG && cookies._ga_JBVJ2688BG) {
+          setCookie("stor_ga_JBVJ2688BG", cookies._ga_JBVJ2688BG, {
+            path: "/",
+            domain: ".vui.guide",
+          });
+        }
         removeCookie("_ga", { path: "/", domain: ".vui.guide" });
         removeCookie("_ga_JBVJ2688BG", { path: "/", domain: ".vui.guide" });
         setCookie("ga-disable-G-JBVJ2688BG", "true", cookieOptions);
