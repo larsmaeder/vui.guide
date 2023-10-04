@@ -49,23 +49,6 @@ export const useCookieConsent = () => {
     domain: ".vui.guide",
   };
 
-  const getCookie = (name) => {
-    if (typeof window === "undefined") return null; // Check if running on server
-
-    const value = "; " + document.cookie;
-    const parts = value.split("; " + name + "=");
-    if (parts.length === 2)
-      return parts
-        .pop()
-        .split(";")
-        .shift();
-    return null;
-  };
-
-  let stor_ga = getCookie("_ga");
-  let stor_ga_JBVJ2688BG = getCookie("_ga_JBVJ2688BG");
-  console.log(stor_ga, stor_ga_JBVJ2688BG);
-
   useEffect(() => {
     dispatch({
       type: "SET_INITIAL_STATE",
@@ -73,35 +56,39 @@ export const useCookieConsent = () => {
     });
   }, [cookies.consent]);
 
-  const manageGaCookies = (shouldEnable) => {
-    if (shouldEnable) {
-      if (cookies.stor_ga) setCookie("_ga", cookies.stor_ga, cookieOptions);
-      if (cookies.stor_ga_JBVJ2688BG)
-        setCookie("_ga_JBVJ2688BG", cookies.stor_ga_JBVJ2688BG, cookieOptions);
-      setCookie("ga-disable-G-JBVJ2688BG", "false", cookieOptions);
-    } else {
-      setCookie("stor_ga", stor_ga || "", {
-        path: "/",
-        domain: ".vui.guide",
-      });
-      setCookie("stor_ga_JBVJ2688BG", stor_ga_JBVJ2688BG || "", {
-        path: "/",
-        domain: ".vui.guide",
-      });
-      removeCookie("_ga", { path: "/", domain: ".vui.guide" });
-      removeCookie("_ga_JBVJ2688BG", { path: "/", domain: ".vui.guide" });
-      setCookie("ga-disable-G-JBVJ2688BG", "true", cookieOptions);
+  useEffect(() => {
+    if (state.choiceMade) {
+      if (state.hasOptedIn) {
+        if (cookies.stor_ga) setCookie("_ga", cookies.stor_ga, cookieOptions);
+        if (cookies.stor_ga_JBVJ2688BG)
+          setCookie(
+            "_ga_JBVJ2688BG",
+            cookies.stor_ga_JBVJ2688BG,
+            cookieOptions
+          );
+        setCookie("ga-disable-G-JBVJ2688BG", "false", cookieOptions);
+      } else {
+        setCookie("stor_ga", cookies._ga || "", {
+          path: "/",
+          domain: ".vui.guide",
+        });
+        setCookie("stor_ga_JBVJ2688BG", cookies._ga_JBVJ2688BG || "", {
+          path: "/",
+          domain: ".vui.guide",
+        });
+        removeCookie("_ga", { path: "/", domain: ".vui.guide" });
+        removeCookie("_ga_JBVJ2688BG", { path: "/", domain: ".vui.guide" });
+        setCookie("ga-disable-G-JBVJ2688BG", "true", cookieOptions);
+      }
     }
-  };
+  }, [state.choiceMade, state.hasOptedIn]); // Depend on state.choiceMade and state.hasOptedIn
 
   const optIn = () => {
-    manageGaCookies(true);
     setCookie("consent", "true", cookieOptions);
     dispatch({ type: "OPT_IN" });
   };
 
   const optOut = () => {
-    manageGaCookies(false);
     setCookie("consent", "false", cookieOptions);
     dispatch({ type: "OPT_OUT" });
   };
