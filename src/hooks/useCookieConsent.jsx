@@ -58,24 +58,24 @@ export const useCookieConsent = () => {
 
   const manageGaCookies = (shouldEnable) => {
     if (shouldEnable) {
-      if (cookies.stor_ga)
-        setCookie("_ga", cookies.stor_ga, { path: "/", domain: ".vui.guide" });
+      if (cookies.stor_ga) setCookie("_ga", cookies.stor_ga, cookieOptions);
       if (cookies.stor_ga_JBVJ2688BG)
-        setCookie("_ga_JBVJ2688BG", cookies.stor_ga_JBVJ2688BG, {
-          path: "/",
-          domain: ".vui.guide",
-        });
+        setCookie("_ga_JBVJ2688BG", cookies.stor_ga_JBVJ2688BG, cookieOptions);
       setCookie("ga-disable-G-JBVJ2688BG", "false", cookieOptions);
     } else {
-      setCookie("stor_ga", cookies._ga || "", cookieOptions);
-      setCookie(
-        "stor_ga_JBVJ2688BG",
-        cookies._ga_JBVJ2688BG || "",
-        cookieOptions
-      );
-      removeCookie("_ga", { path: "/", domain: ".vui.guide" });
-      removeCookie("_ga_JBVJ2688BG", { path: "/", domain: ".vui.guide" });
-      setCookie("ga-disable-G-JBVJ2688BG", "true", cookieOptions);
+      setCookie("stor_ga", cookies._ga || "", {
+        path: "/",
+        domain: ".vui.guide",
+      });
+      setCookie("stor_ga_JBVJ2688BG", cookies._ga_JBVJ2688BG || "", {
+        path: "/",
+        domain: ".vui.guide",
+      });
+      setTimeout(() => {
+        removeCookie("_ga", { path: "/", domain: ".vui.guide" });
+        removeCookie("_ga_JBVJ2688BG", { path: "/", domain: ".vui.guide" });
+        setCookie("ga-disable-G-JBVJ2688BG", "true", cookieOptions);
+      }, 400); // 400ms delay
     }
   };
 
