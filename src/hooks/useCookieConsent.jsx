@@ -79,12 +79,18 @@ export const useCookieConsent = () => {
             cookieOptions
           );
         }
-        removeCookie("_ga");
-        removeCookie("_ga_JBVJ2688BG");
         setCookie("ga-disable-G-JBVJ2688BG", "true", cookieOptions);
+        removeCookie("_ga", {
+          path: "/",
+          domain: ".vui.guide",
+        });
+        removeCookie("_ga_JBVJ2688BG", {
+          path: "/",
+          domain: ".vui.guide",
+        });
       }
     }
-  }, [state.choiceMade, state.hasOptedIn, cookies]); // Depend on state.choiceMade and state.hasOptedIn
+  }, [state.choiceMade, state.hasOptedIn, cookies._ga, cookies._ga_JBVJ2688BG]); // Depend on state.choiceMade and state.hasOptedIn
 
   const optIn = () => {
     setCookie("consent", "true", cookieOptions);
