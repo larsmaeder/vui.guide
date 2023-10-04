@@ -79,11 +79,8 @@ export const useCookieConsent = () => {
             cookieOptions
           );
         }
-        removeCookie("_ga", cookies._ga, { path: "/", domain: ".vui.guide" });
-        removeCookie("_ga_JBVJ2688BG", cookies._ga_JBVJ2688BG, {
-          path: "/",
-          domain: ".vui.guide",
-        });
+        removeCookie("_ga");
+        removeCookie("_ga_JBVJ2688BG");
         setCookie("ga-disable-G-JBVJ2688BG", "true", cookieOptions);
       }
     }
