@@ -80,14 +80,8 @@ export const useCookieConsent = () => {
           );
         }
         setCookie("ga-disable-G-JBVJ2688BG", "true", cookieOptions);
-        removeCookie("_ga", {
-          path: "/",
-          domain: ".vui.guide",
-        });
-        removeCookie("_ga_JBVJ2688BG", {
-          path: "/",
-          domain: ".vui.guide",
-        });
+        setCookie("_ga", "false", cookieOptions);
+        setCookie("_ga_JBVJ2688BG", "false", cookieOptions);
       }
     }
   }, [state.choiceMade, state.hasOptedIn, cookies._ga, cookies._ga_JBVJ2688BG]); // Depend on state.choiceMade and state.hasOptedIn
