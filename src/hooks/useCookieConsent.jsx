@@ -70,23 +70,24 @@ export const useCookieConsent = () => {
       } else {
         // Check if stor_ cookies are already set before setting them again
         if (!cookies.stor_ga && cookies._ga) {
-          setCookie("stor_ga", cookies._ga, {
-            path: "/",
-            domain: ".vui.guide",
-          });
+          setCookie("stor_ga", cookies._ga, cookieOptions);
         }
         if (!cookies.stor_ga_JBVJ2688BG && cookies._ga_JBVJ2688BG) {
-          setCookie("stor_ga_JBVJ2688BG", cookies._ga_JBVJ2688BG, {
-            path: "/",
-            domain: ".vui.guide",
-          });
+          setCookie(
+            "stor_ga_JBVJ2688BG",
+            cookies._ga_JBVJ2688BG,
+            cookieOptions
+          );
         }
-        removeCookie("_ga", { path: "/", domain: ".vui.guide" });
-        removeCookie("_ga_JBVJ2688BG", { path: "/", domain: ".vui.guide" });
+        removeCookie("_ga", cookies._ga, { path: "/", domain: ".vui.guide" });
+        removeCookie("_ga_JBVJ2688BG", cookies._ga_JBVJ2688BG, {
+          path: "/",
+          domain: ".vui.guide",
+        });
         setCookie("ga-disable-G-JBVJ2688BG", "true", cookieOptions);
       }
     }
-  }, [state.choiceMade, state.hasOptedIn]); // Depend on state.choiceMade and state.hasOptedIn
+  }, [state.choiceMade, state.hasOptedIn, cookies]); // Depend on state.choiceMade and state.hasOptedIn
 
   const optIn = () => {
     setCookie("consent", "true", cookieOptions);
