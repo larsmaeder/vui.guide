@@ -1,13 +1,4 @@
----
-title: Is conversation the right fit?
-navDocTitle: Is conversation the right fit?
-path: /docs/fundamentals/is-conversation-the-right-fit/
-category: fundamentals
-sort: 3
-toc: true
----
-
-![Is conversation the right fit?](/images/fundamentals/isConversationTheRightFit.png)
+![Is conversation the right fit?](/assets/principles/isConversationTheRightFit.png)
 
 Voice interaction can be very powerful when used in the right way. It's fast, simple, and ubiquitous. But was it just implemented in an application to have a nice voice interaction or is it really useful for the user and has a purpose, i.e. to let the user do things faster and easier? It is important to ascertain how users interact with the voice interface, so that the interaction can be optimized for their purpose. Perhaps it turns out that the implementation of a voice interface is not even necessary. Using the voice interface in a wrong way can quickly become depressing and a hurdle for the user.
 
