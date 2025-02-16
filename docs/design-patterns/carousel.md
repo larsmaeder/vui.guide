@@ -1,12 +1,3 @@
----
-title: Carousel
-navDocTitle: Carousel
-path: /docs/design-patterns/carousel/
-category: designPatterns
-sort: 3
-toc: true
----
-
 A carousel are a series of items that can be swiped horizontally. Each individual item can be clicked to open further information in an external service, i.e. a web browser.
 
 ## Why using a carousel?
@@ -25,9 +16,9 @@ A carousel item can contains different elements but all articles must be consist
 
 ### Structure of a carousel
 
-The structure of a carousel item is similiar to a <Link to="/docs/design-patterns/card/#structure-of-a-card">card</Link>, but since the element itself triggers an action, a visible action link like "Read more" is not required. A carousel can contain an image, a short title and a short text.
+The structure of a carousel item is similar to a [card](/docs/design-patterns/card/#structure-of-a-card), but since the element itself triggers an action, a visible action link like "Read more" is not required. A carousel can contain an image, a short title, and a short text.
 
-![Structure of a carousel.](/images/designPatterns/carouselStructure.png)
+![Structure of a carousel.](/images/design-patterns/carouselStructure.png)
 
 | Components  |
 | ----------- |

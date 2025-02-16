@@ -1,13 +1,4 @@
----
-title: Wording
-navDocTitle: Wording
-path: /docs/behaviour/wording/
-category: behaviour
-sort: 3
-toc: true
----
-
-![Wording](/images/behaviour/wording.png)
+![Wording](/images/behavior/wording.png)
 
 The communication of the VUI with the user is advantageous in order to maintain the trust of the users and to increase the use of the service when used correctly.
 

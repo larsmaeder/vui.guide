@@ -1,17 +1,8 @@
----
-title: Handling user intents
-navDocTitle: Handling user intents
-path: /docs/behaviour/handling-user-intents/
-category: behaviour
-sort: 7
-toc: true
----
-
-![Handling user intents](/images/behaviour/handlingUserIntents.png)
+![Handling user intents](/images/behavior/handlingUserIntents.png)
 
 Every command consists of three factors: **intent,** **utterance,** and **slot**. User intent reflects the exact goals that should be achieved with a voice command or conversation. The utterance indicates how a user phrases his command and slots give more information when there is too little detail and the voice user interface does not know how to handle the user input.
 
-![Structure of a command: intent, utterance and slot.](/images/behaviour/intentUtteranceSlot.png)
+![Structure of a command: intent, utterance and slot.](/images/behavior/intentUtteranceSlot.png)
 
 ## Shorter dialogue flow or accuracy of user intent?
 
@@ -31,7 +22,7 @@ So the extra step will be the better solution in this case and should therefore 
 
 In graphic interfaces users often make use of keyboard shortcuts, they can be be really useful and reduce time and make complex task easier. In voice user interfaces there is no keyboard, but shortcuts doesn't have to be omitted. A simple voice command can take that task – but within a conversation or task that is already started, it is difficult to use an shortcut, let alone knowing that it exists.
 
-A good way to improve efficiency is using the design pattern <Link to="/docs/design-patterns/chip/">Chips</Link>. Chips are used to provide a quick way to respond in a conversation without voice interaction.
+A good way to improve efficiency is using the design pattern [Chips](/docs/design-patterns/chip/). Chips are used to provide a quick way to respond in a conversation without voice interaction.
 
 While the nature of voice interfaces can be more efficient, there is still the question of customizing the experience. If users can customize the experience of more frequent actions, the product can be flexibly adapted to the user. With language products, this can also be achieved by simply adapting the product, e.g. specify what the product should use when it relates to the user. Do you prefer your first name? Maybe an entertaining nickname? These are small things that have a significant impact on the overall experience.
 

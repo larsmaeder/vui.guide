@@ -1,12 +1,3 @@
----
-title: Audio card
-navDocTitle: Audio card
-path: /docs/design-patterns/audio-card/
-category: designPatterns
-sort: 7
-toc: true
----
-
 An audio card allows the user to play audio content such as music, podcasts or news.
 
 Use external links to platforms or third-party apps to offer users other types of media, such as video.
@@ -41,7 +32,7 @@ Show the user visual feedback as known in web audio players.
 
 A audio card should contain a play, a pause and a restart button. Allow the user to jump forward or backward for a few seconds by providing a forward and backward button. The user should always know what audio is playing and how long it has been playing already, so a progress bar with the elapsed time and the total time must be visually recognizable. An audio card can also contain a title and, if applicable, a detailed description and image, e.g. when a podcast or song is played to identify the artist.
 
-![Structure of an audio card.](/images/designPatterns/audioCardStructure.png)
+![Structure of an audio card.](/images/design-patterns/audioCardStructure.png)
 
 | Components                     |
 | ------------------------------ |
@@ -53,4 +44,4 @@ A audio card should contain a play, a pause and a restart button. Allow the user
 
 #### Examples
 
-![Examples of use cases of an audio card.](/images/designPatterns/audioCardExamples.png)
+![Examples of use cases of an audio card.](/images/design-patterns/audioCardExamples.png)

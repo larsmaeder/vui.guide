@@ -14,7 +14,7 @@ One factor is the users inhibition threshold. Although VUIs are becoming more co
 
 #### Some users prefer text
 
-Likewise, the forced use of voice can be annoying for some users, who usually prefer to communicate through text. They are used to it and this is their normal behaviour to communicate or interact with a device. They may not want to switch to using voice quickly, unless it offers a higher added value.
+Likewise, the forced use of voice can be annoying for some users, who usually prefer to communicate through text. They are used to it and this is their normal behavior to communicate or interact with a device. They may not want to switch to using voice quickly, unless it offers a higher added value.
 
 #### Privacy
 

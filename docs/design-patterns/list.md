@@ -1,12 +1,3 @@
----
-title: List
-navDocTitle: List
-path: /docs/design-patterns/list/
-category: designPatterns
-sort: 4
-toc: true
----
-
 A list is very simple and its purpose is designed for high readability and quick scanability. With as few elements as possible, the user should be shown all important information. Based on the information displayed, the user should can select a desired list item with a tap or voice interaction.
 
 ## Why using a list?
@@ -27,7 +18,7 @@ Lists with a lot of elements can be scrolled. There is no maximum of items that 
 
 List elements are nested in a scrollable container. The container is marked with a list title, which should be an overall category for the list elements. The list element is structured with a primary and secondary text, it is possible to add a supporting picture to the list to allow the user to scan the list faster. The content of a list element must not be overloaded and only contains the most important keywords.
 
-![Structure of a list.](/images/designPatterns/listStructure.png)
+![Structure of a list.](/images/design-patterns/listStructure.png)
 
 | Components                     |
 | ------------------------------ |
@@ -40,4 +31,4 @@ List elements are nested in a scrollable container. The container is marked with
 
 #### Examples
 
-![Examples of use cases of a list.](/images/designPatterns/listExamples.png)
+![Examples of use cases of a list.](/images/design-patterns/listExamples.png)
