@@ -14,12 +14,12 @@ This raises new questions and challenges for UI/UX designers:
 
 ### As a designer
 
-Navigate through the guide using the menu bar on the left. There is also a **resources** section with useful tools and a [checklist](/docs/resources/checklist/) that provides an overview of the most important points, helping you step by step in designing a voice user interface.
+Navigate through the guide using the menu bar on the left. There is also a **resources** section with useful tools and a [checklist](/docs/resources/checklist.md) that provides an overview of the most important points, helping you step by step in designing a voice user interface.
 
 ### As a contributor
 
-*vui.guide* is open-source and licensed under [MIT](https://github.com/larsmaeder/vui.guide#-license) and [CC BY-SA 4.0](https://github.com/larsmaeder/vui.guide#-license). You can add new articles, edit existing ones, share your knowledge, and improve the guide collaboratively.
+*vui.guide* is open-source and licensed under MIT and CC BY-SA 4.0. You can add new articles, edit existing ones, share your knowledge, and improve the guide collaboratively.
 
 ## Start contributing
 
-Visit the [contribute](/contribute/) section for instructions on how to start contributing to the Voice User Interface Guide.
+Visit the [contribute](/docs/community/CONTRIBUTING.md) section for instructions on how to start contributing to the Voice User Interface Guide.
