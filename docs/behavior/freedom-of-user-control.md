@@ -1,4 +1,4 @@
-![Freedom of user control.](/images/behavior/freedomOfUserControl.png)
+![Freedom of user control.](/assets/behavior/freedomOfUserControl.png)
 
 Using a computer is not difficult – if something did not work as intended, simply a click on cancel with the mouse or typing on the keyboard would normally solve the problem and everything would return to its original state. On conventional devices, you have always been able to cancel actions easily with the mouse and keyboard. You have complete control over the system.
 
@@ -10,13 +10,13 @@ Fortunately in a voice user interface, we can use voice for control. But especia
 
 Users want to feel responsible for the voice user interface at all times. Voice interfaces should not self determine, but rather listen to what the user wants. In various experiments, it was found that users felt rushed when interacting with the voice user interface and were not sure about the full scope of the interaction options, as these were never clearly communicated or simply do not exist. Keyboards are easy to understand because each time a key is pressed, a letter appears on the screen. Every user action corresponds to an immediate visual response. In contrast, voice interfaces tend to respond more slowly and often miss the user's intent. As a result, users have less control over the system. It is therefore more important than ever to inform the user of the options available.
 
-![Interface with examples of possible commands.](/images/behavior/UserFreedomExamples.png)
+![Interface with examples of possible commands.](/assets/behavior/UserFreedomExamples.png)
 
 ## Telling the user all options
 
 There will always be cases where the user's intents are not interpreted right by the VUI. In this case it is a good idea to spelling out all available options in front of the user.
 
-![Simple abstract of how to handle user inputs.](/images/behavior/tellingTheUserAllOptions.png)
+![Simple abstract of how to handle user inputs.](/assets/behavior/tellingTheUserAllOptions.png)
 
 ## Out-of-turn interaction
 
@@ -24,4 +24,4 @@ Existing voice user interfaces are already trying to do this well by providing t
 
 Use of this keyword should interrupt the active interaction immediately, in other words, it will basically stop what is being done and/or ignore future dependent tasks and put the system back into sleep mode.
 
-![Using a easy to rememberable word to stop all actions.](/images/behavior/outOfTurnCommand.png)
+![Using a easy to rememberable word to stop all actions.](/assets/behavior/outOfTurnCommand.png)

@@ -2,5 +2,5 @@ Fundamental properties of a voice user interface are key points that should alwa
 
 | Topic                          | Link                                                                          |
 | ------------------------------ | ----------------------------------------------------------------------------- |
-| Ten principles                 | [Read more](/docs/principles/ten-principles/)                               |
-| Is conversation the right fit? | [Read more](/docs/principles/is-conversation-the-right-fit/)                |
+| Ten principles                 | [Read more](/docs/principles/ten-principles.md)                               |
+| Is conversation the right fit? | [Read more](/docs/principles/is-conversation-the-right-fit.md)                |

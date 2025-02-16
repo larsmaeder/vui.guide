@@ -2,9 +2,9 @@ Since communication in a voice user interface mainly happens through voice, it i
 
 | Topic                           | Link                                                                          |
 | -------------------------------- | ----------------------------------------------------------------------------- |
-| Bsehavior of speak               | [Read more](/docs/behavior/behavior-of-speak/)                              |
-| Wording                          | [Read more](/docs/behavior/wording/)                                         |
-| Feedback of conversation status  | [Read more](/docs/behavior/feedback-of-conversation-status/)                 |
-| Freedom of user control          | [Read more](/docs/behavior/freedom-of-user-control/)                         |
-| Prevent and recover from errors  | [Read more](/docs/behavior/prevent-and-recover-from-errors/)                 |
-| Handling user intents            | [Read more](/docs/behavior/handling-user-intents/)                           |
+| Bsehavior of speak               | [Read more](/docs/behavior/behavior-of-speak.md)                              |
+| Wording                          | [Read more](/docs/behavior/wording.md)                                         |
+| Feedback of conversation status  | [Read more](/docs/behavior/feedback-conversation-status.md)                 |
+| Freedom of user control          | [Read more](/docs/behavior/freedom-of-user-control.md)                         |
+| Prevent and recover from errors  | [Read more](/docs/behavior/error-prevention.md)                 |
+| Handling user intents            | [Read more](/docs/behavior/handling-user-intents.md)                           |

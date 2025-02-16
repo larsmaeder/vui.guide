@@ -16,7 +16,7 @@ Usually a card can describe a single topic with a short text, an image and an ac
 
 There are many alternatives for designing a card. The following structure example shows a card with five components. There is no fixed rule, such as how many components should or should be used. As long as there is no interaction within the card itself (i.e. scrolling or expanding the card to full screen mode). The only exception is the action link.
 
-![Structure of a card.](/images/design-patterns/cardStructure.png)
+![Structure of a card.](/assets/design-patterns/cardStructure.png)
 
 | Components             |
 | ---------------------- |
@@ -28,4 +28,4 @@ There are many alternatives for designing a card. The following structure exampl
 
 #### Examples
 
-![Examples of use cases of a card.](/images/design-patterns/cardExamples.png)
+![Examples of use cases of a card.](/assets/design-patterns/cardExamples.png)

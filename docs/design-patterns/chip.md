@@ -17,7 +17,7 @@ When the voice interface returns a question to the user, a chip can be provided 
 
 Chips are basically just text and have no complex structure. However, they must stand out visually from normal text. The best way to do this is to have a contour or a button-like look.
 
-![Structure of a chip.](/images/design-patterns/chipStructure.png)
+![Structure of a chip.](/assets/design-patterns/chipStructure.png)
 
 | Components |
 | ---------- |
@@ -25,5 +25,5 @@ Chips are basically just text and have no complex structure. However, they must 
 
 #### Examples
 
-![Examples of use cases of a chip.](/images/design-patterns/chipExamples.png)
+![Examples of use cases of a chip.](/assets/design-patterns/chipExamples.png)
 

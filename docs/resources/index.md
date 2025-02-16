@@ -11,7 +11,7 @@ This section offers a collection of useful tools for designing a voice user inte
 
 ## Prototyping
 
-![Adobe XD](/images/resources/adobeXDLogo.png)  
+![Adobe XD](/assets/resources/adobeXDLogo.png)  
 
 ### Adobe XD
 
@@ -23,7 +23,7 @@ Adobe XD is a useful tool for testing and prototyping voice commands using actua
 
 ## Tools
 
-![Checklist](/images/resources/checklist.png)  
+![Checklist](/assets/resources/checklist.png)  
 
 ### Checklist
 

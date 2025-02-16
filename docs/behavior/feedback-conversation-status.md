@@ -1,4 +1,4 @@
-![Feedback of conversation status.](/images/behavior/feedbackOfConversationStatus.png)
+![Feedback of conversation status.](/assets/behavior/feedbackOfConversationStatus.png)
 
 It can be strange in a face-to-face conversation when simply no more sentences are spoken to the other person and this uncomfortable silence occurs. Did my counterpart understand me correctly? Should I ask him or her again?
 
@@ -18,11 +18,11 @@ But that would not be as pleasant as it seems at first glance, as users want to 
 
 If possible, always use visual feedback to inform the user. So the user can immediately see if the voice interface is listening. The simplest form of visual feedback is via a screen, but can also be done on screenless devices with visual cues as we know it mostly from physical products (lights, light patterns), which indicate the status with certain light intervals or color variations.
 
-![Visual cues (lights, light patterns) on a physical product.](/images/behavior/twitter-jankolario-bifCXiN5rdY-unsplash.png)
+![Visual cues (lights, light patterns) on a physical product.](/assets/behavior/twitter-jankolario-bifCXiN5rdY-unsplash.png)
 
 In addition to a physical indicator, there is a good way to display specific information to the user with on-screen messages too.
 
-![On-screen message to display specific information to the user.](/images/behavior/feedback.png)
+![On-screen message to display specific information to the user.](/assets/behavior/feedback.png)
 
 No matter which variant is used, the feedback must be contextual and tell the user what happened. Especially error feedback must show what is wrong and how the user can solve the situation – and not just tell there was an error and showing an unintelligible error code.
 
@@ -47,7 +47,7 @@ In general, we can differentiate between seven conditions that a voice user inte
 
 ### Waiting
 
-![Telling the user the VUI is waiting.](/images/behavior/waiting.png)
+![Telling the user the VUI is waiting.](/assets/behavior/waiting.png)
 
 | Usage    |                                                                                       |
 | -------- | ------------------------------------------------------------------------------------- |
@@ -56,7 +56,7 @@ In general, we can differentiate between seven conditions that a voice user inte
 
 ### Listening
 
-![Telling the user the VUI is listening.](/images/behavior/listening.png)
+![Telling the user the VUI is listening.](/assets/behavior/listening.png)
 
 | Usage    |                                                                              |
 | -------- | ---------------------------------------------------------------------------- |
@@ -65,7 +65,7 @@ In general, we can differentiate between seven conditions that a voice user inte
 
 ### Thinking
 
-![Playing animation while the VUI is thinking and processing the user intent.](/images/behavior/thinking.gif)
+![Playing animation while the VUI is thinking and processing the user intent.](/assets/behavior/thinking.gif)
 
 | Usage    |                                                                   |
 | -------- | ----------------------------------------------------------------- |
@@ -74,7 +74,7 @@ In general, we can differentiate between seven conditions that a voice user inte
 
 ### Replying
 
-![Telling the user the VUI is speaking or has spoken.](/images/behavior/replying.gif)
+![Telling the user the VUI is speaking or has spoken.](/assets/behavior/replying.gif)
 
 | Usage    |                                                |
 | -------- | ---------------------------------------------- |
@@ -83,7 +83,7 @@ In general, we can differentiate between seven conditions that a voice user inte
 
 ### Incomprehension
 
-![Telling the user what exactly occurred the incomprehension and how he can resolve this error.](/images/behavior/incomprehension.png)
+![Telling the user what exactly occurred the incomprehension and how he can resolve this error.](/assets/behavior/incomprehension.png)
 
 | Usage    |                                                                                              |
 | -------- | -------------------------------------------------------------------------------------------- |
@@ -92,7 +92,7 @@ In general, we can differentiate between seven conditions that a voice user inte
 
 ### Confirmation
 
-![Telling the user the VUI is waiting.](/images/behavior/confirmation.png)
+![Telling the user the VUI is waiting.](/assets/behavior/confirmation.png)
 
 | Usage    |                                                               |
 | -------- | ------------------------------------------------------------- |
@@ -101,7 +101,7 @@ In general, we can differentiate between seven conditions that a voice user inte
 
 ### User speaks
 
-![Telling the user he can speak or that he is speaking.](/images/behavior/userSpeaks.gif)
+![Telling the user he can speak or that he is speaking.](/assets/behavior/userSpeaks.gif)
 
 | Usage    |                                                        |
 | -------- | ------------------------------------------------------ |

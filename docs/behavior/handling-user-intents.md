@@ -1,8 +1,8 @@
-![Handling user intents](/images/behavior/handlingUserIntents.png)
+![Handling user intents](/assets/behavior/handlingUserIntents.png)
 
 Every command consists of three factors: **intent,** **utterance,** and **slot**. User intent reflects the exact goals that should be achieved with a voice command or conversation. The utterance indicates how a user phrases his command and slots give more information when there is too little detail and the voice user interface does not know how to handle the user input.
 
-![Structure of a command: intent, utterance and slot.](/images/behavior/intentUtteranceSlot.png)
+![Structure of a command: intent, utterance and slot.](/assets/behavior/intentUtteranceSlot.png)
 
 ## Shorter dialogue flow or accuracy of user intent?
 

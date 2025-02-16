@@ -1,4 +1,4 @@
-![Wording](/images/behavior/wording.png)
+![Wording](/assets/behavior/wording.png)
 
 The communication of the VUI with the user is advantageous in order to maintain the trust of the users and to increase the use of the service when used correctly.
 

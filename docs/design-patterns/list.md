@@ -18,7 +18,7 @@ Lists with a lot of elements can be scrolled. There is no maximum of items that 
 
 List elements are nested in a scrollable container. The container is marked with a list title, which should be an overall category for the list elements. The list element is structured with a primary and secondary text, it is possible to add a supporting picture to the list to allow the user to scan the list faster. The content of a list element must not be overloaded and only contains the most important keywords.
 
-![Structure of a list.](/images/design-patterns/listStructure.png)
+![Structure of a list.](/assets/design-patterns/listStructure.png)
 
 | Components                     |
 | ------------------------------ |
@@ -31,4 +31,4 @@ List elements are nested in a scrollable container. The container is marked with
 
 #### Examples
 
-![Examples of use cases of a list.](/images/design-patterns/listExamples.png)
+![Examples of use cases of a list.](/assets/design-patterns/listExamples.png)
